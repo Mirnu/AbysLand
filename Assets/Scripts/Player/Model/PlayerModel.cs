@@ -5,10 +5,12 @@ namespace Player.Model
     public class PlayerModel 
     {
         private readonly Rigidbody2D _rigidbody;
+        private readonly Animator _animator;
 
-        public PlayerModel(Rigidbody2D rigidbody) 
+        public PlayerModel(Rigidbody2D rigidbody, Animator animator) 
         { 
             _rigidbody = rigidbody;
+            _animator = animator;
         }
 
         public Vector3 LookDir
@@ -31,6 +33,11 @@ namespace Player.Model
         public void MovePosition(Vector2 position)
         {
             _rigidbody.MovePosition(_rigidbody.position + position);
+        }
+
+        public void SetMoveAnimation(int id)
+        {
+            _animator.SetInteger("Walk", id);
         }
     }
 }

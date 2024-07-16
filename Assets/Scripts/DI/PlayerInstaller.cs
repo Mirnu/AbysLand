@@ -9,17 +9,15 @@ namespace DI
     public class PlayerInstaller : MonoInstaller
     {
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Animator _animator;
        
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_rigidbody);
+                .WithArguments(_rigidbody, _animator);
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
-        }
-
-        class Settings
-        {
-
+            Container.BindInstance(new PlayerInput());
+            Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
         }
     }
 }
