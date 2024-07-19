@@ -1,10 +1,9 @@
-using Player.Model;
+using Assets.Scripts.Player.Model;
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Player.Handlers
+namespace Assets.Scripts.Player.Handlers
 {
     public class PlayerMoveHandler : IInitializable, ITickable
     {

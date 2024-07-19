@@ -1,8 +1,8 @@
-using Player.Model;
+using Assets.Scripts.Player.Model;
 using UnityEngine;
 using Zenject;
 
-namespace Player
+namespace Assets.Scripts.Player
 {
     public class PlayerFacade : MonoBehaviour
     {
