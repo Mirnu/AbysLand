@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public abstract class IInventory {
+public abstract class AbstractInventory {
     //КЛАСС - ЗАГЛУШКА
     private List<int> itemsList = new List<int>();
 
     public Action OnInvChanged;
 
-    public IInventory(List<int> items) {
+    public AbstractInventory(List<int> items) {
         itemsList = items;
     }
 
