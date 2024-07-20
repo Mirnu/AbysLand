@@ -1,6 +1,4 @@
-
-using Resource;
-using Unity.VisualScripting;
+using Assets.Scripts.Resources.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
