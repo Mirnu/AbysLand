@@ -1,10 +1,10 @@
-using Player.Model;
+using Assets.Scripts.Player.Model;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Player.Handlers
+namespace Assets.Scripts.Player.Handlers
 {
     public enum Animations
     {
@@ -20,6 +20,8 @@ namespace Player.Handlers
 
     public class PlayerAnimationHandler : IInitializable, IDisposable, ITickable
     {
+        public event Action<Animations> AnimationChanged;
+
         private readonly PlayerModel _model;
         private readonly PlayerInput _input;
 
@@ -71,6 +73,9 @@ namespace Player.Handlers
 
         public void CheckOnChangeAnimation(Animations animation)
         {
+            if (_currentAnimationPosition != animation)
+                AnimationChanged?.Invoke(animation);
+
             _currentAnimationPosition = animation;
 
             if (!isWalk)

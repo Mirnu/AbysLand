@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Model
+namespace Assets.Scripts.Player.Model
 {
     public class PlayerModel 
     {

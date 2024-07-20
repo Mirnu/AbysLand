@@ -1,12 +1,14 @@
+using Assets.Scripts.Resources.Tools;
 using UnityEngine;
 
-namespace Resource
+namespace Assets.Scripts.Resources.Data
 {
+    [CreateAssetMenu(menuName = "Resources/New Resource")]
     public class Resource : ScriptableObject
     {
         public Sprite SpriteInInventary;
         public string Name;
-        public int Count;
+        public Tool Tool;
     }
 
     public class ResourceInTheWorld : Resource

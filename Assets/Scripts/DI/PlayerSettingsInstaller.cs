@@ -1,4 +1,4 @@
-using Player.Handlers;
+using Assets.Scripts.Player.Handlers;
 using System;
 using UnityEngine;
 using Zenject;
