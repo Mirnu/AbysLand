@@ -1,31 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.Scripts.Resources.Data;
 using UnityEngine;
 
 [Serializable]
 public abstract class AbstractInventory {
     //КЛАСС - ЗАГЛУШКА
-    private List<int> itemsList = new List<int>();
+    private Resource[] _inventory = new Resource[] {};
+    private readonly int _size = 0;
 
-    public Action OnInvChanged;
-
-    public AbstractInventory(List<int> items) {
-        itemsList = items;
+    public AbstractInventory(int size) {
+        _size = size;
+        _inventory = new Resource[_size];
     }
 
-    public void Clear() {
-        itemsList.Clear();
+    public bool TryAddItem(Resource item) {
+        if(Array.Exists(_inventory, x => x == null)) {
+            Debug.Log("Added: " + item.Name);
+            _inventory[Array.FindIndex(_inventory, x => x == null)] = item;
+            return true;
+        }
+        return false;
     }
 
-    public bool TryMoveItem(int toIndex) {
-        if(toIndex != 0) { return false; }
-        return true;
-    }
-
-    public void MoveItem(int fromIndex, int toIndex) {
-        if(TryMoveItem(toIndex)) {
-            toIndex = fromIndex;
-            fromIndex = 0;
+    public void RemoveItem(Resource item) {
+        if(Array.Exists(_inventory, x => x == item)) {
+            Debug.Log("Removed: " + item.Name);
+            _inventory[Array.FindIndex(_inventory, x => x == item)] = item;
         }
     }
 }

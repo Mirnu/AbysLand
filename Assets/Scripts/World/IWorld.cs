@@ -1,5 +1,5 @@
 namespace World {
-    public interface I_Generator {
+    public interface IWorld {
         public abstract void Generate(string seed);
     }
 }

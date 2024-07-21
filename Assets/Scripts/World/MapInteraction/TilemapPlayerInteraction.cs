@@ -26,6 +26,8 @@ namespace World {
             }
         }
 
-        public void Put(ResourceInTheWorld resource) { }
+        public void Put(Resource resource) { 
+            
+        }
     }
 }

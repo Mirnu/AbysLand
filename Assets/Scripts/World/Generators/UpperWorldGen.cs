@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace World {
-public class PatchGenerator : MonoBehaviour, I_Generator {
+public class UpperWorldGen : MonoBehaviour, IWorld {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
