@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Player.Stats.UI
 {
-    internal class PlayerStatsMaxModel
+    public class PlayerStatsMaxModel
     {
         private int _healthMax;
         private int _manaMax;
@@ -10,7 +10,6 @@ namespace Assets.Scripts.Player.Stats.UI
 
         public event Action<int> HealthChanged;
         public event Action<int> ManaChanged;
-        public event Action<int> FoodChanged;
 
         public event Action StatsMaxChanged;
 
@@ -50,7 +49,6 @@ namespace Assets.Scripts.Player.Stats.UI
             set
             {
                 _foodMax = value;
-                FoodChanged?.Invoke(_foodMax);
                 StatsMaxChanged?.Invoke();
             }
         }

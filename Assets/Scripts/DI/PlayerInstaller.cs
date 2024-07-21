@@ -1,8 +1,8 @@
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Model;
-using Assets.Scripts.Player.Stats;
 using Assets.Scripts.Player.Stats.UI;
+using Assets.Scripts.Player.Systems;
 using Assets.Scripts.Resources.Data;
 using UnityEngine;
 using Zenject;
@@ -12,9 +12,10 @@ namespace DI
     public class PlayerInstaller : MonoInstaller
     {
         [Header("Player")]
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _handTransform;
+        [SerializeField] private Transform _playerTransform;
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
@@ -38,15 +39,16 @@ namespace DI
         private void bindModels()
         {
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_rigidbody, _animator);
-            
+                .WithArguments(_rigidbody, _animator, _playerTransform);
         }
 
         private void bindHandlers()
         {
-            Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo <PlayerFoodHandler>().AsSingle().NonLazy();
         }
     }
 

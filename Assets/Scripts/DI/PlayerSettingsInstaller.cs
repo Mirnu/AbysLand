@@ -1,4 +1,5 @@
 using Assets.Scripts.Player.Handlers;
+using Assets.Scripts.Player.Stats;
 using System;
 using UnityEngine;
 using Zenject;
@@ -11,7 +12,7 @@ public class PlayerSettingsInstaller : ScriptableObjectInstaller<PlayerSettingsI
     [Serializable]
     public class PlayerStatesSettings
     {
-        public PlayerMoveHandler.Settings PlayerMoveHandler;
+        public PlayerStatsModel.Settings PlayerMoveHandler;
     }
 
     public override void InstallBindings()

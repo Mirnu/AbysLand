@@ -7,8 +7,14 @@ public class GameplayInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.BindInterfacesAndSelfTo<PlayerStatsMaxModel>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<PlayerStatsModel>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<PlayerStatsRecoveryModel>().FromNew().AsSingle().NonLazy();
+        bindModels();
+    }
+
+    private void bindModels()
+    {
+        Container.BindInterfacesAndSelfTo<PlayerStatsMaxModel>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerStatsModel>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerStatsRecoveryModel>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerBoostModel>().AsSingle();
     }
 }

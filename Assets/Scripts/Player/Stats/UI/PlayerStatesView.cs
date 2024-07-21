@@ -14,7 +14,6 @@ namespace Assets.Scripts.Player.Stats.UI
         [Header("Recovery")]
         [SerializeField] private TMP_Text _healthRecoveryView;
         [SerializeField] private TMP_Text _manaRecoveryView;
-        [SerializeField] private TMP_Text _foodRecoveryView;
 
 
         private PlayerStatsModel _playerStatsModel;
@@ -63,8 +62,6 @@ namespace Assets.Scripts.Player.Stats.UI
                 _playerStatsRecoveryModel.HealthRecovery + " здоровья/сек";
             _manaRecoveryView.text = "+" +
                 _playerStatsRecoveryModel.ManaRecovery + " здоровья/сек";
-            _foodRecoveryView.text = "+" +
-                _playerStatsRecoveryModel.FoodRecovery + " здоровья/сек";
         }
     }
 }
