@@ -10,8 +10,8 @@ namespace Assets.Scripts.Misc.UI
         [SerializeField] private UnityEvent Enter;
         [SerializeField] private UnityEvent Exit;
 
-        public void OnPointerExit(PointerEventData eventData) { Exit?.Invoke(); Debug.Log("Exit"); }
+        public void OnPointerExit(PointerEventData eventData) => Exit?.Invoke(); 
 
-        public void OnPointerEnter(PointerEventData eventData) { Enter?.Invoke(); Debug.Log("Enter"); }
+        public void OnPointerEnter(PointerEventData eventData) => Enter?.Invoke();
     }
 }

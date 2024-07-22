@@ -59,9 +59,9 @@ namespace Assets.Scripts.Player.Stats.UI
         private void OnStatsRecoveryChanged()
         {
             _healthRecoveryView.text = "+" +
-                _playerStatsRecoveryModel.HealthRecovery + " здоровья/сек";
+                _playerStatsRecoveryModel.HealthRecoveryPerSec + " здоровья/сек";
             _manaRecoveryView.text = "+" +
-                _playerStatsRecoveryModel.ManaRecovery + " здоровья/сек";
+                _playerStatsRecoveryModel.ManaRecoveryPerSec + " здоровья/сек";
         }
     }
 }

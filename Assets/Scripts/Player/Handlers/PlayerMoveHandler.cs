@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Assets.Scripts.Player.Handlers
 {
-    internal class PlayerMoveHandler : IInitializable, IDisposable
+    public class PlayerMoveHandler : IInitializable, IDisposable
     {
         private readonly PlayerMovement _movement;
         private readonly PlayerStatsModel _statsModel;
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Player.Handlers
 
         private void OnMoved()
         {
-            _timeWalk += Time.deltaTime;
+            _timeWalk += Time.deltaTime * 100;
             if (_timeWalk > 5)
             {
                 _statsModel.Food -= 1;

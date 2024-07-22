@@ -23,7 +23,7 @@ namespace Assets.Scripts.Player.Stats
 
         public PlayerStatsModel(Settings settings, PlayerStatsMaxModel maxModel,
             PlayerBoostModel boostModel,
-            int health = 100, int mana = 100, int food = 100, float? speed = default) 
+            int health = 95, int mana = 100, int food = 100, float? speed = default) 
         { 
             _health = health;
             _mana = mana;   

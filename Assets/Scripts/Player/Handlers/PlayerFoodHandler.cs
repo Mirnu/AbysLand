@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Misc.Utils;
 using Assets.Scripts.Player.Stats;
+using Assets.Scripts.Player.Systems;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -12,13 +13,18 @@ namespace Assets.Scripts.Player.Handlers
         private readonly PlayerStatsModel _stats;
         private readonly PlayerBoostModel _boost;
         private readonly Routine _coroutine;
+        private readonly HealSystem _heal;
+
+        private bool isRecoveryHealth = false;
+        private const string FOOD_HEAL = "food";
 
         public PlayerFoodHandler(PlayerStatsModel stats,
-            PlayerBoostModel boost, Routine coroutine) 
+            PlayerBoostModel boost, Routine coroutine, HealSystem heal) 
         { 
             _stats = stats;
             _boost = boost;
             _coroutine = coroutine;
+            _heal = heal;
         }
 
         public void Dispose()
@@ -37,8 +43,15 @@ namespace Assets.Scripts.Player.Handlers
 
             if (food == 0)
             {
-                Debug.Log("Startes");
                 _coroutine.StartCoroutine(startStarve());
+            }
+            if (food <= 70)
+            {
+                _heal.LockByName(FOOD_HEAL);
+            }
+            else
+            {
+                _heal.UnLockByName(FOOD_HEAL);
             }
         }
 

@@ -2,19 +2,17 @@
 
 namespace Assets.Scripts.Player.Stats
 {
-    internal class PlayerStatsRecoveryModel
+    public class PlayerStatsRecoveryModel
     {
-        private int _healthRecovery = 0;
-        private int _manaRecovery = 0;
-        private int _foodRecovery = 0;
+        private float _healthRecovery = 0;
+        private float _manaRecovery = 0;
 
-        public event Action<int> HealthRecoveryChanged;
-        public event Action<int> ManaRecoveryChanged;
-        public event Action<int> FoodRecoveryChanged;
+        public event Action<float> HealthRecoveryChanged;
+        public event Action<float> ManaRecoveryChanged;
 
         public event Action StatsRecoveryChanged;
 
-        public int HealthRecovery
+        public float HealthRecoveryPerSec
         {
             get { return _healthRecovery; }
             set
@@ -25,24 +23,13 @@ namespace Assets.Scripts.Player.Stats
             }
         }
 
-        public int ManaRecovery
+        public float ManaRecoveryPerSec
         {
             get { return _manaRecovery; }
             set
             {
                 _manaRecovery = value;
                 ManaRecoveryChanged?.Invoke(_manaRecovery);
-                StatsRecoveryChanged?.Invoke();
-            }
-        }
-
-        public int FoodRecovery
-        {
-            get { return _foodRecovery; }
-            set
-            {
-                _foodRecovery = value;
-                FoodRecoveryChanged?.Invoke(_foodRecovery);
                 StatsRecoveryChanged?.Invoke();
             }
         }

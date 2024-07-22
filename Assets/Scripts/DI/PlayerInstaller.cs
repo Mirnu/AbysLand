@@ -26,6 +26,7 @@ namespace DI
         { 
             bindModels();
             bindHandlers();
+            bindSystems();
 
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
                .WithArguments(_handTransform, Container);
@@ -44,11 +45,17 @@ namespace DI
 
         private void bindHandlers()
         {
-            Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo <PlayerFoodHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
+        }
+
+        private void bindSystems()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<HealSystem>().AsSingle().NonLazy();
         }
     }
 
