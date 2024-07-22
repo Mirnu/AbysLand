@@ -4,13 +4,15 @@ namespace Assets.Scripts.Player.Model
 {
     public class PlayerModel 
     {
-        private readonly Rigidbody2D _rigidbody;
+        private readonly Rigidbody _rigidbody;
         private readonly Animator _animator;
+        private readonly Transform _transform;
 
-        public PlayerModel(Rigidbody2D rigidbody, Animator animator) 
+        public PlayerModel(Rigidbody rigidbody, Animator animator, Transform transform) 
         { 
             _rigidbody = rigidbody;
             _animator = animator;
+            _transform = transform;
         }
 
         public Vector3 LookDir
@@ -18,19 +20,15 @@ namespace Assets.Scripts.Player.Model
             get { return -_rigidbody.transform.right; }
         }
 
-        public float Rotation
+        public Vector3 Position
         {
-            get { return _rigidbody.rotation; }
-            set { _rigidbody.rotation = value; }
+            get { return _transform.position; }
+            set { _transform.position = value; }
         }
 
-        public Vector2 Position
-        {
-            get { return _rigidbody.position; }
-            set { _rigidbody.position = value; }
-        }
+        public void Translate(Vector3 translation) => _transform.Translate(translation);
 
-        public void MovePosition(Vector2 position)
+        public void MovePosition(Vector3 position)
         {
             _rigidbody.MovePosition(_rigidbody.position + position);
         }

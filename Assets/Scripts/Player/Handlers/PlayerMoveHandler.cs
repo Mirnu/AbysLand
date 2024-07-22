@@ -1,44 +1,42 @@
-using Assets.Scripts.Player.Model;
+﻿using Assets.Scripts.Player.Stats;
+using Assets.Scripts.Player.Systems;
 using System;
 using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Player.Handlers
 {
-    public class PlayerMoveHandler : IInitializable, ITickable
+    public class PlayerMoveHandler : IInitializable, IDisposable
     {
-        private PlayerModel _model;
-        private PlayerInput _input;
-        private Settings _settings;
+        private readonly PlayerMovement _movement;
+        private readonly PlayerStatsModel _statsModel;
 
-        public PlayerMoveHandler(PlayerModel model, Settings settings, PlayerInput input)
+        public PlayerMoveHandler(PlayerMovement movement, PlayerStatsModel statsModel)
         {
-            _model = model;
-            _settings = settings;
-            _input = input;
+            _movement = movement;
+            _statsModel = statsModel;
         }
 
-        public void Initialize() 
-        { 
-            _input.Enable();
+        private float _timeWalk = 0;
+
+        public void Dispose()
+        {
+            _movement.PlayerMoved -= OnMoved;
         }
 
-        public void Tick()
+        public void Initialize()
         {
-            Vector2 direction = _input.Gameplay.Movement.ReadValue<Vector2>();
-            if (direction.x > 0 && direction.y > 0)
+            _movement.PlayerMoved += OnMoved;
+        }
+
+        private void OnMoved()
+        {
+            _timeWalk += Time.deltaTime * 100;
+            if (_timeWalk > 5)
             {
-                direction.x = 0.7f;
-                direction.y = 0.7f;
+                _statsModel.Food -= 1;
+                _timeWalk = 0;
             }
-            Vector2 deltaPos = direction * Time.deltaTime * _settings.Speed;
-            _model.MovePosition(deltaPos);
-        }
-
-        [Serializable]
-        public class Settings
-        {
-            public float Speed;
         }
     }
 }
