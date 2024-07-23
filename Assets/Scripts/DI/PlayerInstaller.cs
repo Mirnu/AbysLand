@@ -18,6 +18,7 @@ namespace DI
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _handTransform;
         [SerializeField] private Transform _playerTransform;
+        [SerializeField] private Resource _starterResource;
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
@@ -25,8 +26,6 @@ namespace DI
         [SerializeField] private List<UnityEngine.UI.Image> _hotbar_slots_background = new List<UnityEngine.UI.Image>();
         [SerializeField] private Sprite _emptySlot;
         [SerializeField] private Sprite _selectedSlot;
-
-        public FoodResource Food;
         
         public override void InstallBindings()
         { 
@@ -35,13 +34,11 @@ namespace DI
             bindSystems();
 
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
-                .WithArguments(_handTransform, Container);
+                .WithArguments(_handTransform, Container, _starterResource);
 
             Container.BindInterfacesAndSelfTo<PlayerHotbarUIHandler>().AsSingle()
                 .WithArguments(_hotbar_slots, _hotbar_slots_background, _emptySlot, _selectedSlot);
 
-            Container.BindInterfacesAndSelfTo<ToolMock>().AsSingle()
-                .WithArguments(Food);
             Container.BindInstance(new PlayerInput());
         }
 
@@ -55,7 +52,7 @@ namespace DI
         private void bindHandlers()
         {
             Container.BindInterfacesAndSelfTo<PlayerHotbarHandler>().AsSingle()
-                .WithArguments(Food);
+                .WithArguments(_starterResource);
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
@@ -67,23 +64,6 @@ namespace DI
         {
             Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HealSystem>().AsSingle().NonLazy();
-        }
-    }
-
-    class ToolMock : IInitializable
-    {
-        private Hand _hand;
-        private FoodResource _foodResource;
-
-        public ToolMock(Hand hand, FoodResource resource) 
-        { 
-            _hand = hand;
-            _foodResource = resource;
-        }
-
-        public void Initialize()
-        {
-            _hand.Equip(_foodResource);
         }
     }
 }

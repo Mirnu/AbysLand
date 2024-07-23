@@ -15,4 +15,6 @@ namespace Assets.Scripts.Resources.Data
     {
 
     }
+
+    
 }

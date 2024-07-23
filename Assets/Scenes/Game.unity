@@ -544,7 +544,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 1895886984}
   _animator: {fileID: 1895886983}
   _handTransform: {fileID: 373073143}
-  _playerTransform: {fileID: 0}
+  _playerTransform: {fileID: 1895886982}
+  _starterResource: {fileID: 11400000, guid: d6ac46e7c2d6cea4fb7b82ff38a55dd5, type: 2}
   _playerStatesView: {fileID: 996144841}
   _hotbar_slots:
   - {fileID: 1884044944}
@@ -556,7 +557,6 @@ MonoBehaviour:
   - {fileID: 1316545360}
   _emptySlot: {fileID: 21300000, guid: 5136b4eb0055d41bdbeb065aabd1b58f, type: 3}
   _selectedSlot: {fileID: 21300000, guid: 2673840df55af482e95b6d6036b1d5a0, type: 3}
-  Food: {fileID: 11400000, guid: 8c8ca9313aa517c43aa15ba44748d662, type: 2}
 --- !u!1 &373073142
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,15 +12,16 @@ namespace Assets.Scripts.Player.Hands
 
         private Resource _currentResource;
         private Tool _currentTool;
+        private Resource _baseResource;
 
         public Resource CurrentResource => _currentResource;
         public Transform Transform => _transform;
 
-        public Hand(Transform transform, DiContainer container)
+        public Hand(Transform transform, DiContainer container, Resource starter)
         {
-            Debug.Log("Hand Resolved");
             _transform = transform;
             _container = container;
+            _baseResource = starter;
         }
 
         public void Equip(Resource resource)
@@ -31,10 +32,7 @@ namespace Assets.Scripts.Player.Hands
             _currentTool = createTool(resource);
         }
 
-        public void EmptyHand() {
-            _currentResource = null;
-            _currentTool = null;
-        }
+        public void EmptyHand() => Equip(_baseResource);
 
         private Tool createTool(Resource resource)
         {

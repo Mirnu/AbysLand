@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Misc;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Resources.Data;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Assets.Scripts.Player.Handlers {
@@ -17,7 +14,7 @@ namespace Assets.Scripts.Player.Handlers {
 
         private int _index = 0;
 
-        public PlayerHotbarHandler(PlayerHotbarUIHandler handler, PlayerInput input, Hand hand, FoodResource temp_res) {
+        public PlayerHotbarHandler(PlayerHotbarUIHandler handler, PlayerInput input, Hand hand, Resource temp_res) {
             //Потом переделаем чтоб сохраняло
             _inventory = new AbstractInventory(3);
             _inventory.TryAddItem(temp_res);
