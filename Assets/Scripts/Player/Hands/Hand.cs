@@ -31,6 +31,11 @@ namespace Assets.Scripts.Player.Hands
             _currentTool = createTool(resource);
         }
 
+        public void EmptyHand() {
+            _currentResource = null;
+            _currentTool = null;
+        }
+
         private Tool createTool(Resource resource)
         {
             Tool tool = _container.

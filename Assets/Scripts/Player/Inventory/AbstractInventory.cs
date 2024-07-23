@@ -4,30 +4,48 @@ using System.Linq;
 using Assets.Scripts.Resources.Data;
 using UnityEngine;
 
-[Serializable]
-public abstract class AbstractInventory {
-    //КЛАСС - ЗАГЛУШКА
-    private Resource[] _inventory = new Resource[] {};
-    private readonly int _size = 0;
+namespace Assets.Scripts.Misc {
+    [Serializable]
+    public class AbstractInventory {
+        private Resource[] _inventory = new Resource[] {};
+        private readonly int _size = 0;
 
-    public AbstractInventory(int size) {
-        _size = size;
-        _inventory = new Resource[_size];
-    }
+        private List<Sprite> _res;
 
-    public bool TryAddItem(Resource item) {
-        if(Array.Exists(_inventory, x => x == null)) {
-            Debug.Log("Added: " + item.Name);
-            _inventory[Array.FindIndex(_inventory, x => x == null)] = item;
-            return true;
+        public AbstractInventory(int size) {
+            _size = size;
+            _inventory = new Resource[_size];
         }
-        return false;
-    }
 
-    public void RemoveItem(Resource item) {
-        if(Array.Exists(_inventory, x => x == item)) {
-            Debug.Log("Removed: " + item.Name);
-            _inventory[Array.FindIndex(_inventory, x => x == item)] = item;
+        public Resource GetItem(int index) {
+            return _inventory[index];
+        }
+
+        public List<Sprite> GetSprites() {
+            //Через жопу но так надо
+            _res = new List<Sprite>();
+            _inventory.ToList().ForEach(x => {
+                if(x != null) {
+                    _res.Add(x.SpriteInInventary);
+                }
+            });
+            return _res;
+        }
+
+        public bool TryAddItem(Resource item) {
+            if(Array.Exists(_inventory, x => x == null)) {
+                Debug.Log("Added: " + item.Name);
+                _inventory[Array.FindIndex(_inventory, x => x == null)] = item;
+                return true;
+            }
+            return false;
+        }
+
+        public void RemoveItem(Resource item) {
+            if(Array.Exists(_inventory, x => x == item)) {
+                Debug.Log("Removed: " + item.Name);
+                _inventory[Array.FindIndex(_inventory, x => x == item)] = item;
+            }
         }
     }
 }

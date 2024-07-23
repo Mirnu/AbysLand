@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,6 +10,8 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
+        [SerializeField] private List<Tilemap> decorativeTiles = new List<Tilemap>();
+        private Dictionary<BiomeFeature, int> featureCount = new Dictionary<BiomeFeature, int>();
 
         public float scale = 1.0F;
         private string seed = "";
@@ -26,16 +29,14 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
             GenerateCorners();
 
-            GenerateBiomePatch(Random.Range(10, 81), Random.Range(10, 30), 
-            20, 10, 1, 25);
-
-            GenerateBiomePatch(Random.Range(60, 90), Random.Range(55, 90), 
-            8, 16, 3, 25);
-
-            GenerateBiomePatch(Random.Range(60, 90), Random.Range(60, 90), 
-            10, 8, 3, 25);
-
             GenerateTilemap(map, BackgroundTiles);
+
+            GenerateBiome(new Vector2Int(0, 0), new Vector2Int(25, 50), Tiles[1], new BiomeFeature[]{
+                new BiomeFeature(Tiles[2], 2.5f, 5, 10, FeatureLayer.Decor1),
+                new BiomeFeature(Tiles[3], 5, 1, 5, FeatureLayer.Decor1)
+                });
+
+            
         }
 
         #region Base Gen
@@ -43,19 +44,15 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
         //Ugly ass nigga
         private void GenerateCorners() {
-            var _x = Random.Range(0, 2) == 1 ? map.GetUpperBound(0) - 1 : 0;
-            var _y = Random.Range(0, 2) == 1 ? map.GetUpperBound(0) - 1 : 0;
-            map[_x, _y] = 2;
-            var r = _x == map.GetUpperBound(0) - 1 ? 0 : map.GetUpperBound(0) - 1;
-            var r1 = _y == map.GetUpperBound(0) - 1 ? 0 : map.GetUpperBound(0) - 1;
-            map[r , _y] = 2;
-            map[map.GetUpperBound(0)/2, r1] = 2;
-            map[map.GetUpperBound(0)/2, map.GetUpperBound(1)/2] = 2;
-            GenerateLine(_x, _y, map.GetUpperBound(0)/2, map.GetUpperBound(1)/2);
-            GenerateLine(r, _y, map.GetUpperBound(0)/2, map.GetUpperBound(1)/2);
-            GenerateLine(map.GetUpperBound(0)/2, map.GetUpperBound(1)/2, map.GetUpperBound(0)/2, r1);
+            map[map.GetUpperBound(0)/2, map.GetUpperBound(0)-1] = 2;
+            map[map.GetUpperBound(0)/2, map.GetUpperBound(0)/2] = 2;
+            map[0, map.GetUpperBound(1)/2] = 2;
+            map[map.GetUpperBound(0) - 1, map.GetUpperBound(1)/2] = 2;
+            GenerateLine(map.GetUpperBound(0)/2, map.GetUpperBound(0)/2, map.GetUpperBound(0)/2, map.GetUpperBound(1)-1);
+            GenerateLine(map.GetUpperBound(0)/2, map.GetUpperBound(0)/2, 0, map.GetUpperBound(1)/2);
+            GenerateLine(map.GetUpperBound(0)/2, map.GetUpperBound(0)/2, map.GetUpperBound(0), map.GetUpperBound(1)/2);
             FillAreaFromCorner(99, 99, 2, 1);
-            FillAreaFromCorner(1, 0, 2, 3);
+            FillAreaFromCorner(0, 99, 2, 3);
         }
 
         private void GenerateBiomePatch(int startX, int startY, int sizeX, int sizeY, int fillIndex, int random_fill) {
@@ -64,10 +61,10 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
         }
 
         private void GeneratePatch(int x, int y, int sizeX, int sizeY, int random_fill, int fill_index) {
-            System.Random pseudoRandom = new System.Random(seed.GetHashCode());;
-            for (int i = x - sizeX / 2 <= 0 ? 0 : x - sizeX / 2; i < (map.GetUpperBound(0) >= x + sizeX / 2 ? x + sizeX / 2 : map.GetUpperBound(0)); i++)
+            System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+            for (int i = x - sizeX / 2 <= 0 ? 0 : x - sizeX / 2; i <= (map.GetUpperBound(0) >= x + sizeX / 2 ? x + sizeX / 2 : map.GetUpperBound(0)); i++)
             {
-                for (int j = y - sizeY / 2 <= 0 ? 0 : y - sizeY / 2; j < (map.GetUpperBound(0) >= y + sizeY / 2 ? y + sizeY / 2 : map.GetUpperBound(0)); j++)
+                for (int j = y - sizeY / 2 <= 0 ? 0 : y - sizeY / 2; j <= (map.GetUpperBound(0) >= y + sizeY / 2 ? y + sizeY / 2 : map.GetUpperBound(0)); j++)
                 {
                     if(pseudoRandom.Next(0, 100) < random_fill) { map[i, j] = fill_index; } 
                 }
@@ -106,8 +103,6 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
         #endregion
 
         #region General
-
-        
 
         //Прямые соседи (слева справа сверху снизу)
         private int GetNeighborCount(int x, int y, int index) {
@@ -151,6 +146,30 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
                     if (map[x, y] != -1)
                     {
                         tilemap.SetTile(new Vector3Int(x, y, 0), Tiles[map[x,y]]);
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region Biome
+
+        private void GenerateBiome(Vector2Int lowerLeft, Vector2Int upperRight, Tile groundBase, BiomeFeature[] features) {
+            for(int i = lowerLeft.x; i < upperRight.x; i++) {
+                for(int j = lowerLeft.y; j < upperRight.y; j++) {
+                    BackgroundTiles.SetTile(new Vector3Int(i, j, 0), groundBase);
+                    foreach(var f in features) {
+                        var ch = Random.Range(0f, 100f);
+                        if(ch < f.SpawnChance && (!featureCount.Keys.Contains(f) || featureCount[f] < f.MaxSpawnAmount)) {
+                            if(!featureCount.Keys.Contains(f)) { featureCount[f] = 0; }
+                            featureCount[f] += 1;
+                            BackgroundTiles.SetTile(new Vector3Int(i, j, 0), f.Tile);
+                            if(Random.Range(0f, 100f) < f.NeighborChance) {
+                                featureCount[f] += 1;
+                                BackgroundTiles.SetTile(new Vector3Int(i + Random.Range(-1, 2), j + Random.Range(-1, 2), (int)f.Layer), f.Tile);
+                            }
+                        }
                     }
                 }
             }

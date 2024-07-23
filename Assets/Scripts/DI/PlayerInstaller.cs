@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Assets.Scripts.Misc;
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Model;
@@ -19,6 +21,10 @@ namespace DI
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
+        [SerializeField] private List<UnityEngine.UI.Image> _hotbar_slots = new List<UnityEngine.UI.Image>();
+        [SerializeField] private List<UnityEngine.UI.Image> _hotbar_slots_background = new List<UnityEngine.UI.Image>();
+        [SerializeField] private Sprite _emptySlot;
+        [SerializeField] private Sprite _selectedSlot;
 
         public FoodResource Food;
         
@@ -29,7 +35,10 @@ namespace DI
             bindSystems();
 
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
-               .WithArguments(_handTransform, Container);
+                .WithArguments(_handTransform, Container);
+
+            Container.BindInterfacesAndSelfTo<PlayerHotbarUIHandler>().AsSingle()
+                .WithArguments(_hotbar_slots, _hotbar_slots_background, _emptySlot, _selectedSlot);
 
             Container.BindInterfacesAndSelfTo<ToolMock>().AsSingle()
                 .WithArguments(Food);
@@ -45,6 +54,8 @@ namespace DI
 
         private void bindHandlers()
         {
+            Container.BindInterfacesAndSelfTo<PlayerHotbarHandler>().AsSingle()
+                .WithArguments(Food);
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();

@@ -23,7 +23,7 @@ namespace Assets.Scripts.Player.Handlers
         {
             _movement.PlayerMoved -= OnMoved;
         }
-
+        
         public void Initialize()
         {
             _movement.PlayerMoved += OnMoved;
