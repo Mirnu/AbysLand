@@ -2843,6 +2843,7 @@ GameObject:
   - component: {fileID: 1658107984}
   - component: {fileID: 1658107983}
   - component: {fileID: 1658107982}
+  - component: {fileID: 1658107985}
   m_Layer: 0
   m_Name: ggsprite_0
   m_TagString: Untagged
@@ -2912,12 +2913,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1666516269, guid: c9167a2fa12fcd04290134b9b6f48d03, type: 3}
+  m_Sprite: {fileID: -1824434543, guid: 60f00d22e305f1d43ba8eace00e445b6, type: 3}
   m_Color: {r: 0, g: 1, b: 0.94610643, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.19}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2939,6 +2940,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658107985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658107980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec1e9119648d2541b7571239eec6652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1658596037
 GameObject:
   m_ObjectHideFlags: 0

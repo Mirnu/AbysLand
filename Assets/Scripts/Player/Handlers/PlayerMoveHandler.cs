@@ -31,7 +31,7 @@ namespace Assets.Scripts.Player.Handlers
 
         private void OnMoved()
         {
-            _timeWalk += Time.deltaTime * 100;
+            _timeWalk += Time.deltaTime;
             if (_timeWalk > 5)
             {
                 _statsModel.Food -= 1;
