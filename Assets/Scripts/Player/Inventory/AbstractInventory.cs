@@ -22,14 +22,7 @@ namespace Assets.Scripts.Misc {
         }
 
         public List<Sprite> GetSprites() {
-            //Через жопу но так надо
-            _res = new List<Sprite>();
-            _inventory.ToList().ForEach(x => {
-                if(x != null) {
-                    _res.Add(x.SpriteInInventary);
-                }
-            });
-            return _res;
+            return _inventory.Select(x => x.SpriteInInventary).ToList();
         }
 
         public bool TryAddItem(Resource item) {
