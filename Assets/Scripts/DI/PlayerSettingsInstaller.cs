@@ -1,4 +1,3 @@
-using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Stats;
 using System;
 using UnityEngine;

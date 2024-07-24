@@ -27,14 +27,16 @@ namespace Assets.Scripts.Player.Systems
 
         public void LockByName(string name)
         {
-            if (!_healMap.ContainsKey(name)) return;
+            if (!_healMap.ContainsKey(name) || _healMap[name].IsLocked) return;
             _healMap[name].IsLocked = true;
+            removeRecovery(name);
         }
 
         public void UnLockByName(string name)
         {
-            if (!_healMap.ContainsKey(name)) return;
+            if (!_healMap.ContainsKey(name) || !_healMap[name].IsLocked) return;
             _healMap[name].IsLocked = false;
+            addRecovery(name);
         }
 
         public bool IsHealedByName(string name) => _healMap.ContainsKey(name);
@@ -48,16 +50,25 @@ namespace Assets.Scripts.Player.Systems
                 Heal = health
             };
 
-            Debug.Log("+");
             _recovery.HealthRecoveryPerSec += (float)health / delta;
         }
 
         public void StopHealByName(string name)
         {
             if (!_healMap.ContainsKey(name)) return;
-             HealData heal = _healMap[name];
-            _recovery.HealthRecoveryPerSec -= (float)heal.Heal / heal.Delta;
+             removeRecovery(name);
             _healMap.Remove(name);
+        }
+
+        private void removeRecovery(string name)
+        {
+            HealData heal = _healMap[name];
+            _recovery.HealthRecoveryPerSec -= (float)heal.Heal / heal.Delta;
+        }
+        private void addRecovery(string name)
+        {
+            HealData heal = _healMap[name];
+            _recovery.HealthRecoveryPerSec += (float)heal.Heal / heal.Delta;
         }
 
         public void Tick()
