@@ -8,9 +8,7 @@ namespace Assets.Scripts.Misc {
     [Serializable]
     public class AbstractInventory {
         private Resource[] _inventory = new Resource[] {};
-        private readonly int _size = 0;
-
-        private List<Sprite> _res;
+        private readonly int _size = 0; 
 
         public AbstractInventory(int size) {
             _size = size;
