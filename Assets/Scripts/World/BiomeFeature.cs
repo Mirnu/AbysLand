@@ -1,26 +1,21 @@
+using System;
 using UnityEngine.Tilemaps;
 
 namespace World {
+    [Serializable]
     public class BiomeFeature {
         public TileBase Tile;
         public float SpawnChance;
         public float NeighborChance;
         public FeatureLayer Layer;
         public int MaxSpawnAmount;
-
-        public BiomeFeature(TileBase tile, float spawnChance, float neighborChance, int maxSpawn, FeatureLayer layer) {
-            Tile = tile;
-            SpawnChance = spawnChance;
-            NeighborChance = neighborChance;
-            Layer = layer;
-            MaxSpawnAmount = maxSpawn;
-        }
+        public int index = 0;
     }
 }
 public enum FeatureLayer {
     Ground = 0,
-    Decor1 = -1,
-    Decor2 = -2,
-    Decor3 = -3,
-    Decor4 = -4
+    Decor1 = 1,
+    Decor2 = 2,
+    Decor3 = 3,
+    Decor4 = 4
 }

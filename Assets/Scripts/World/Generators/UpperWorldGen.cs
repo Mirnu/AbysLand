@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Assets.Scripts.Resources.Data;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,16 +11,28 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
-        [SerializeField] private List<Tilemap> decorativeTiles = new List<Tilemap>();
+        [SerializeField] private List<Tilemap> DecorTiles;
+        [Space]
+        [SerializeField] private List<BiomeFeature> features1;
+        
         private Dictionary<BiomeFeature, int> featureCount = new Dictionary<BiomeFeature, int>();
+        private Dictionary<BiomeFeature, int> featureLastDistance = new Dictionary<BiomeFeature, int>();
+        private TilemapPlayerInteraction _interactor;
 
         public float scale = 1.0F;
         private string seed = "";
-        
+
         private int[,] map = new int[101, 101];
+        private int last_placed_f = 0;
+
+        public TileBase GetObjects(Vector2 pos) => _interactor.GetObjects(pos);
+
+        public void DestroyAtTile(int points, Vector2Int tilePos) => _interactor.DestroyAtTile(points, tilePos);
+
+        public void Put(Resource resource) => _interactor.Put(resource);
 
         private void Start() {
-            Generate("test");
+            Generate("test-1");
         }
 
         public void Generate(string seed)
@@ -31,12 +44,7 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
             GenerateTilemap(map, BackgroundTiles);
 
-            GenerateBiome(new Vector2Int(0, 0), new Vector2Int(25, 50), Tiles[1], new BiomeFeature[]{
-                new BiomeFeature(Tiles[2], 2.5f, 5, 10, FeatureLayer.Decor1),
-                new BiomeFeature(Tiles[3], 5, 1, 5, FeatureLayer.Decor1)
-                });
-
-            
+            GenerateBiome(new Vector2Int(0, 0), new Vector2Int(25, 50), Tiles[1], features1.ToArray());
         }
 
         #region Base Gen
@@ -105,15 +113,15 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
         #region General
 
         //Прямые соседи (слева справа сверху снизу)
-        private int GetNeighborCount(int x, int y, int index) {
+        private int GetNeighborCount(int x, int y, TileBase tile, Tilemap tilemap) {
             int wallCount = 0;
             for(int i = x - 1; i <= x + 1; i++) {
-                if(map[i, y] == index && i != x) {
+                if(tilemap.GetTile(new Vector3Int(i, y, 0)) == tile && i != x) {
                     wallCount++;
                 }
             }
             for(int j = y - 1; j <= y + 1; j++) {
-                if(map[x, j] == index && j != y) {
+                if(tilemap.GetTile(new Vector3Int(x, j, 0)) == tile && j != y) {
                     wallCount++;
                 }
             }
@@ -161,14 +169,23 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
                     BackgroundTiles.SetTile(new Vector3Int(i, j, 0), groundBase);
                     foreach(var f in features) {
                         var ch = Random.Range(0f, 100f);
-                        if(ch < f.SpawnChance && (!featureCount.Keys.Contains(f) || featureCount[f] < f.MaxSpawnAmount)) {
+                        if(ch < f.SpawnChance 
+                        && (!featureCount.Keys.Contains(f) || featureCount[f] < f.MaxSpawnAmount)
+                        && GetNeighborCount(i, j, f.Tile, BackgroundTiles) == 0 
+                        && (!featureLastDistance.Keys.Contains(f) || featureLastDistance[f] >= f.MaxSpawnAmount)
+                        ) {
                             if(!featureCount.Keys.Contains(f)) { featureCount[f] = 0; }
-                            featureCount[f] += 1;
+                            if(!featureLastDistance.Keys.Contains(f)) { featureLastDistance[f] = 0; }
+                            featureCount[f]++;
+                            featureLastDistance[f]=0;
                             BackgroundTiles.SetTile(new Vector3Int(i, j, 0), f.Tile);
                             if(Random.Range(0f, 100f) < f.NeighborChance) {
-                                featureCount[f] += 1;
+                                featureCount[f]++;                            
+                                featureLastDistance[f]=0;
                                 BackgroundTiles.SetTile(new Vector3Int(i + Random.Range(-1, 2), j + Random.Range(-1, 2), (int)f.Layer), f.Tile);
                             }
+                        } else if(featureLastDistance.Keys.Contains(f)){
+                            featureLastDistance[f]++;
                         }
                     }
                 }
@@ -183,6 +200,7 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
             
         }
 
+        
 
         #endregion
     }

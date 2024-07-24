@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Assets.Scripts.Misc;
+using Assets.Scripts.Inventory;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Resources.Data;
 using Zenject;
@@ -7,7 +7,7 @@ using Zenject;
 namespace Assets.Scripts.Player.Handlers {
     public class PlayerHotbarHandler : ITickable, IInitializable
     {
-        private AbstractInventory _inventory;
+        private HotbarInventory _inventory;
         private PlayerHotbarUIHandler _handler;
         private PlayerInput _input;
         private Hand _hand;
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Player.Handlers {
 
         public PlayerHotbarHandler(PlayerHotbarUIHandler handler, PlayerInput input, Hand hand, Resource temp_res) {
             //Потом переделаем чтоб сохраняло
-            _inventory = new AbstractInventory(3);
+            _inventory = new HotbarInventory(3);
             _inventory.TryAddItem(temp_res);
 
             _handler = handler;
