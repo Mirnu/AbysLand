@@ -1,10 +1,13 @@
+using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Inventory {
-    public class SlotView : MonoBehaviour, IPointerEnterHandler {
+    public class SlotView : SelectableSlotView, IPointerEnterHandler
+    {
         [SerializeField] private Image slotBackground;
         [SerializeField] private Image itemView;
 
@@ -28,7 +31,7 @@ namespace Assets.Scripts.Inventory {
         }
 
         public void OnHover(PointerEventData data) {
-
+            
         }
 
         public void OnPointerEnter(PointerEventData eventData) => OnHover(eventData);

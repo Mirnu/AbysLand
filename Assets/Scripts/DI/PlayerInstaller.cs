@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Assets.Scripts.Misc;
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Model;
@@ -7,6 +6,7 @@ using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Systems;
 using Assets.Scripts.Resources.Data;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace DI
@@ -22,10 +22,13 @@ namespace DI
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
-        [SerializeField] private List<UnityEngine.UI.Image> _hotbar_slots = new List<UnityEngine.UI.Image>();
-        [SerializeField] private List<UnityEngine.UI.Image> _hotbar_slots_background = new List<UnityEngine.UI.Image>();
+        [SerializeField] private List<Image> _hotbar_slots = new List<Image>();
+        [SerializeField] private List<Image> _hotbar_slots_background = new List<Image>();
         [SerializeField] private Sprite _emptySlot;
         [SerializeField] private Sprite _selectedSlot;
+
+        [Header("Menu")]
+        [SerializeField] private GameObject _inventory;
         
         public override void InstallBindings()
         { 
@@ -64,6 +67,9 @@ namespace DI
         {
             Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HealSystem>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerInventory>().AsSingle().
+                WithArguments(_inventory).
+                NonLazy();
         }
     }
 }
