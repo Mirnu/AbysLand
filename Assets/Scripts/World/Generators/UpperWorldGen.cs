@@ -11,19 +11,14 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
-        [SerializeField] private List<Tilemap> DecorTiles;
-        [Space]
-        [SerializeField] private List<BiomeFeature> features1;
-        
+        [SerializeField] private List<Tilemap> decorativeTiles = new List<Tilemap>();
         private Dictionary<BiomeFeature, int> featureCount = new Dictionary<BiomeFeature, int>();
-        private Dictionary<BiomeFeature, int> featureLastDistance = new Dictionary<BiomeFeature, int>();
-        private TilemapPlayerInteraction _interactor;
 
         public float scale = 1.0F;
         private string seed = "";
+        
 
         private int[,] map = new int[101, 101];
-        private int last_placed_f = 0;
 
         public TileBase GetObjects(Vector2 pos) => _interactor.GetObjects(pos);
 
@@ -169,23 +164,14 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
                     BackgroundTiles.SetTile(new Vector3Int(i, j, 0), groundBase);
                     foreach(var f in features) {
                         var ch = Random.Range(0f, 100f);
-                        if(ch < f.SpawnChance 
-                        && (!featureCount.Keys.Contains(f) || featureCount[f] < f.MaxSpawnAmount)
-                        && GetNeighborCount(i, j, f.Tile, BackgroundTiles) == 0 
-                        && (!featureLastDistance.Keys.Contains(f) || featureLastDistance[f] >= f.MaxSpawnAmount)
-                        ) {
+                        if(ch < f.SpawnChance && (!featureCount.Keys.Contains(f) || featureCount[f] < f.MaxSpawnAmount)) {
                             if(!featureCount.Keys.Contains(f)) { featureCount[f] = 0; }
-                            if(!featureLastDistance.Keys.Contains(f)) { featureLastDistance[f] = 0; }
-                            featureCount[f]++;
-                            featureLastDistance[f]=0;
+                            featureCount[f] += 1;
                             BackgroundTiles.SetTile(new Vector3Int(i, j, 0), f.Tile);
                             if(Random.Range(0f, 100f) < f.NeighborChance) {
-                                featureCount[f]++;                            
-                                featureLastDistance[f]=0;
+                                featureCount[f] += 1;
                                 BackgroundTiles.SetTile(new Vector3Int(i + Random.Range(-1, 2), j + Random.Range(-1, 2), (int)f.Layer), f.Tile);
                             }
-                        } else if(featureLastDistance.Keys.Contains(f)){
-                            featureLastDistance[f]++;
                         }
                     }
                 }

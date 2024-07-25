@@ -20,7 +20,7 @@ namespace Assets.Scripts.Misc {
         }
 
         public List<Sprite> GetSprites() {
-            return _inventory.Select(x => x.SpriteInInventary).ToList();
+            return _inventory.Where(x => x != null).Select(x => x.SpriteInInventary).ToList();
         }
 
         public bool TryAddItem(Resource item) {
