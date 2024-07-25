@@ -1,10 +1,9 @@
 using System;
 using UnityEngine.Tilemaps;
 
-namespace World {
+namespace Assets.Scripts.World {
     [Serializable]
     public class BiomeFeature {
-        public TileBase Tile;
         public float SpawnChance;
         public float NeighborChance;
         public FeatureLayer Layer;
@@ -13,9 +12,8 @@ namespace World {
     }
 }
 public enum FeatureLayer {
-    Ground = 0,
-    Decor1 = 1,
-    Decor2 = 2,
-    Decor3 = 3,
-    Decor4 = 4
+    Decor1 = 0,
+    Decor2 = 1,
+    Decor3 = 2,
+    Decor4 = 3
 }

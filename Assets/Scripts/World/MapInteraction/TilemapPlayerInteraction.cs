@@ -2,7 +2,7 @@ using Assets.Scripts.Resources.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace World {
+namespace Assets.Scripts.World {
     public class TilemapPlayerInteraction {
         
         private Tilemap _tilemap;

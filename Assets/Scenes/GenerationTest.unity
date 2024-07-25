@@ -540,6 +540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e05c8aaeb47423fba09b5fd9744238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers: []
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
   Tiles:
   - {fileID: 11400000, guid: 8b185f01a32a44ff385f11fc83df6a80, type: 2}
   - {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
@@ -548,11 +553,15 @@ MonoBehaviour:
   BackgroundTiles: {fileID: 332992151}
   DecorTiles:
   - {fileID: 800483557}
-  features1:
-  - Tile: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
-    SpawnChance: 10
-    NeighborChance: 0.1
-    Layer: 1
+  features:
+  - SpawnChance: 10
+    NeighborChance: 1
+    Layer: 0
     MaxSpawnAmount: 25
+    index: 3
+  - SpawnChance: 5
+    NeighborChance: 0.1
+    Layer: 0
+    MaxSpawnAmount: 10
     index: 1
   scale: 1
