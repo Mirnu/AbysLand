@@ -14,11 +14,12 @@ public class UpperWorldGen : MonoBehaviour, IWorld, IInitializable {
         [SerializeField] private List<Tilemap> DecorTiles;
         [Space]
         [SerializeField] private List<BiomeFeature> features;
-        private TilemapPlayerInteraction _interactor;
 
         public float scale = 1.0F;
         private string seed = "";
         private int[,] map = new int[101, 101];
+        //Заглушка
+        private int[,] _durability = new int[101, 101];
 
         private List<int[,]> decorMaps = new List<int[,]>();
 
@@ -28,11 +29,22 @@ public class UpperWorldGen : MonoBehaviour, IWorld, IInitializable {
         
         private Dictionary<BiomeFeature, int> _lastGenerated = new Dictionary<BiomeFeature, int>(); 
 
-        public TileBase GetObjects(Vector2 pos) => _interactor.GetObjects(pos);
+        public TileBase GetObjects(Vector2 pos) {
+            return BackgroundTiles.GetTile(BackgroundTiles.WorldToCell(new Vector3(pos.x, pos.y, BackgroundTiles.transform.position.z)));
+        }
 
-        public void DestroyAtTile(int points, Vector2Int tilePos) => _interactor.DestroyAtTile(points, tilePos);
+        public void DestroyAtTile(int points, Vector2Int tilePos) {
+            var l = map[tilePos.x, tilePos.y];
+            if(l > points) {
+                _durability[tilePos.x, tilePos.y] -= points;
+            } else {
+                _durability[tilePos.x, tilePos.y] = 0;
+            }
+        }
 
-        public void Put(Resource resource) => _interactor.Put(resource);
+        public void Put(Resource resource) { 
+            
+        }
 
         public void Initialize() {
             for(int i = 0; i < 4; i++) { 
@@ -61,6 +73,8 @@ public class UpperWorldGen : MonoBehaviour, IWorld, IInitializable {
             GenerateBiome(map, 2, new Vector2Int(40, 25), 7, 8, features);
 
             GenerateTilemap(map, BackgroundTiles);
+
+            _durability = map;
 
             GenerateTilemap(decorMaps[0], DecorTiles[0]);
         }
