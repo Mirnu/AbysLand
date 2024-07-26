@@ -1,10 +1,11 @@
 ﻿using System;
+using Assets.Scripts.Inventory.View;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Player.Inventory.View
 {
-    public class SelectableSlotView : MonoBehaviour, IPointerClickHandler
+    public class SelectableSlotView : SlotView, IPointerClickHandler
     {
         public event Action LeftMouseClick;
         public event Action RightMouseClick;

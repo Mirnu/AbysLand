@@ -5,14 +5,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Inventory {
-    public class SlotView : SelectableSlotView, IPointerEnterHandler
+namespace Assets.Scripts.Inventory.View {
+    public class SlotView : MonoBehaviour
     {
-        [SerializeField] private Image slotBackground;
-        [SerializeField] private Image itemView;
+        //tool прокинуть посмотреть работает ли
+        [SerializeField] protected Image itemView;
 
+        protected Image slotBackground;
+        
         private Resource _currentResource;
         private int _currentAmount;
+
+        private void OnEnable() {
+            slotBackground = GetComponent<Image>();    
+        }
 
         public void Delete() {
             _currentAmount = 0;
@@ -29,11 +35,5 @@ namespace Assets.Scripts.Inventory {
             if(_currentResource == null) { return; }
             _currentAmount += amount;
         }
-
-        public void OnHover(PointerEventData data) {
-            
-        }
-
-        public void OnPointerEnter(PointerEventData eventData) => OnHover(eventData);
     }
 }

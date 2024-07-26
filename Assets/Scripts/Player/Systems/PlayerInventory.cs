@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.Inventory.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;

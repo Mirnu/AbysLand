@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
+using Assets.Scripts.Player.Inventory.BackPack;
+using Assets.Scripts.Player.Inventory.Hotbar;
+using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Player.Model;
 using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Systems;
@@ -22,10 +26,8 @@ namespace DI
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
-        [SerializeField] private List<Image> _hotbar_slots = new List<Image>();
-        [SerializeField] private List<Image> _hotbar_slots_background = new List<Image>();
-        [SerializeField] private Sprite _emptySlot;
-        [SerializeField] private Sprite _selectedSlot;
+        [SerializeField] private List<HotbarSlotView> _hotbar_slots = new List<HotbarSlotView>();
+        [SerializeField] private List<SelectableSlotView> _inventory_slots = new List<SelectableSlotView>();
 
         [Header("Menu")]
         [SerializeField] private GameObject _inventory;
@@ -39,8 +41,11 @@ namespace DI
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
                 .WithArguments(_handTransform, Container, _starterResource);
 
-            Container.BindInterfacesAndSelfTo<PlayerHotbarUIHandler>().AsSingle()
-                .WithArguments(_hotbar_slots, _hotbar_slots_background, _emptySlot, _selectedSlot);
+            Container.BindInterfacesAndSelfTo<ContainerHotbarSlots>().AsSingle()
+                .WithArguments(_hotbar_slots, _starterResource);
+
+            Container.BindInterfacesAndSelfTo<ContainerSelectableSlots>().AsSingle()
+                .WithArguments(_inventory_slots);
 
             Container.BindInstance(new PlayerInput());
         }
@@ -54,8 +59,6 @@ namespace DI
 
         private void bindHandlers()
         {
-            Container.BindInterfacesAndSelfTo<PlayerHotbarHandler>().AsSingle()
-                .WithArguments(_starterResource);
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
