@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Assets.Scripts.Resources.Data;
 using ModestTree;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Assets.Scripts.World {
-public class UpperWorldGen : GameObjectContext, IWorld, IInitializable {
+public class UpperWorldGen : MonoBehaviour, IWorld, IInitializable {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
@@ -36,7 +34,7 @@ public class UpperWorldGen : GameObjectContext, IWorld, IInitializable {
 
         public void Put(Resource resource) => _interactor.Put(resource);
 
-        void IInitializable.Initialize() {
+        public void Initialize() {
             for(int i = 0; i < 4; i++) { 
                 var l = new int[101, 101];
                 for (int k = 0; k < l.GetLength(0); k++) {
