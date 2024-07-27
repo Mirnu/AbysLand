@@ -1,6 +1,7 @@
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,11 +14,13 @@ namespace Assets.Scripts.Inventory.View {
 
         protected Image slotBackground;
         
+        private TextMeshProUGUI _countDisplay;
         private Resource _currentResource;
-        private int _currentAmount;
+        private int _currentAmount = 0;
 
-        private void OnEnable() {
-            slotBackground = GetComponent<Image>();    
+        private void Awake() {
+            slotBackground = GetComponent<Image>();   
+            _countDisplay = GetComponentInChildren<TextMeshProUGUI>(); 
         }
 
         public Resource Get() {
@@ -28,6 +31,7 @@ namespace Assets.Scripts.Inventory.View {
             _currentAmount = 0;
             _currentResource = null;
             itemView.sprite = null;
+            UpdateCount();
         }
 
         public void Set(Resource newResource) {
@@ -35,9 +39,26 @@ namespace Assets.Scripts.Inventory.View {
             itemView.sprite = _currentResource.SpriteInInventary;
         }
 
-        public void Add(int amount) {
-            if(_currentResource == null) { return; }
-            _currentAmount += amount;
+        public int GetCount() {
+            return _currentAmount;
+        }
+
+        public void SetCount(int amount) {
+            _currentAmount = amount;
+            UpdateCount();
+        }
+
+        public void Increment() { SetCount(_currentAmount + 1); }
+
+        public void Decrement() { SetCount(_currentAmount - 1); }
+
+        public bool CanSubstract(int amount) {
+            return _currentResource != null && _currentAmount > amount;
+        }
+
+        private void UpdateCount() {
+            if(_countDisplay == null) { _countDisplay = GetComponentInChildren<TextMeshProUGUI>();}
+            _countDisplay.text = _currentAmount.ToString();
         }
     }
 }
