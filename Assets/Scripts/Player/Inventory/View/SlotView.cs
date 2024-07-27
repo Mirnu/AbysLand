@@ -20,6 +20,10 @@ namespace Assets.Scripts.Inventory.View {
             slotBackground = GetComponent<Image>();    
         }
 
+        public Resource Get() {
+            return _currentResource;
+        }
+
         public void Delete() {
             _currentAmount = 0;
             _currentResource = null;

@@ -27,6 +27,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         {
             //
             _slots[0].Set(mock);
+            _slots[0].GetComponent<SelectableSlotView>().Set(mock);
             //
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);
             _input.Gameplay.Hotbar.performed += HotbarChangeState;
@@ -42,6 +43,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         private void HotbarChangeSelectability(InputAction.CallbackContext context) {
             if(_slots.Any(x => x.IsSelected)) { _slots.Find(x => x.IsSelected).Deselect(); }
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = !x.GetComponent<SelectableSlotView>().enabled);
+            _slots.ForEach(x => x.GetComponent<HotbarSlotView>().enabled = !x.GetComponent<HotbarSlotView>().enabled);
         }
 
         private void HotbarChangeState(InputAction.CallbackContext context) {
