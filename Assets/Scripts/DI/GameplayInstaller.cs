@@ -2,6 +2,7 @@ using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Stats;
 using UnityEngine;
 using Zenject;
+using Assets.Scripts.World;
 
 public class GameplayInstaller : MonoInstaller
 {

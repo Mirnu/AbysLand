@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Assets.Scripts.Resources.Data;
 using ModestTree;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace World {
+namespace Assets.Scripts.World {
 public class UpperWorldGen : MonoBehaviour, IWorld {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
@@ -15,26 +13,41 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
         [SerializeField] private List<Tilemap> DecorTiles;
         [Space]
         [SerializeField] private List<BiomeFeature> features;
-        private TilemapPlayerInteraction _interactor;
 
         public float scale = 1.0F;
         private string seed = "";
         private int[,] map = new int[101, 101];
-        private float _probability = 100f;
+        //Заглушка
+        private int[,] _durability = new int[101, 101];
 
         private List<int[,]> decorMaps = new List<int[,]>();
 
         private Queue<Vector2Int> _border = new Queue<Vector2Int>();
         private List<Vector2Int> _processed = new List<Vector2Int>();
         private List<Vector2Int> _all = new List<Vector2Int>();
+        
+        private Dictionary<BiomeFeature, int> _lastGenerated = new Dictionary<BiomeFeature, int>(); 
 
-        public TileBase GetObjects(Vector2 pos) => _interactor.GetObjects(pos);
+        public TileBase GetObjects(Vector2 pos) {
+            return BackgroundTiles.GetTile(BackgroundTiles.WorldToCell(new Vector3(pos.x, pos.y, BackgroundTiles.transform.position.z)));
+        }
 
-        public void DestroyAtTile(int points, Vector2Int tilePos) => _interactor.DestroyAtTile(points, tilePos);
+        public void DestroyAtTile(int points, Vector2Int tilePos) {
+            var l = map[tilePos.x, tilePos.y];
+            if(l > points) {
+                _durability[tilePos.x, tilePos.y] -= points;
+            } else {
+                _durability[tilePos.x, tilePos.y] = 0;
+            }
+        }
 
-        public void Put(Resource resource) => _interactor.Put(resource);
+        public void Put(Resource resource) { 
+            
+        }
 
-        private void Start() {
+        private void Start() => Initialize();
+
+        public void Initialize() {
             for(int i = 0; i < 4; i++) { 
                 var l = new int[101, 101];
                 for (int k = 0; k < l.GetLength(0); k++) {
@@ -45,7 +58,7 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
                 decorMaps.Add(l);
             }
 
-            Generate("gkjsagbvnadklfjbhvneoiabjne");
+            Generate("test");
         }
 
         public void Generate(string seed)
@@ -57,10 +70,14 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
             GenerateTilemap(map, BackgroundTiles);
 
-            GenerateBiome(map, decorMaps[0], 2, new Vector2Int(0,  0), 10, 1, features);
-            GenerateBiome(map, decorMaps[0], 2, new Vector2Int(40, 25), 7, 1, features);
+            GenerateBiome(map, 2, new Vector2Int(0,  0), 10, 10, features);
+            GenerateBiome(map, 2, new Vector2Int(40, 25), 7, 8, features);
 
             GenerateTilemap(map, BackgroundTiles);
+
+            _durability = map;
+
+            GenerateTilemap(decorMaps[0], DecorTiles[0]);
         }
 
         #region Base Gen
@@ -144,8 +161,6 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
         }
 
         private void GenerateTilemap(int[,] map, Tilemap tilemap) {
-            Debug.Log("----STARTED GENERATING TILES----");
-            Debug.Log(" == " + tilemap.name + " == ");
             tilemap.ClearAllTiles();
             for (int x = 0; x < map.GetUpperBound(0) ; x++)
             {
@@ -163,26 +178,25 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
         #region Biome
 
-        private void GenerateBiome(int[,] _ground_map, int[,] decor_map, int ground, Vector2Int center, float maxDistance, float probabilityFallof, List<BiomeFeature> features) {
+        private void GenerateBiome(int[,] _ground_map, int ground, Vector2Int center, float maxDistance, float random_procent, List<BiomeFeature> features) {
             // Initial splotch
             _border.Enqueue(center);
             _all.Add(center);
-            while (_border.Count > 0 && _probability > 0) {
+            while (_border.Count > 0) {
                 var _current = _border.Dequeue();
-                if(Vector2.Distance(_current, center) <= maxDistance + Random.Range(0, probabilityFallof) && !_processed.Contains(_current)) {
+                if(Vector2.Distance(_current, center) <= maxDistance + Random.Range(0, random_procent) && !_processed.Contains(_current)) {
                     var _currentNeighbors = GetNeighbors(_ground_map, _current);
                     _currentNeighbors.ForEach(x => {
-                        if(Random.Range(0f, 100f) < _probability) {
+                        if(Random.Range(0f, 100f) < random_procent * 10) {
                             _ground_map[x.x, x.y] = ground;
                             _border.Enqueue(x);
                             _all.Add(x);
                         }
                     });
-                    _probability -= probabilityFallof * maxDistance / 100;
                     _processed.Add(_current);
                 }
             }
-            // edging 
+            // edging (smoothing)
             _all.ForEach(_current => {
                 var _currentNeighbors = GetNeighbors(_ground_map, _current, 0);
                 if (_currentNeighbors.Count() > 1) {
@@ -192,12 +206,23 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
                     });
                 }
             });
+            // getting all cells into _all
             _processed.Except(_all).ToList().ForEach(x => _all.Add(x));
+            // Spawning biome features
             _all.ForEach(x => {
                 foreach (var f in features) {
-                    //Потом тут нагенерю
+                    if(!_lastGenerated.ContainsKey(f)) { _lastGenerated[f] = 0; break; }
+                    if(_lastGenerated[f] >= _all.Count / f.MaxSpawnAmount) {
+                        decorMaps[(int)f.Layer][x.x, x.y] = f.index;
+                        _lastGenerated[f] = 0;
+                    }
+                }
+                foreach(var item in _lastGenerated.Keys.ToList())
+                {
+                    _lastGenerated[item]++;
                 }
             });
+            foreach(var item in _lastGenerated.Keys.ToList()) { _lastGenerated[item] = 0; }
         }
 
         #endregion
@@ -208,7 +233,7 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
             
         }
 
-        
+
 
         #endregion
     }
