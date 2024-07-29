@@ -5,7 +5,10 @@ namespace Assets.Scripts.Entities.Impl
 {
     public class Zombie : Entity
     {
-        private int _damage = 10;
+
+        public Zombie(EntityStats stats) : base(stats)
+        {
+        }
 
         private void OnCollisionEnter(Collision collision)
         {
