@@ -7,8 +7,7 @@ namespace Assets.Scripts.DI
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<TilemapPlayerInteraction>()
-                .AsSingle();
+
         }
     }
 }

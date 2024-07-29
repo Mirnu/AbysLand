@@ -4,10 +4,9 @@ using Assets.Scripts.Resources.Data;
 using ModestTree;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Zenject;
 
 namespace Assets.Scripts.World {
-public class UpperWorldGen : MonoBehaviour, IWorld, IInitializable {
+public class UpperWorldGen : MonoBehaviour, IWorld {
 
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
@@ -45,6 +44,8 @@ public class UpperWorldGen : MonoBehaviour, IWorld, IInitializable {
         public void Put(Resource resource) { 
             
         }
+
+        private void Start() => Initialize();
 
         public void Initialize() {
             for(int i = 0; i < 4; i++) { 
