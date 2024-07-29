@@ -7,7 +7,7 @@ namespace Assets.Scripts.Inventory.View {
         [SerializeField] private Sprite selected_sprite;
         private Sprite default_sprite;
 
-        private void Awake() {
+        private void Start() {
             default_sprite = GetComponent<Image>().sprite;
         }
 

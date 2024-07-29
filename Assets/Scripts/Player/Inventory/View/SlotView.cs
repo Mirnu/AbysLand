@@ -1,9 +1,7 @@
-using Assets.Scripts.Player.Inventory.View;
+
 using Assets.Scripts.Resources.Data;
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Inventory.View {
