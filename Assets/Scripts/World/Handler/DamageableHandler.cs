@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Resources.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Assets.Scripts.World {
-    public class DamageableHandler : IInitializable {
+    public class DamageableHandler : IInitializable, IWorldInteractor {
 
         private List<DmgTile> _damagableTiles = new List<DmgTile>();
         private Tilemap _tilemap;
@@ -32,6 +33,16 @@ namespace Assets.Scripts.World {
         public void Damage(Vector3Int pos, int amount) {
             var tile = _damagableTiles.Find(x => x.Pos == pos);
             tile.Damage(amount);
+        }
+
+        public TileBase GetObjects(Vector2 pos)
+        {
+            return _tilemap.GetTile(new Vector3Int((int)Mathf.Floor(pos.x), (int)Mathf.Floor(pos.y)));
+        }
+
+        public void Put(Resource resource)
+        {
+            
         }
     }
 }

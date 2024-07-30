@@ -6,8 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.World {
-public class UpperWorldGen : MonoBehaviour, IWorld {
-
+    public class UpperWorldGen : MonoBehaviour, IWorldGenerator {
         [SerializeField] private List<Tile> Tiles = new List<Tile>();
         [SerializeField] private Tilemap BackgroundTiles;
         [SerializeField] private List<Tilemap> DecorTiles;
@@ -16,9 +15,10 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
 
         public float scale = 1.0F;
         private string seed = "";
-        private int[,] map = new int[101, 101];
+        private int _size;
+        private int[,] map;
         //Заглушка
-        private int[,] _durability = new int[101, 101];
+        private int[,] _durability;
 
         private List<int[,]> decorMaps = new List<int[,]>();
 
@@ -28,28 +28,17 @@ public class UpperWorldGen : MonoBehaviour, IWorld {
         
         private Dictionary<BiomeFeature, int> _lastGenerated = new Dictionary<BiomeFeature, int>(); 
 
-        public TileBase GetObjects(Vector2 pos) {
-            return BackgroundTiles.GetTile(BackgroundTiles.WorldToCell(new Vector3(pos.x, pos.y, BackgroundTiles.transform.position.z)));
-        }
-
-        public void DestroyAtTile(int points, Vector2Int tilePos) {
-            var l = map[tilePos.x, tilePos.y];
-            if(l > points) {
-                _durability[tilePos.x, tilePos.y] -= points;
-            } else {
-                _durability[tilePos.x, tilePos.y] = 0;
-            }
-        }
-
-        public void Put(Resource resource) { 
-            
+        public UpperWorldGen(int size) {
+            _size = size;
+            map = new int[_size, _size];
+            _durability = new int[_size, _size];
         }
 
         private void Start() => Initialize();
 
         public void Initialize() {
             for(int i = 0; i < 4; i++) { 
-                var l = new int[101, 101];
+                var l = new int[_size, _size];
                 for (int k = 0; k < l.GetLength(0); k++) {
                     for (int j = 0; j < l.GetLength(1); j++) {
                         l[k, j] = -1;

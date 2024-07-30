@@ -7,7 +7,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 {
     public class Fist : Tool
     {
-        private IWorld _world;
+        private IGenerator _world;
 
         [Inject]
         public void Construct(UpperWorldGen world)
