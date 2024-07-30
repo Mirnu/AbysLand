@@ -20,6 +20,7 @@ namespace Assets.Scripts.World {
         {
             _damagableTiles.ForEach(x => {
                 x.Init();
+                _tilemap.SetTile(x.Pos, x._default);
                 x.onDestroyed += delegate { DestroyTile(x); };
             });
         }

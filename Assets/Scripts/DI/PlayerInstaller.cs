@@ -54,12 +54,6 @@ namespace DI
             Container.BindInterfacesAndSelfTo<ContainerSelectableSlots>().AsSingle()
                 .WithArguments(_inventory_slots);
 
-            // Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
-            //     .WithArguments(tilemap, healthDict);
-
-            // Container.BindInterfacesAndSelfTo<PlayerBreakHandler>().AsSingle()
-            //     .WithArguments(highlightTilemap, _tile);
-
             Container.BindInstance(new PlayerInput());
         }
 
@@ -77,6 +71,12 @@ namespace DI
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
+                .WithArguments(tilemap, healthDict);
+
+            Container.BindInterfacesAndSelfTo<PlayerBreakHandler>().AsSingle()
+                .WithArguments(highlightTilemap, _tile);
         }
 
         private void bindSystems()
