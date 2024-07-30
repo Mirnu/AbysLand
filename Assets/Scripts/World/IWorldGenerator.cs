@@ -1,9 +1,7 @@
-using Assets.Scripts.Resources.Data;
-using UnityEngine;
-using UnityEngine.Tilemaps;
+using System.Collections;
 
 namespace Assets.Scripts.World {
     public interface IWorldGenerator {
-        public void Generate(string seed);
+        public IEnumerator Generate(string seed);
     }
 }

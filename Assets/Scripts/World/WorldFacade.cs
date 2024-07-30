@@ -1,6 +1,6 @@
 namespace Assets.Scripts.World {
-    public class WorldFacade {
-
+    public class WorldFacade
+    {
         private IWorldGenerator _gen;
         private IWorldInteractor _interactor;
 
@@ -10,5 +10,4 @@ namespace Assets.Scripts.World {
         }
         
     }
-
 }
