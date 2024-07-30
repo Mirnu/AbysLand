@@ -6,3 +6,16 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+
+fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Scripts/World/Interactor.meta
+guid: cc47fc23de16b4b32ae55f187ec50ee4
+========
+guid: 69167a6f3faa44ff28c39b8d3a6d28a5
+>>>>>>>> Stashed changes:Assets/Scripts/World/Tiles.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,7 +35,9 @@ namespace DI
         [SerializeField] private GameObject _inventory;
         [Space]
         [SerializeField] private TileBase _tile;
+        [SerializeField] private TileBase _tile1;
         [SerializeField] private Tilemap highlightTilemap;
+        [SerializeField] private Tilemap highlightTilemap1;
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
 
@@ -75,8 +77,12 @@ namespace DI
             Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
                 .WithArguments(tilemap, healthDict);
 
-            Container.BindInterfacesAndSelfTo<PlayerBreakHandler>().AsSingle()
+            Container.BindInterfacesAndSelfTo<PlayerDestroyHandler>().AsSingle()
                 .WithArguments(highlightTilemap, _tile);
+
+            Container.BindInterfacesAndSelfTo<PlayerPlaceHandler>().AsSingle()
+                .WithArguments(highlightTilemap1, _tile1, healthDict[0]);
+
         }
 
         private void bindSystems()

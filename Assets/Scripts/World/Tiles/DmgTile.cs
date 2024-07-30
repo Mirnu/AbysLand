@@ -15,6 +15,14 @@ namespace Assets.Scripts.World {
 
         private int _currentHealth;
 
+        public DmgTile(TileBase def, DmgTile origin) {
+            _default = def;
+            Pos = origin.Pos;
+            _dead = origin._dead;
+            MaxHealth = origin.MaxHealth;
+            onDestroyed = origin.onDestroyed;
+        }
+
         public void Init()
         {
             _currentHealth = MaxHealth;

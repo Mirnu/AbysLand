@@ -18,6 +18,7 @@ namespace Assets.Scripts.World {
 
         public void Initialize()
         {
+
             _damagableTiles.ForEach(x => {
                 x.Init();
                 _tilemap.SetTile(x.Pos, x._default);
@@ -27,9 +28,12 @@ namespace Assets.Scripts.World {
 
         public void DestroyTile(DmgTile tile) {
             _tilemap.SetTile(tile.Pos, tile._dead);
+            _damagableTiles.Remove(tile);
         }
 
         public bool CanDamage(Vector3Int pos) { return _damagableTiles.Any(x => x.Pos == pos); }
+
+        public void Place(Vector3Int pos, DmgTile tile) {  tile.Pos = pos; _damagableTiles.Add(tile); _tilemap.SetTile(tile.Pos, tile._default); }
 
         public void Damage(Vector3Int pos, int amount) {
             var tile = _damagableTiles.Find(x => x.Pos == pos);
