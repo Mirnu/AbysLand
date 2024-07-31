@@ -77,11 +77,6 @@ namespace DI
             Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
                 .WithArguments(tilemap, healthDict);
 
-            Container.BindInterfacesAndSelfTo<PlayerDestroyHandler>().AsSingle()
-                .WithArguments(highlightTilemap, _tile);
-
-            Container.BindInterfacesAndSelfTo<PlayerPlaceHandler>().AsSingle()
-                .WithArguments(highlightTilemap1, _tile1, healthDict[0]);
 
         }
 
