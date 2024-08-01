@@ -1,88 +1,60 @@
-﻿using Assets.Scripts.World.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.World.Biomes;
+using Assets.Scripts.World.Internal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.World.Generators.GenerationStages
 {
-    public class ArrangingTilesGenerator : IGenerator
+    public class ArrangingBiomesGenerator : IGenerator
     {
         private const int COST_GENERATION = 10;
-        private const string NAME_GENEARATION = "Arranging Tiles";
-
-        private int[,] map;
+        private const string NAME_GENEARATION = "Arranging Biomes";
 
         public int CostGeneration => COST_GENERATION;
 
         public string NameGeneration => NAME_GENEARATION;
 
+        private Tilemap BackgroundTiles;
+        private List<Tilemap> DecorTiles;
+        private List<Biome> biomes;
+
+        private Dictionary<BiomeFeature, int> _lastGenerated = new Dictionary<BiomeFeature, int>();
+
         private Queue<Vector2Int> _border = new Queue<Vector2Int>();
         private List<Vector2Int> _processed = new List<Vector2Int>();
         private List<Vector2Int> _all = new List<Vector2Int>();
 
-        public List<Tile> Tiles;
-        public Tilemap BackgroundTiles;
-        public List<Tilemap> DecorTiles;
-        public List<BiomeFeature> features;
-        public List<int[,]> decorMaps;
-
-        private Dictionary<BiomeFeature, int> _lastGenerated = new Dictionary<BiomeFeature, int>();
-
-        public ArrangingTilesGenerator(WorldModel model)
-        {
-            map = model.Map;
-            DecorTiles = model.DecorTiles;
+        public ArrangingBiomesGenerator(WorldModel model) {
             BackgroundTiles = model.BackgroundTiles;
-            Tiles = model.Tiles;
-            features = model.Features;
-            decorMaps = model.DecorMaps;
+            DecorTiles = model.DecorTiles;
+            biomes = model.Biomes;
         }
 
         public IEnumerator Generate()
         {
-            GenerateTilemap(map, BackgroundTiles);
+            biomes.ForEach(x => GenerateBiome(x));
 
-            GenerateBiome(map, 2, new Vector2Int(0, 0), 10, 10, features);
-            GenerateBiome(map, 2, new Vector2Int(40, 25), 7, 8, features);
-
-            GenerateTilemap(map, BackgroundTiles);
-            
-            // GenerateTilemap(decorMaps[0], DecorTiles[0]); - call bug
             yield return null;
         }
 
-        private void GenerateTilemap(int[,] map, Tilemap tilemap)
-        {
-            tilemap.ClearAllTiles();
-            for (int x = 0; x < map.GetUpperBound(0); x++)
-            {
-                for (int y = 0; y < map.GetUpperBound(1); y++)
-                {
-                    if (map[x, y] != -1)
-                    {
-                        tilemap.SetTile(new Vector3Int(x, y, 0), Tiles[map[x, y]]);
-                    }
-                }
-            }
-        }
-
-        private void GenerateBiome(int[,] _ground_map, int ground, Vector2Int center, float maxDistance, float random_procent, List<BiomeFeature> features)
+        private void GenerateBiome(Biome biome)
         {
             // Initial splotch
-            _border.Enqueue(center);
-            _all.Add(center);
+            _border.Enqueue(biome.Center);
+            _all.Add(biome.Center);
             while (_border.Count > 0)
             {
                 var _current = _border.Dequeue();
-                if (Vector2.Distance(_current, center) <= maxDistance + Random.Range(0, random_procent) && !_processed.Contains(_current))
+                if (Vector2.Distance(_current, biome.Center) <= biome.Size + Random.Range(0, biome.RandomProcent * 0.1f) / 2 && !_processed.Contains(_current))
                 {
-                    var _currentNeighbors = GetNeighbors(_ground_map, _current);
+                    var _currentNeighbors = GetNeighbors(BackgroundTiles, _current);
                     _currentNeighbors.ForEach(x => {
-                        if (Random.Range(0f, 100f) < random_procent * 10)
+                        if (Random.Range(0f, 100f) < biome.RandomProcent * 10)
                         {
-                            _ground_map[x.x, x.y] = ground;
+                            BackgroundTiles.SetTile(new Vector3Int(x.x, x.y), biome.Ground);
                             _border.Enqueue(x);
                             _all.Add(x);
                         }
@@ -90,39 +62,40 @@ namespace Assets.Scripts.World.Generators.GenerationStages
                     _processed.Add(_current);
                 }
             }
+
             // edging (smoothing)
             _all.ForEach(_current => {
-                var _currentNeighbors = GetNeighbors(_ground_map, _current, 0);
+                var _currentNeighbors = GetNeighbors(BackgroundTiles, _current, biome.Ground);
                 if (_currentNeighbors.Count() > 1)
                 {
                     _currentNeighbors.ForEach(x => {
-                        map[x.x, x.y] = ground;
+                        BackgroundTiles.SetTile(new Vector3Int(x.x, x.y), biome.Ground);
                         _processed.Add(x);
                     });
                 }
             });
+
             // getting all cells into _all
             _processed.Except(_all).ToList().ForEach(x => _all.Add(x));
+
             // Spawning biome features
             _all.ForEach(x => {
-                foreach (var f in features)
+                foreach (var f in biome.Features)
                 {
                     if (!_lastGenerated.ContainsKey(f)) { _lastGenerated[f] = 0; break; }
                     if (_lastGenerated[f] >= _all.Count / f.MaxSpawnAmount)
                     {
-                        decorMaps[(int)f.Layer][x.x, x.y] = f.index;
+                        DecorTiles[(int)f.Layer].SetTile(new Vector3Int(x.x, x.y), f.FeatureTile);
                         _lastGenerated[f] = 0;
                     }
                 }
-                foreach (var item in _lastGenerated.Keys.ToList())
-                {
-                    _lastGenerated[item]++;
-                }
+
+                foreach (var item in _lastGenerated.Keys.ToList()) { _lastGenerated[item]++; }
             });
             foreach (var item in _lastGenerated.Keys.ToList()) { _lastGenerated[item] = 0; }
         }
-
-        private List<Vector2Int> GetNeighbors(int[,] _map, Vector2Int pos)
+        
+        private List<Vector2Int> GetNeighbors(Tilemap _map, Vector2Int pos)
         {
             List<Vector2Int> n = new List<Vector2Int>();
             for (int i = pos.x == 0 ? 0 : pos.x - 1; i <= pos.x + 1; i++)
@@ -134,7 +107,7 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             }
             for (int j = pos.y == 0 ? 0 : pos.y - 1; j <= pos.y + 1; j++)
             {
-                if (j >= _map.GetUpperBound(0) - 1) { break; }
+                if (j >= _map.cellBounds.max.y - 1) { break; }
                 if (j != pos.y)
                 {
                     n.Add(new Vector2Int(pos.x, j));
@@ -143,20 +116,20 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             return n;
         }
 
-        private List<Vector2Int> GetNeighbors(int[,] _map, Vector2Int pos, int index)
+        private List<Vector2Int> GetNeighbors(Tilemap _map, Vector2Int pos, TileBase tile)
         {
             List<Vector2Int> n = new List<Vector2Int>();
             for (int i = pos.x == 0 ? 0 : pos.x - 1; i <= pos.x + 1; i++)
             {
-                if (_map[i, pos.y] == index && i != pos.x)
+                if (_map.GetTile(new Vector3Int(i, pos.y)) == tile && i != pos.x)
                 {
                     n.Add(new Vector2Int(i, pos.y));
                 }
             }
             for (int j = pos.y == 0 ? 0 : pos.y - 1; j <= pos.y + 1; j++)
             {
-                if (j >= _map.GetUpperBound(0) - 1) { break; }
-                if (_map[pos.x, j] == index && j != pos.y)
+                if (j >= _map.cellBounds.max.y - 1) { break; }
+                if (_map.GetTile(new Vector3Int(pos.x, j)) == tile && j != pos.y)
                 {
                     n.Add(new Vector2Int(pos.x, j));
                 }

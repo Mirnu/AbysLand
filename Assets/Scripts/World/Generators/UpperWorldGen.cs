@@ -17,35 +17,25 @@ namespace Assets.Scripts.World {
         private int[,] map;
         //Заглушка
         private int[,] _durability;
-        private List<int[,]> decorMaps;
 
         private Queue<IGenerator> _sequentialGeneration = new();
         public Action<string> GenerateStageChanged;
 
         [Inject]
         public void Construct(WorldModel model, CornersGenerator cornersGen,
-            ArrangingTilesGenerator arrangingTilesGen) {
+            ArrangingBaseTilesGenerator arrangingTilesGen, ArrangingBiomesGenerator biomeGen) {
             map = model.Map;
             _size = model.Size;
             _durability = model.Durability;
-            decorMaps = model.DecorMaps;
 
             _sequentialGeneration.Enqueue(cornersGen);
             _sequentialGeneration.Enqueue(arrangingTilesGen);
+            _sequentialGeneration.Enqueue(biomeGen);
         }
 
         private void Start() => Initialize();
 
         public void Initialize() {
-            for(int i = 0; i < 4; i++) { 
-                var l = new int[_size, _size];
-                for (int k = 0; k < l.GetLength(0); k++) {
-                    for (int j = 0; j < l.GetLength(1); j++) {
-                        l[k, j] = -1;
-                    }
-                }
-                decorMaps.Add(l);
-            }
 
             StartCoroutine(Generate("test"));
         }

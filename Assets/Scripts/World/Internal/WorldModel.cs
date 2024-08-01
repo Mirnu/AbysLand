@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.World.Biomes;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.World.Internal
@@ -13,11 +14,10 @@ namespace Assets.Scripts.World.Internal
         public List<Tile> Tiles;
         public Tilemap BackgroundTiles;
         public List<Tilemap> DecorTiles;
-        public List<BiomeFeature> Features;
-        public List<int[,]> DecorMaps = new List<int[,]>();
+        public List<Biome> Biomes;
 
         public WorldModel(int size, List<Tile> tiles, Tilemap backgroundTiles, 
-            List<Tilemap> decorTiles, List<BiomeFeature> features)
+            List<Tilemap> decorTiles, List<Biome> features)
         {
             _size = size;
             Map = new int[size, size];
@@ -25,7 +25,7 @@ namespace Assets.Scripts.World.Internal
             Tiles = tiles;
             BackgroundTiles = backgroundTiles;
             DecorTiles = decorTiles;
-            Features = features;
+            Biomes = features;
         }
 
         public int Size => _size;

@@ -1,13 +1,14 @@
 using System;
+using UnityEngine.Tilemaps;
 
-namespace Assets.Scripts.World {
+namespace Assets.Scripts.World.Biomes {
     [Serializable]
     public class BiomeFeature {
         public float SpawnChance;
         public float NeighborChance;
         public FeatureLayer Layer;
         public int MaxSpawnAmount;
-        public int index = 0;
+        public TileBase FeatureTile;
     }
 }
 public enum FeatureLayer {

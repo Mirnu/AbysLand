@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
 using Zenject;
+using Assets.Scripts.World.Biomes;
 
 namespace Assets.Scripts.DI
 {
@@ -14,14 +15,15 @@ namespace Assets.Scripts.DI
         [SerializeField] private Tilemap BackgroundTiles;
         [SerializeField] private List<Tilemap> DecorTiles;
         [Space]
-        [SerializeField] private List<BiomeFeature> features;
+        [SerializeField] private List<Biome> biomes;
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<CornersGenerator>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ArrangingTilesGenerator>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<WorldModel>().AsSingle()
-                .WithArguments(101, Tiles, BackgroundTiles, DecorTiles, features);
+                .WithArguments(101, Tiles, BackgroundTiles, DecorTiles, biomes);
         }
     }
 }

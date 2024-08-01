@@ -1990,12 +1990,25 @@ MonoBehaviour:
   BackgroundTiles: {fileID: 528534185}
   DecorTiles:
   - {fileID: 1343532202}
-  features:
-  - SpawnChance: 5
-    NeighborChance: 5
-    Layer: 0
-    MaxSpawnAmount: 15
-    index: 5
+  - {fileID: 1343532202}
+  - {fileID: 1343532202}
+  - {fileID: 1343532202}
+  biomes:
+  - Features:
+    - SpawnChance: 10
+      NeighborChance: 1
+      Layer: 0
+      MaxSpawnAmount: 25
+      FeatureTile: {fileID: 11400000, guid: 9e044608cd63c440b81f991af162a745, type: 2}
+    - SpawnChance: 10
+      NeighborChance: 1
+      Layer: 0
+      MaxSpawnAmount: 5
+      FeatureTile: {fileID: 11400000, guid: 8b185f01a32a44ff385f11fc83df6a80, type: 2}
+    Size: 10
+    Center: {x: 25, y: 25}
+    RandomProcent: 78
+    Ground: {fileID: 11400000, guid: 9a9608ad296ec4d59aaa47c5c0d0a66d, type: 2}
 --- !u!1 &718713238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,7 +3830,7 @@ MonoBehaviour:
   Tiles: []
   BackgroundTiles: {fileID: 0}
   DecorTiles: []
-  features: []
+  biomes: []
 --- !u!114 &1067071501
 MonoBehaviour:
   m_ObjectHideFlags: 0
