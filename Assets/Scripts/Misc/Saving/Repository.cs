@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Assets.Scripts.Game;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace Assets.Scripts.Misc.Saving
@@ -12,11 +15,14 @@ namespace Assets.Scripts.Misc.Saving
 
         public static void LoadState()
         {
-            if (PlayerPrefs.HasKey(GAME_STATE_KEY))
+            if (File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
             {
-                var serializedState = PlayerPrefs.GetString(GAME_STATE_KEY);
-                currentState = JsonConvert.
-                  DeserializeObject<Dictionary<string, string>>(serializedState);
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file =
+                  File.Open(Application.persistentDataPath
+                  + "/MySaveData.dat", FileMode.Open);
+                currentState = (Dictionary<string, string>)bf.Deserialize(file);
+                file.Close();
             }
             else
             {
@@ -26,8 +32,11 @@ namespace Assets.Scripts.Misc.Saving
 
         public static void SaveState()
         {
-            var serializedState = JsonConvert.SerializeObject(currentState);
-            PlayerPrefs.SetString(GAME_STATE_KEY, serializedState);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath
+              + "/MySaveData.dat");
+            bf.Serialize(file, currentState);
+            file.Close();
         }
 
         public static T GetData<T>()
