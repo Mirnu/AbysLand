@@ -19,6 +19,8 @@ namespace Assets.Scripts.World.Generators.GenerationStages
 
         public string NameGeneration => NAME_GENEARATION;
 
+        public int Order => 3;
+
         public List<Tile> Tiles;
         public Tilemap BackgroundTiles;
 
@@ -34,10 +36,10 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             GenerateTilemap(map, BackgroundTiles);
 
             GenerateTilemap(map, BackgroundTiles);
-            
+
             // 
             // GenerateTilemap(decorMaps[0], DecorTiles[0]); - call bug
-            yield return null;
+            yield return new WaitForSeconds(2);
         }
 
         private void GenerateTilemap(int[,] map, Tilemap tilemap)

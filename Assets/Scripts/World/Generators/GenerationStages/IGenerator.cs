@@ -2,9 +2,10 @@
 
 namespace Assets.Scripts.World.Generators.GenerationStages
 {
-    internal interface IGenerator
+    public interface IGenerator
     {
         int CostGeneration { get; } // The cost of generating this stage
+        int Order { get; }
         string NameGeneration {get;}
         IEnumerator Generate();
     }

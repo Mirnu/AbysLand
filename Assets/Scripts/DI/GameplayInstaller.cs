@@ -1,14 +1,20 @@
 using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Stats;
-using UnityEngine;
 using Zenject;
-using Assets.Scripts.World;
+using Assets.Scripts.Game;
 
 public class GameplayInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
+        bindEntryPoint();
         bindModels();
+    }
+
+    private void bindEntryPoint()
+    {
+        Container.BindInterfacesAndSelfTo<GameEntryPoint>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<WorldInitializer>().AsSingle();
     }
 
     private void bindModels()
