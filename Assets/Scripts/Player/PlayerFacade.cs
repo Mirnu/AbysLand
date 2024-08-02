@@ -8,9 +8,15 @@ namespace Assets.Scripts.Player
     public class PlayerFacade : MonoBehaviour
     {
         private PlayerStatsModel _stats;
+        private GameObjectContext _playerContext;
+
+        private void Awake() 
+        {
+            _playerContext = GetComponent<GameObjectContext>();
+        }
 
         [Inject]
-        public void Construct(PlayerModel model, PlayerStatsModel stats)
+        public void Construct(PlayerStatsModel stats)
         {
             _stats = stats;
         }
@@ -18,6 +24,10 @@ namespace Assets.Scripts.Player
         public void TakeDamage(int damage)
         {
             _stats.Health -= damage;
+        }
+
+        public void Enable() {
+            _playerContext.Run();
         }
     }
 }

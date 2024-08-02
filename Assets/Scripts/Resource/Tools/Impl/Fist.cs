@@ -7,10 +7,10 @@ namespace Assets.Scripts.Resources.Tools.Impl
 {
     public class Fist : Tool
     {
-        private IWorld _world;
+        private IWorldInteractor _world;
 
         [Inject]
-        public void Construct(UpperWorldGen world)
+        public void Construct(DamageableHandler world)
         {
             _world = world;
         }
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
                 {
                     Vector3 mousePos3D = hit.point;
                     Vector2Int pos = new Vector2Int((int)mousePos3D.x, (int)mousePos3D.y);
-                    _world.DestroyAtTile(100, pos);
+                    _world.Damage((Vector3Int)pos, 100);
                 }
 
             }

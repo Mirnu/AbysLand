@@ -9,7 +9,9 @@ using Assets.Scripts.Player.Model;
 using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Systems;
 using Assets.Scripts.Resources.Data;
+using Assets.Scripts.World;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Zenject;
 
@@ -31,7 +33,14 @@ namespace DI
 
         [Header("Menu")]
         [SerializeField] private GameObject _inventory;
-        
+        [Space]
+        [SerializeField] private TileBase _tile;
+        [SerializeField] private TileBase _tile1;
+        [SerializeField] private Tilemap highlightTilemap;
+        [SerializeField] private Tilemap highlightTilemap1;
+        [SerializeField] private Tilemap tilemap;
+        [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
+
         public override void InstallBindings()
         { 
             bindModels();
@@ -64,6 +73,11 @@ namespace DI
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
+                .WithArguments(tilemap, healthDict);
+
+
         }
 
         private void bindSystems()

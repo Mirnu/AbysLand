@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Tiles.meta
+guid: 17590e69880624137b6b1292f5f8cab6
+========
+guid: 69167a6f3faa44ff28c39b8d3a6d28a5
+>>>>>>>> master:Assets/Scripts/World/Tiles.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

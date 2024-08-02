@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Inventory.View;
+using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.Resources.Tools;
@@ -16,11 +17,13 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
         private readonly PlayerInput _input;
         private Resource mock;
+        private Hand _hand;
 
-        public ContainerHotbarSlots (PlayerInput input, List<HotbarSlotView> slots, Resource _mock) {
+        public ContainerHotbarSlots (PlayerInput input, List<HotbarSlotView> slots, Resource _mock, Hand hand) {
             _slots = slots;
             _input = input;
             mock = _mock;
+            _hand = hand;
         }
 
         public void Initialize()
@@ -50,7 +53,10 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             var index = context.ReadValue<float>();
             if(index < _slots.Count) {
                 if(_slots.Any(x => x.IsSelected)) { _slots.Find(x => x.IsSelected).Deselect(); }
-                _slots[(int)index].Select();
+                var slot = _slots[(int)index];
+                slot.Select();
+                if(slot.Get() != null) { _hand.Equip(slot.Get()); }
+                else { _hand.EmptyHand(); }
             }
         }
     }

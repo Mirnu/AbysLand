@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/World/Biome.meta
+guid: efefde7312d634aab9e8bbef4d55f15f
+folderAsset: yes
+DefaultImporter:
+========
+guid: 9a9608ad296ec4d59aaa47c5c0d0a66d
+NativeFormatImporter:
+>>>>>>>> master:Assets/Prefabs/Textures/basic_tree.asset.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
