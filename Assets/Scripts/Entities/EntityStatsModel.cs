@@ -6,15 +6,14 @@ using static UnityEngine.CullingGroup;
 
 namespace Assets.Scripts.Entities
 {
-    [CreateAssetMenuAttribute(fileName = "entity_data", menuName = "New entity data")]
-    public class EntityStatsModel : ScriptableObject
+    public class EntityStatsModel
     {
-        private int _maxHP;
-        private float _speed;
-        private int _damage;
-        private bool _canDie;
-        private bool _hasAI;
-        private bool _canAttack;
+        private int _MaxHP;
+        private float _Speed;
+        private int _Damage;
+        private bool _CanDie;
+        private bool _HasAI;
+        private bool _CanAttack;
 
 /*        protected EntityStats _MaxStats;*/
 
@@ -27,79 +26,79 @@ namespace Assets.Scripts.Entities
 
         public event Action StatsChanged;
 
-        /*protected EntityStatsModel(EntityStats stats)
+        EntityStatsModel(int hp, float speed, int damage, bool canDie, bool hasAI, bool canAttack)
         {
-            this._MaxStats = stats;
-            this._hp = stats.hp;
-            this._speed = stats.speed;
-            this._damage = stats.damage;
-            this._canDie = stats.canDie;
-            this._hasAI = stats.hasAI;
-        }*/
+            this._MaxHP = hp;
+            this._Speed = speed;
+            this._Damage = damage;
+            this._CanDie = canDie;
+            this._HasAI = hasAI;
+            this._CanAttack = canAttack;
+        }
 
         public int HP
         {
-            get => _maxHP;
+            get => _MaxHP;
             set
             {
                 int new_value = value > 0 ? value : 1;
-                if (new_value == _maxHP) return;
-                _maxHP = new_value;
-                HpChanged?.Invoke(_maxHP);
+                if (new_value == _MaxHP) return;
+                _MaxHP = new_value;
+                HpChanged?.Invoke(_MaxHP);
                 StatsChanged?.Invoke();
             }
         }
         public float Speed
         {
-            get => _speed;
+            get => _Speed;
             set
             {
                 float new_value = value > 0 ? value : 1;
-                if (new_value == _speed) return;
-                _speed = new_value;
-                SpeedChanged?.Invoke(_speed);
+                if (new_value == _Speed) return;
+                _Speed = new_value;
+                SpeedChanged?.Invoke(_Speed);
                 StatsChanged?.Invoke();
             }
         }
         public int Damage
         {
-            get => _damage;
+            get => _Damage;
             set
             {
                 int new_value = value > 0 ? value : 0;
-                if (new_value == _damage) return;
-                _damage = new_value;
-                DamageChanged?.Invoke(_damage);
+                if (new_value == _Damage) return;
+                _Damage = new_value;
+                DamageChanged?.Invoke(_Damage);
                 StatsChanged?.Invoke();
             }
         }
         public bool CanDie
         {
-            get => _canDie;
+            get => _CanDie;
             set
             {
-                _canDie = value;
-                CanDieChanged?.Invoke(_canDie);
+                _CanDie = value;
+                CanDieChanged?.Invoke(_CanDie);
                 StatsChanged?.Invoke();
             }
         }
         public bool HasAI
         {
-            get => _hasAI;
+            get => _HasAI;
             set
             {
-                _hasAI = value;
-                HasAIChanged?.Invoke(_hasAI);
+                _HasAI = value;
+                HasAIChanged?.Invoke(_HasAI);
                 StatsChanged?.Invoke();
             }
         }
         public bool CanAttack
         {
-            get => _canAttack;
+            get => _CanAttack;
             set
             {
-                _canAttack = value;
-                CanAttackChanged?.Invoke(_canAttack);
+                _CanAttack = value;
+                CanAttackChanged?.Invoke(_CanAttack);
                 StatsChanged?.Invoke();
             }
         }

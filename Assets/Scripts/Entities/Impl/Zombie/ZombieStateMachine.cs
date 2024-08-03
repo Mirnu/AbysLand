@@ -38,7 +38,7 @@ namespace Assets.Scripts.Entities {
             return ChangeState(state);
         }
 
-        public bool ChangeState(EntityState new_state)
+        public override bool ChangeState(EntityState new_state)
         {
             if (cur_state == new_state) return false;
             if (!cur_state.OnExit()) return false;

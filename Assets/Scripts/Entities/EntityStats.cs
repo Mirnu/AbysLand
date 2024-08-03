@@ -6,10 +6,10 @@ namespace Assets.Scripts.Entities
 {
     public class EntityStats : ScriptableObject
     {
-        public int hp;
-        public bool hasAI;
-        public bool canDie;
-        public float speed;
-        public int damage;
+        public int HP;
+        public bool HasAI;
+        public bool CanDie;
+        public float Speed;
+        public int Damage;
     }
 }

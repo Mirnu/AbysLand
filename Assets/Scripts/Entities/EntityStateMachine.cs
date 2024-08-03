@@ -17,4 +17,5 @@ public abstract class EntityStateMachine
     }
 
     public abstract void Initialize();
+    public abstract bool ChangeState(EntityState new_state);
 }

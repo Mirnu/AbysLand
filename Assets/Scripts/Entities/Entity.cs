@@ -6,8 +6,13 @@ namespace Assets.Scripts.Entities
 {
     public abstract class Entity :  MonoBehaviour
     {
-        [SerializeField]
         protected EntityStatsModel _StatsModel;
         protected EntityStateMachine _StateMachine;
+        protected int _CurHP;
+
+        public class Factory: PlaceholderFactory<Entity>
+        {
+
+        }
     }
 }

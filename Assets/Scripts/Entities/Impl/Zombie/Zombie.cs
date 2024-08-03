@@ -11,9 +11,9 @@ namespace Assets.Scripts.Entities.Impl
         protected new ZombieStateMachine _StateMachine;
 
         [Inject]
-        public void Construct(EntityStatsModel stats)
+        public void Construct()
         {
-            _StatsModel = stats;
+            _StatsModel = new EntityStatsModel();
             _StateMachine = new ZombieStateMachine(this, _StatsModel);
         }
 
