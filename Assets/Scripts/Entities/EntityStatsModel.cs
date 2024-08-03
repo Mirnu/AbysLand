@@ -26,7 +26,7 @@ namespace Assets.Scripts.Entities
 
         public event Action StatsChanged;
 
-        EntityStatsModel(int hp, float speed, int damage, bool canDie, bool hasAI, bool canAttack)
+        public EntityStatsModel(int hp = 1, float speed = 1f, int damage = 0, bool canDie = true, bool hasAI = false, bool canAttack = false)
         {
             this._MaxHP = hp;
             this._Speed = speed;

@@ -29,10 +29,5 @@ namespace Assets.Scripts.Entities.Impl
                 player.TakeDamage(_StatsModel.Damage);
             }
         }
-
-        public class Factory: PlaceholderFactory<EntityStatsModel, ZombieStateMachine, Zombie>
-        {
-
-        }
     }
 }
