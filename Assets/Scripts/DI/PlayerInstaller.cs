@@ -20,7 +20,7 @@ namespace DI
     public class PlayerInstaller : MonoInstaller
     {
         [Header("Player")]
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Rigidbody _rb;
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _handTransform;
         [SerializeField] private Transform _playerTransform;
@@ -63,7 +63,7 @@ namespace DI
         private void bindModels()
         {
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_rigidbody, _animator, _playerTransform);
+                .WithArguments(_rb, _animator, _playerTransform);
         }
 
         private void bindHandlers()

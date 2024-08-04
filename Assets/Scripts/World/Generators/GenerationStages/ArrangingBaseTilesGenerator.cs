@@ -33,10 +33,6 @@ namespace Assets.Scripts.World.Generators.GenerationStages
         {
             GenerateTilemap(map, BackgroundTiles);
 
-            GenerateTilemap(map, BackgroundTiles);
-            
-            // 
-            // GenerateTilemap(decorMaps[0], DecorTiles[0]); - call bug
             yield return null;
         }
 

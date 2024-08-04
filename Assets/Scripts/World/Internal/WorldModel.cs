@@ -15,9 +15,10 @@ namespace Assets.Scripts.World.Internal
         public Tilemap BackgroundTiles;
         public List<Tilemap> DecorTiles;
         public List<Biome> Biomes;
+        public WorldSaver Saver;
 
         public WorldModel(int size, List<Tile> tiles, Tilemap backgroundTiles, 
-            List<Tilemap> decorTiles, List<Biome> features)
+            List<Tilemap> decorTiles, List<Biome> features, WorldSaver saver)
         {
             _size = size;
             Map = new int[size, size];
@@ -26,6 +27,7 @@ namespace Assets.Scripts.World.Internal
             BackgroundTiles = backgroundTiles;
             DecorTiles = decorTiles;
             Biomes = features;
+            Saver = saver;
         }
 
         public int Size => _size;

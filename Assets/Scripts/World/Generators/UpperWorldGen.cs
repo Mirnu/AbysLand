@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts.World.Generators.GenerationStages;
 using Assets.Scripts.World.Internal;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Zenject;
 using Random = UnityEngine.Random;
 
@@ -17,6 +18,8 @@ namespace Assets.Scripts.World {
         private int[,] map;
         //Заглушка
         private int[,] _durability;
+        private WorldSaver _saver;
+        private Tilemap _;
 
         private Queue<IGenerator> _sequentialGeneration = new();
         public Action<string> GenerateStageChanged;
@@ -27,6 +30,8 @@ namespace Assets.Scripts.World {
             map = model.Map;
             _size = model.Size;
             _durability = model.Durability;
+            _saver = model.Saver;
+            _ = model.BackgroundTiles;
 
             _sequentialGeneration.Enqueue(cornersGen);
             _sequentialGeneration.Enqueue(arrangingTilesGen);
@@ -51,6 +56,8 @@ namespace Assets.Scripts.World {
                 Debug.Log(generator.NameGeneration);
                 yield return generator.Generate();
             }
+
+            _saver.SaveMap(_);
         }
     }
 }

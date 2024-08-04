@@ -22,6 +22,8 @@ namespace Assets.Scripts.DI
             Container.BindInterfacesAndSelfTo<CornersGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
+            Container.BindInterfacesAndSelfTo<WorldSaver>().AsSingle()
+                .WithArguments(BackgroundTiles);
             Container.BindInterfacesAndSelfTo<WorldModel>().AsSingle()
                 .WithArguments(101, Tiles, BackgroundTiles, DecorTiles, biomes);
         }

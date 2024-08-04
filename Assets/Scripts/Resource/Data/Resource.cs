@@ -13,7 +13,7 @@ namespace Assets.Scripts.Resources.Data
 
     public class ResourceInTheWorld : Resource
     {
-
+        
     }
 
     
