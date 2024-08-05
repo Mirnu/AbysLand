@@ -56,8 +56,7 @@ namespace Assets.Scripts.World {
                 Debug.Log(generator.NameGeneration);
                 yield return generator.Generate();
             }
-
-            _saver.SaveMap(_);
+            _saver.Save();
         }
     }
 }

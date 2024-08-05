@@ -7,14 +7,10 @@ namespace Assets.Scripts.World {
     public class DmgTile {
         public int value;
         public Vector3Int Pos;
-        public TileBase _default {
-            get;
-            private set;
-        }
-        public TileBase _dead {
-            get;
-            private set;
-        }
+
+        public TileBase _default;
+        public TileBase _dead;
+
         public int MaxHealth;
 
         public Action onDestroyed;
