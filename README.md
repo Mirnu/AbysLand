@@ -7,7 +7,8 @@
 (например вставляет в поля - 
 ```cs
 class A {
-  priavate readonly int _b;
+  private readonly int _b;
+
   public A(int b) {
     _b = b;
   }
