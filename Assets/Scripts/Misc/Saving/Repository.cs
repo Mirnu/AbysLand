@@ -42,12 +42,12 @@ namespace Assets.Scripts.Misc.Saving
         public static T GetData<T>(JsonSerializerSettings settings)
         {
             var serializedData = currentState[typeof(T).Name];
+            Debug.Log("SD: " + serializedData);
             return JsonConvert.DeserializeObject<T>(serializedData, settings);
         }
 
         public static void SetData<T>(T value, JsonSerializerSettings settings)
         {
-            Debug.Log(" ::: " + value.GetType());
             var serializedData = JsonConvert.SerializeObject(value, settings);
             currentState[typeof(T).Name] = serializedData;
         }

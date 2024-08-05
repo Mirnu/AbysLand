@@ -38,8 +38,6 @@ namespace DI
         [SerializeField] private TileBase _tile1;
         [SerializeField] private Tilemap highlightTilemap;
         [SerializeField] private Tilemap highlightTilemap1;
-        [SerializeField] private Tilemap tilemap;
-        [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
 
         public override void InstallBindings()
         { 
@@ -73,11 +71,6 @@ namespace DI
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
-
-            Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
-                .WithArguments(tilemap, healthDict);
-
-
         }
 
         private void bindSystems()

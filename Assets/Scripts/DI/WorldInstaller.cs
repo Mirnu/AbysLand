@@ -16,12 +16,17 @@ namespace Assets.Scripts.DI
         [SerializeField] private List<Tilemap> DecorTiles;
         [Space]
         [SerializeField] private List<Biome> biomes;
+        [Space]
+        [SerializeField] private Tilemap tilemap;
+        [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<CornersGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
+                .WithArguments(tilemap, healthDict);
             Container.BindInterfacesAndSelfTo<WorldSaver>().AsSingle()
                 .WithArguments(BackgroundTiles);
             Container.BindInterfacesAndSelfTo<WorldModel>().AsSingle()
