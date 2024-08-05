@@ -19,7 +19,6 @@ namespace Assets.Scripts.Player.Stats
         private readonly PlayerStatsMaxModel _maxModel;
         private readonly PlayerBoostModel _boostModel;
 
-        // Сами прокидываем значения в фабрике (удобно для сохранений)
 
         public PlayerStatsModel(Settings settings, PlayerStatsMaxModel maxModel,
             PlayerBoostModel boostModel,

@@ -17,6 +17,8 @@ namespace Assets.Scripts.World.Generators.GenerationStages
 
         public string NameGeneration => NAME_GENEARATION;
 
+        public int Order => 2;
+
         private Tilemap BackgroundTiles;
         private List<Tilemap> DecorTiles;
         private List<Biome> biomes;
@@ -37,7 +39,7 @@ namespace Assets.Scripts.World.Generators.GenerationStages
         {
             biomes.ForEach(x => GenerateBiome(x));
 
-            yield return null;
+            yield return new WaitForSeconds(2);
         }
 
         private void GenerateBiome(Biome biome)

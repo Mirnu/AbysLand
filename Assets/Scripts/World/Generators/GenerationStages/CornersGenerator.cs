@@ -15,6 +15,8 @@ namespace Assets.Scripts.World.Generators.GenerationStages
 
         public string NameGeneration => NAME_GENEARATION;
 
+        public int Order => 1;
+
         public CornersGenerator(WorldModel model)
         {
             map = model.Map;
@@ -32,7 +34,7 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             GenerateLine(map.GetUpperBound(0) / 2, map.GetUpperBound(0) / 2, map.GetUpperBound(0), map.GetUpperBound(1) / 2);
             FillAreaFromCorner(99, 99, 2, 1);
             FillAreaFromCorner(0, 99, 2, 3);
-            yield break;
+            yield return new WaitForSeconds(2); ;
         }
 
         private void GenerateLine(int x0, int y0, int x1, int y1)
