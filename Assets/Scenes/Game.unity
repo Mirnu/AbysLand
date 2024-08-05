@@ -2249,13 +2249,15 @@ MonoBehaviour:
     Ground: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
   tilemap: {fileID: 528534185}
   healthDict:
-  - Pos: {x: 3, y: 2, z: 0}
-    _default: {fileID: 11400000, guid: 9e044608cd63c440b81f991af162a745, type: 2}
-    _dead: {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
+  - value: 0
+    Pos: {x: 3, y: 2, z: 0}
+    _default: {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
+    _dead: {fileID: 0}
     MaxHealth: 100
-  - Pos: {x: 3, y: 0, z: 0}
-    _default: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
-    _dead: {fileID: 11400000, guid: 9a9608ad296ec4d59aaa47c5c0d0a66d, type: 2}
+  - value: 0
+    Pos: {x: 3, y: 0, z: 0}
+    _default: {fileID: 0}
+    _dead: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
     MaxHealth: 50
 --- !u!1 &718713238
 GameObject:

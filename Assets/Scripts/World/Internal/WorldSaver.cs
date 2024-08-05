@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading;
 using Assets.Scripts.Misc.Saving;
 using Assets.Scripts.Misc.Utils;
 using Newtonsoft.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting;
 using UnityEngine.Tilemaps;
@@ -13,69 +17,67 @@ using Zenject;
 namespace Assets.Scripts.World
 {
     public class WorldSaver {
-        private JsonSerializerSettings _settings;
-        private List<JTile> _tiles = new List<JTile>();
-        // КОСТЫЛЬ, НЕ НАШЕЛ КАК СОХРАНИТЬ Tile или TileBase В JSON
-        private List<TileBase> _allTiles = new List<TileBase>();
-        private DmgTile[] _dmgTiles = new DmgTile[]{};
-        //
-        private Tilemap _;
+        private Tilemap _map;
+        private List<TileData> _tiles = new List<TileData>();
+        private DamageableHandler _handler;
 
-        public WorldSaver(DamageableHandler handler, Tilemap _map) {
-            _settings = new JsonSerializerSettings() { 
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                Formatting = Formatting.Indented,
-                DefaultValueHandling = DefaultValueHandling.Populate
-            };
-            _dmgTiles = handler._damagableTiles.ToArray();
-            _ = _map;
+        public WorldSaver(Tilemap _, DamageableHandler handler) {
+            _map = _;
+            _handler = handler;
         }
 
-        public void SaveMap(Tilemap tmp) {
-            Debug.Log("Saving map at: " + Application.persistentDataPath
-              + "/MySaveData.dat");
-            Repository.SetData(convert(tmp), _settings);
-            Debug.Log(" DH: " + _dmgTiles.Count());
-            Repository.SaveState();
-            Repository.SetData(_dmgTiles, _settings);
-            Repository.SaveState();
-        }
-
-        public void LoadMap(Tilemap tmp) {
-            Debug.Log("-----Loading map-----");
-            Repository.LoadState();
-            var l = Repository.GetData<JTile[]>(_settings);
-            Debug.Log("Got tiles");
-            // var h = Repository.GetData<DmgTile[]>(_settings);
-            // Debug.Log(" DH: " + h.Count());
-            l.ToList().ForEach(x => {
-                // Типа пока чтоб разница была пон да?
-                tmp.SetTile(x.Pos + new Vector3Int(10, 10, 0), _allTiles[_allTiles.Count > x.TileIndex ? x.TileIndex : 0]);
-            });
-        }
-
-        private JTile[] convert(Tilemap tmp) {
-            _tiles.Clear();
-            tmp.CompressBounds();
-            for (int i = tmp.cellBounds.xMin; i < tmp.cellBounds.xMax; i++) {
-                for (int j = tmp.cellBounds.yMin; j < tmp.cellBounds.yMax; j++) {
-                    if(tmp.GetTile(new Vector3Int(i, j)) != null) {
-                        var t = tmp.GetTile(new Vector3Int(i, j));
-                        if (!_allTiles.Contains(t)) { 
-                            _allTiles.Add(t); 
-                        }
-                        _tiles.Add(new JTile(_allTiles.IndexOf(t), new Vector3Int(i, j)));
+        public void Save() {
+            BinaryFormatter bf = new BinaryFormatter();
+            // Пока что в json но если сигма прогер считает что лучше в dat значит в dat 
+            FileStream file = File.Create(Application.persistentDataPath
+              + "/MySaveWorldData.json");
+            _map.CompressBounds();
+            for (int i = _map.cellBounds.xMin; i < _map.cellBounds.xMax; i++) {
+                for (int j = _map.cellBounds.yMin; j < _map.cellBounds.yMax; j++) {
+                    if(_map.GetTile(new Vector3Int(i, j)) != null) {
+                        _tiles.Add(new TileData(_map.GetTile(new Vector3Int(i, j)), new Vector3Int(i, j)));
                     }
                 }
             }
-            return _tiles.ToArray();
+            var s = "\n";
+            _tiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
+            s += "---\n";
+            _handler._damagableTiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
+            Debug.Log("d: " + s);
+            bf.Serialize(file, s);
+            file.Close();
+        }
+
+        public void Load() {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file =
+                  File.Open(Application.persistentDataPath
+                  + "/MySaveWorldData.json", FileMode.Open);
+            List<TileData> _ = new List<TileData>();
+            var l = (string)bf.Deserialize(file);
+            l.Split("---")[0].Split("\n").ToList().ForEach(x => {
+                if(x != "") {
+                    _.Add(JsonUtility.FromJson<TileData>(x));
+            }});
+            l.Split("---")[1].Split("\n").ToList().ForEach(x => {
+                if(x != "") {
+                    _handler._damagableTiles.Add(JsonUtility.FromJson<DmgTile>(x));
+            }});
+            file.Close();
+        }
+
+        private void fill(Tilemap tmp, List<TileData> data) {
+            data.ForEach(x => tmp.SetTile(x.Pos + new Vector3Int(15, 5, 0), x.Tile));
         }
     }
-
-    [Serializable][JsonObject(MemberSerialization.OptIn)]
-    public class JTile {
-        [JsonProperty] public int TileIndex;
-        [JsonProperty] public Vector3Int Pos;
-        public JTile(int tileIndex, Vector3Int _pos) { TileIndex = tileIndex; Pos = _pos; }
-    }
 }
+
+    [Serializable]
+    public class TileData {
+        public Vector3Int Pos;
+        public TileBase Tile;
+        public TileData(TileBase _tile, Vector3Int _pos) {
+            Pos = _pos;
+            Tile = _tile;
+        }
+    }

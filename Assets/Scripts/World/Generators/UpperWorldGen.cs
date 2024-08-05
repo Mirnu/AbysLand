@@ -64,7 +64,10 @@ namespace Assets.Scripts.World {
                 GenerateStageChanged?.Invoke(generator.Value);
                 yield return generator.Key.Generate();
             }
+
             GenerationCompleted?.Invoke();
+            _saver.Save();
+
         }
     }
 

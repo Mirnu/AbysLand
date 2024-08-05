@@ -42,7 +42,6 @@ namespace Assets.Scripts.Misc.Saving
         public static T GetData<T>(JsonSerializerSettings settings)
         {
             var serializedData = currentState[typeof(T).Name];
-            Debug.Log("SD: " + serializedData);
             return JsonConvert.DeserializeObject<T>(serializedData, settings);
         }
 
@@ -52,11 +51,11 @@ namespace Assets.Scripts.Misc.Saving
             currentState[typeof(T).Name] = serializedData;
         }
 
-        public static bool TryGetData<T>(out T value)
+        public static bool TryGetData<T>(out T value, JsonSerializerSettings settings)
         {
             if (currentState.TryGetValue(typeof(T).Name, out var serializedData))
             {
-                value = JsonConvert.DeserializeObject<T>(serializedData);
+                value = JsonConvert.DeserializeObject<T>(serializedData, settings);
                 return true;
             }
 

@@ -21,7 +21,6 @@ namespace Assets.Scripts.World {
 
         public void Initialize()
         {
-
             _damagableTiles.ForEach(x => {
                 x.Init();
                 _tilemap.SetTile(x.Pos, x._default);
