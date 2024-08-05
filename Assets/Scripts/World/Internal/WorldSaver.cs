@@ -39,9 +39,6 @@ namespace Assets.Scripts.World
             Repository.SaveState();
             Repository.SetData(_dmgTiles, _settings);
             Repository.SaveState();
-            Thread.Sleep(10000);
-            Debug.Log("NIGGA");
-            LoadMap(tmp);
         }
 
         public void LoadMap(Tilemap tmp) {
