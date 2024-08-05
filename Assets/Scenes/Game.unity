@@ -794,7 +794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &413917457
 Transform:
   m_ObjectHideFlags: 0
@@ -4336,7 +4336,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6325,7 +6325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603121726}
   - component: {fileID: 1603121728}
-  - component: {fileID: 1603121727}
+  - component: {fileID: 1603121729}
   m_Layer: 0
   m_Name: Loading
   m_TagString: Untagged
@@ -6349,19 +6349,6 @@ Transform:
   m_Father: {fileID: 1315177623}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1603121727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603121725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containerSource: 0
 --- !u!114 &1603121728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6376,6 +6363,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingStateText: {fileID: 686153177}
   _loadingSlider: {fileID: 1116866214}
+--- !u!114 &1603121729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603121725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1603121728}
+  _identifier: 
+  _useSceneContext: 1
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &1633239233
 GameObject:
   m_ObjectHideFlags: 0

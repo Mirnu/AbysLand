@@ -3,26 +3,23 @@ using Zenject;
 
 namespace Assets.Scripts.Game
 {
-    public class GameEntryPoint : IInitializable
+    public class GameplayEntryPoint : IInitializable
     {
         private readonly PlayerFacade _player;
         private readonly WorldInitializer _worldInitializer;
+        private readonly GameManager _gameManager;
 
-        public GameEntryPoint(PlayerFacade player, WorldInitializer worldInitializer)
+        public GameplayEntryPoint(PlayerFacade player, WorldInitializer worldInitializer,
+            GameManager gameManager)
         {
+            _gameManager = gameManager;
             _player = player;
             _worldInitializer = worldInitializer;
         }
 
         public void Initialize()
         {
-            _worldInitializer.Initilized += OnWorldInitilized;
-            _worldInitializer.Initialize();
-        }
-
-        private void OnWorldInitilized()
-        {
-            //_player.Initialize();
+            _gameManager.StartGenerate();
         }
     }
 }

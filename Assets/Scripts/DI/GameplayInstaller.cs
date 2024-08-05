@@ -13,7 +13,7 @@ public class GameplayInstaller : MonoInstaller
 
     private void bindEntryPoint()
     {
-        Container.BindInterfacesAndSelfTo<GameEntryPoint>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<GameplayEntryPoint>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<WorldInitializer>().AsSingle();
     }
 

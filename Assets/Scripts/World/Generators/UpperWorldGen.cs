@@ -36,8 +36,7 @@ namespace Assets.Scripts.World {
         {
             int allCost = generators.Sum(x => x.CostGeneration);
             _sequentialGeneration = generators.OrderBy((x) => x.Order)
-                .ToDictionary(x => x, 
-                x => new GenerateStage {
+                .ToDictionary(x => x, x => new GenerateStage {
                     NameGeneration = x.NameGeneration, 
                     Cost = (float)x.CostGeneration / allCost
                 });
