@@ -4,20 +4,20 @@ namespace Assets.Scripts.Player.Model
 {
     public class PlayerModel 
     {
-        private readonly Rigidbody _rigidbody;
+        private readonly Rigidbody _rb;
         private readonly Animator _animator;
         private readonly Transform _transform;
 
         public PlayerModel(Rigidbody rigidbody, Animator animator, Transform transform) 
         { 
-            _rigidbody = rigidbody;
+            _rb = rigidbody;
             _animator = animator;
             _transform = transform;
         }
 
         public Vector3 LookDir
         {
-            get { return -_rigidbody.transform.right; }
+            get { return -_rb.transform.right; }
         }
 
         public Vector3 Position
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Player.Model
 
         public void MovePosition(Vector3 position)
         {
-            _rigidbody.MovePosition(_rigidbody.position + position);
+            _rb.MovePosition(_rb.position + position);
         }
 
         public void SetMoveAnimation(int id)

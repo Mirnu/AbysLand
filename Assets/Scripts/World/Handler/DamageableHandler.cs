@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Resources.Data;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Assets.Scripts.World {
+    [Serializable][JsonObject(MemberSerialization.OptIn)]
     public class DamageableHandler : IInitializable, IWorldInteractor {
 
-        private List<DmgTile> _damagableTiles = new List<DmgTile>();
+        [JsonProperty] public List<DmgTile> _damagableTiles = new List<DmgTile>();
         private Tilemap _tilemap;
 
         public DamageableHandler(Tilemap tilemap, List<DmgTile> _dict) {

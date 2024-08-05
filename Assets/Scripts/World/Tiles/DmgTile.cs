@@ -5,24 +5,23 @@ using UnityEngine.Tilemaps;
 namespace Assets.Scripts.World {
     [Serializable]
     public class DmgTile {
-
+        public int value;
         public Vector3Int Pos;
-        public TileBase _default;
-        public TileBase _dead;
+        public TileBase _default {
+            get;
+            private set;
+        }
+        public TileBase _dead {
+            get;
+            private set;
+        }
         public int MaxHealth;
 
         public Action onDestroyed;
 
         private int _currentHealth;
 
-        public DmgTile(TileBase def, DmgTile origin) {
-            _default = def;
-            Pos = origin.Pos;
-            _dead = origin._dead;
-            MaxHealth = origin.MaxHealth;
-            onDestroyed = origin.onDestroyed;
-        }
-
+        
         public void Init()
         {
             _currentHealth = MaxHealth;

@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e733a5105cf4c3439b2949ecbba11dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1895886984}
+  _rb: {fileID: 0}
   _animator: {fileID: 1895886983}
   _handTransform: {fileID: 373073143}
   _playerTransform: {fileID: 1895886982}
@@ -738,16 +738,6 @@ MonoBehaviour:
   _tile1: {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
   highlightTilemap: {fileID: 1633239236}
   highlightTilemap1: {fileID: 2137689955}
-  tilemap: {fileID: 2070262809}
-  healthDict:
-  - Pos: {x: 0, y: 3, z: 0}
-    _default: {fileID: 11400000, guid: 9a9608ad296ec4d59aaa47c5c0d0a66d, type: 2}
-    _dead: {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
-    MaxHealth: 100
-  - Pos: {x: -2, y: 3, z: 0}
-    _default: {fileID: 11400000, guid: 9a9608ad296ec4d59aaa47c5c0d0a66d, type: 2}
-    _dead: {fileID: 11400000, guid: 8b185f01a32a44ff385f11fc83df6a80, type: 2}
-    MaxHealth: 50
 --- !u!1 &373073142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2247,16 @@ MonoBehaviour:
     Center: {x: 50, y: 25}
     RandomProcent: 78
     Ground: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
+  tilemap: {fileID: 528534185}
+  healthDict:
+  - Pos: {x: 3, y: 2, z: 0}
+    _default: {fileID: 11400000, guid: 9e044608cd63c440b81f991af162a745, type: 2}
+    _dead: {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
+    MaxHealth: 100
+  - Pos: {x: 3, y: 0, z: 0}
+    _default: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
+    _dead: {fileID: 11400000, guid: 9a9608ad296ec4d59aaa47c5c0d0a66d, type: 2}
+    MaxHealth: 50
 --- !u!1 &718713238
 GameObject:
   m_ObjectHideFlags: 0
@@ -4231,6 +4231,8 @@ MonoBehaviour:
   BackgroundTiles: {fileID: 0}
   DecorTiles: []
   biomes: []
+  tilemap: {fileID: 0}
+  healthDict: []
 --- !u!114 &1067071501
 MonoBehaviour:
   m_ObjectHideFlags: 0

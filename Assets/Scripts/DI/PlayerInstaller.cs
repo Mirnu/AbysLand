@@ -21,7 +21,7 @@ namespace DI
     public class PlayerInstaller : MonoInstaller
     {
         [Header("Player")]
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Rigidbody _rb;
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _handTransform;
         [SerializeField] private Transform _playerTransform;
@@ -39,8 +39,6 @@ namespace DI
         [SerializeField] private TileBase _tile1;
         [SerializeField] private Tilemap highlightTilemap;
         [SerializeField] private Tilemap highlightTilemap1;
-        [SerializeField] private Tilemap tilemap;
-        [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
 
         public override void InstallBindings()
         { 
@@ -64,7 +62,7 @@ namespace DI
         private void bindModels()
         {
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_rigidbody, _animator, _playerTransform);
+                .WithArguments(_rb, _animator, _playerTransform);
         }
 
         private void bindHandlers()
@@ -74,11 +72,6 @@ namespace DI
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
-
-            Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
-                .WithArguments(tilemap, healthDict);
-
-
         }
 
         private void bindSystems()

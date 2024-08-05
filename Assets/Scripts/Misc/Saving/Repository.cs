@@ -39,15 +39,16 @@ namespace Assets.Scripts.Misc.Saving
             file.Close();
         }
 
-        public static T GetData<T>()
+        public static T GetData<T>(JsonSerializerSettings settings)
         {
             var serializedData = currentState[typeof(T).Name];
-            return JsonConvert.DeserializeObject<T>(serializedData);
+            Debug.Log("SD: " + serializedData);
+            return JsonConvert.DeserializeObject<T>(serializedData, settings);
         }
 
-        public static void SetData<T>(T value)
+        public static void SetData<T>(T value, JsonSerializerSettings settings)
         {
-            var serializedData = JsonConvert.SerializeObject(value);
+            var serializedData = JsonConvert.SerializeObject(value, settings);
             currentState[typeof(T).Name] = serializedData;
         }
 
