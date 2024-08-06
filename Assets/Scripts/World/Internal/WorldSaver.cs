@@ -43,7 +43,6 @@ namespace Assets.Scripts.World
             _tiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
             s += "---\n";
             _handler._damagableTiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
-            Debug.Log("d: " + s);
             bf.Serialize(file, s);
             file.Close();
         }

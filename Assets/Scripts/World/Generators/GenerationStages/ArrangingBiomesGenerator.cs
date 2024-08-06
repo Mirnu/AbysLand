@@ -86,7 +86,6 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             _all.ForEach(x => {
                 foreach (var f in biome.Features)
                 {
-                    Debug.Log("feat: " + f.FeatureTile + ":: " + Random.Range(0, 100f));
                     if (Random.Range(0, 100f) < f.SpawnChance
                     && (GetNeighbors(DecorTiles[(int)f.Layer], new Vector2Int(x.x, x.y), f.FeatureTile).Count() < 1
                     || Random.Range(0, 100) < f.NeighborChance))

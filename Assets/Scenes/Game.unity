@@ -7456,7 +7456,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 335516154}
   _installerPrefabs: []
-  _autoRun: 1
+  _autoRun: 0
   _kernel: {fileID: 0}
 --- !u!4 &1895886982
 Transform:

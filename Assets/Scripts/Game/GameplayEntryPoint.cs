@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Game
@@ -15,6 +16,10 @@ namespace Assets.Scripts.Game
             _gameManager = gameManager;
             _player = player;
             _worldInitializer = worldInitializer;
+            _worldInitializer.Initilized += delegate { 
+                Debug.Log("Player alive"); 
+                _player.Enable(); 
+            };
         }
 
         public void Initialize()
