@@ -7,7 +7,6 @@ namespace Assets.Scripts.World.Biomes {
         public float SpawnChance;
         public float NeighborChance;
         public FeatureLayer Layer;
-        public int MaxSpawnAmount;
         public TileBase FeatureTile;
     }
 }

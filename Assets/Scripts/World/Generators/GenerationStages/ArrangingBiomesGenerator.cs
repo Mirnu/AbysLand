@@ -29,6 +29,8 @@ namespace Assets.Scripts.World.Generators.GenerationStages
         private List<Vector2Int> _processed = new List<Vector2Int>();
         private List<Vector2Int> _all = new List<Vector2Int>();
 
+        private string seed;
+
         public ArrangingBiomesGenerator(WorldModel model) {
             BackgroundTiles = model.BackgroundTiles;
             DecorTiles = model.DecorTiles;
@@ -84,17 +86,15 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             _all.ForEach(x => {
                 foreach (var f in biome.Features)
                 {
-                    if (!_lastGenerated.ContainsKey(f)) { _lastGenerated[f] = 0; break; }
-                    if (_lastGenerated[f] >= _all.Count / f.MaxSpawnAmount)
+                    Debug.Log("feat: " + f.FeatureTile + ":: " + Random.Range(0, 100f));
+                    if (Random.Range(0, 100f) < f.SpawnChance
+                    && (GetNeighbors(DecorTiles[(int)f.Layer], new Vector2Int(x.x, x.y), f.FeatureTile).Count() < 1
+                    || Random.Range(0, 100) < f.NeighborChance))
                     {
                         DecorTiles[(int)f.Layer].SetTile(new Vector3Int(x.x, x.y), f.FeatureTile);
-                        _lastGenerated[f] = 0;
                     }
                 }
-
-                foreach (var item in _lastGenerated.Keys.ToList()) { _lastGenerated[item]++; }
             });
-            foreach (var item in _lastGenerated.Keys.ToList()) { _lastGenerated[item] = 0; }
         }
         
         private List<Vector2Int> GetNeighbors(Tilemap _map, Vector2Int pos)
