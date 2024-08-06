@@ -17,7 +17,7 @@ namespace Assets.Scripts.World.Generators.GenerationStages
 
         public string NameGeneration => NAME_GENEARATION;
 
-        public int Order => 2;
+        public int Order => 3;
 
         private Tilemap BackgroundTiles;
         private List<Tilemap> DecorTiles;

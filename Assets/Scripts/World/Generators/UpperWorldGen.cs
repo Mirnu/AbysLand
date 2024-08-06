@@ -19,8 +19,6 @@ namespace Assets.Scripts.World {
         private int[,] map;
         //Заглушка
         private int[,] _durability;
-        private WorldSaver _saver;
-        private Tilemap _;
 
         private Dictionary<IGenerator, GenerateStage> _sequentialGeneration = new();
         public event Action<GenerateStage> GenerateStageChanged;
@@ -31,8 +29,6 @@ namespace Assets.Scripts.World {
             map = model.Map;
             _size = model.Size;
             _durability = model.Durability;
-            _saver = model.Saver;
-            _ = model.BackgroundTiles;
 
             AddGenerators(generators);
         }
@@ -66,8 +62,6 @@ namespace Assets.Scripts.World {
             }
 
             GenerationCompleted?.Invoke();
-            _saver.Save();
-
         }
     }
 

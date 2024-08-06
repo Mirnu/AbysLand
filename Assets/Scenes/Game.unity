@@ -2236,7 +2236,7 @@ MonoBehaviour:
     Size: 10
     Center: {x: 25, y: 25}
     RandomProcent: 78
-    Ground: {fileID: 11400000, guid: 9a9608ad296ec4d59aaa47c5c0d0a66d, type: 2}
+    Ground: {fileID: 11400000, guid: a14fe80ec8afa40c6b0ccf40ec1b272e, type: 2}
   - Features:
     - SpawnChance: 10
       NeighborChance: 1
@@ -4921,7 +4921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
