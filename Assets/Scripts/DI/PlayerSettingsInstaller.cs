@@ -11,11 +11,11 @@ public class PlayerSettingsInstaller : ScriptableObjectInstaller<PlayerSettingsI
     [Serializable]
     public class PlayerStatesSettings
     {
-        public PlayerStatsModel.Settings PlayerMoveHandler;
+        //public PlayerStatsModel.Settings PlayerMoveHandler;
     }
 
     public override void InstallBindings()
     {
-        Container.BindInstance(PlayerStates.PlayerMoveHandler).IfNotBound();
+        //Container.BindInstance(PlayerStates.PlayerMoveHandler).IfNotBound();
     }
 }

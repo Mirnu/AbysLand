@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.Player.Stats.UI
+namespace Assets.Scripts.Player.Stats
 {
     public class PlayerStatsMaxModel
     {
@@ -13,12 +13,11 @@ namespace Assets.Scripts.Player.Stats.UI
 
         public event Action StatsMaxChanged;
 
-        // Сами прокидываем значения в фабрике (удобно для сохранений)
-        public PlayerStatsMaxModel(int healthMax = 100, int manaMax = 100, int foodMax = 100)
+        public void Init(Template settings)
         {
-            _healthMax = healthMax;
-            _manaMax = manaMax;
-            _foodMax = foodMax;
+            HealthMax = settings.HealthMax;
+            ManaMax = settings.ManaMax;
+            FoodMax = settings.FoodMax;
         }
 
         public int HealthMax
@@ -51,6 +50,13 @@ namespace Assets.Scripts.Player.Stats.UI
                 _foodMax = value;
                 StatsMaxChanged?.Invoke();
             }
+        }
+
+        public class Template
+        {
+            public int HealthMax = 100;
+            public int ManaMax = 100;
+            public int FoodMax = 100;
         }
     }
 }

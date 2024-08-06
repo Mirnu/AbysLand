@@ -13,7 +13,6 @@ namespace Assets.Scripts.Player
         private void Awake() 
         {
             _playerContext = GetComponent<GameObjectContext>();
-            Enable();
         }
 
         [Inject]
