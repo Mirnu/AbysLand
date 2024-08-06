@@ -2,6 +2,7 @@ using Assets.Scripts.Game;
 using Assets.Scripts.Game.States;
 using Assets.Scripts.Game.Systems;
 using Assets.Scripts.Misc.Utils;
+using Assets.Scripts.Saving;
 using Zenject;
 
 public class GlobalInstaller : MonoInstaller
@@ -26,7 +27,8 @@ public class GlobalInstaller : MonoInstaller
 
     private void bindManagers()
     {
-        Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
+        Container.BindInterfacesAndSelfTo<GameManager>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<SavingManager>().AsSingle().NonLazy();
     }
 
     private void bindMisc()

@@ -39,23 +39,23 @@ namespace Assets.Scripts.Misc.Saving
             file.Close();
         }
 
-        public static T GetData<T>(JsonSerializerSettings settings)
+        public static T GetData<T>()
         {
             var serializedData = currentState[typeof(T).Name];
-            return JsonConvert.DeserializeObject<T>(serializedData, settings);
+            return JsonConvert.DeserializeObject<T>(serializedData);
         }
 
-        public static void SetData<T>(T value, JsonSerializerSettings settings)
+        public static void SetData<T>(T value)
         {
-            var serializedData = JsonConvert.SerializeObject(value, settings);
+            var serializedData = JsonConvert.SerializeObject(value);
             currentState[typeof(T).Name] = serializedData;
         }
 
-        public static bool TryGetData<T>(out T value, JsonSerializerSettings settings)
+        public static bool TryGetData<T>(out T value)
         {
             if (currentState.TryGetValue(typeof(T).Name, out var serializedData))
             {
-                value = JsonConvert.DeserializeObject<T>(serializedData, settings);
+                value = JsonConvert.DeserializeObject<T>(serializedData);
                 return true;
             }
 
