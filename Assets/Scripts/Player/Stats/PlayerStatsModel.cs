@@ -20,16 +20,19 @@ namespace Assets.Scripts.Player.Stats
         private readonly PlayerBoostModel _boostModel;
 
 
-        public PlayerStatsModel(Settings settings, PlayerStatsMaxModel maxModel,
-            PlayerBoostModel boostModel,
-            int health = 95, int mana = 100, int food = 100, float? speed = default) 
+        public PlayerStatsModel(PlayerStatsMaxModel maxModel,
+            PlayerBoostModel boostModel) 
         { 
-            _health = health;
-            _mana = mana;   
-            _food = food;
-            _speed = speed ?? settings.Speed;
             _maxModel = maxModel;
             _boostModel = boostModel;
+        }
+
+        public void Init(Template template)
+        {
+            Health = template.Health;
+            Mana = template.Mana;
+            Food = template.Food;
+            Speed = template.Speed;
         }
 
         public int Health { 
@@ -79,10 +82,12 @@ namespace Assets.Scripts.Player.Stats
             }
         }
 
-        [Serializable]
-        public class Settings
+        public class Template
         {
-            public float Speed;
+            public int Health = 100;
+            public int Mana = 100;
+            public int Food = 100;
+            public float Speed = 8;
         }
     }
 }

@@ -1,14 +1,20 @@
-using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Stats;
 using Zenject;
 using Assets.Scripts.Game;
+using Assets.Scripts.Player.Stats.LaU;
 
 public class GameplayInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
         bindEntryPoint();
+        bindLaU();
         bindModels();
+    }
+
+    private void bindLaU()
+    {
+        Container.BindInterfacesAndSelfTo<PlayerStatsLaU>().AsSingle().NonLazy(); 
     }
 
     private void bindEntryPoint()
