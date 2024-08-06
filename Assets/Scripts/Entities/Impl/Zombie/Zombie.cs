@@ -22,6 +22,11 @@ namespace Assets.Scripts.Entities.Impl
             _StateMachine.Initialize();
         }
 
+        private void Update()
+        {
+            _StateMachine.Update();
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.TryGetComponent(out PlayerFacade player))

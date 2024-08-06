@@ -16,11 +16,11 @@ namespace Assets.Scripts.Entities
 
         public override void Update()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Zombie update");
         }
         public override bool OnExit()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }

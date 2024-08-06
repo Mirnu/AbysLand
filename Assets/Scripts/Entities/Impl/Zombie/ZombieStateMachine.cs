@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Assets.Scripts.Entities {
 
-    public class ZombieStateMachine : EntityStateMachine, ITickable
+    public class ZombieStateMachine : EntityStateMachine
     {
         public readonly ZombieAttackState AttackState;
         public readonly ZombieSearchState SearchState;
@@ -16,8 +16,8 @@ namespace Assets.Scripts.Entities {
         protected new Zombie _EntityModel;
         protected new EntityStatsModel _Stats;
 
-        private EntityState cur_state;
-        private EntityState prev_state;
+        private EntityState _curState;
+        private EntityState _prevState;
 
         public ZombieStateMachine(Zombie entity, EntityStatsModel stats) : base(entity, stats)
         {
@@ -30,26 +30,29 @@ namespace Assets.Scripts.Entities {
 
         public override void Initialize()
         {
+            Debug.Log("ZM sm  init");
             Init(SearchState);
         }
         
         private bool Init(EntityState state)
         {
+            _curState = state;
+            Debug.Log(_curState);
             return ChangeState(state);
         }
 
-        public override bool ChangeState(EntityState new_state)
+        public override bool ChangeState(EntityState newState)
         {
-            if (cur_state == new_state) return false;
-            if (!cur_state.OnExit()) return false;
-            prev_state = cur_state;
-            cur_state = new_state;
+            if (_curState == newState) return false;
+            // if (!_prevState.OnExit()) return false;
+            // _prevState = _curState;
+            _curState = newState;
             return true;
         }
-        
-        public void Tick()
+
+        public void Update()
         {
-            cur_state.Update();
+            _curState.Update();
         }
     }
 }

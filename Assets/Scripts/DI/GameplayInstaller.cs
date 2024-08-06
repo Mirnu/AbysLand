@@ -3,9 +3,11 @@ using Assets.Scripts.Player.Stats;
 using UnityEngine;
 using Zenject;
 using Assets.Scripts.World;
+using  Assets.Scripts.Entities;
 
 public class GameplayInstaller : MonoInstaller
 {
+    public Entity ZombiePrefab;
     public override void InstallBindings()
     {
         bindModels();
@@ -17,5 +19,7 @@ public class GameplayInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<PlayerStatsModel>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerStatsRecoveryModel>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerBoostModel>().AsSingle();
+        Container.BindInterfacesAndSelfTo<EntitySpawner>().AsSingle();
+        Container.BindFactory<Entity, Entity.Factory>().FromComponentInNewPrefab(ZombiePrefab);
     }
 }

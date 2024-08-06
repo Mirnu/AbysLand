@@ -16,12 +16,12 @@ namespace Assets.Scripts.Entities
 
         public override bool OnExit()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public override void Update()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
