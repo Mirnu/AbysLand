@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine;
 using Zenject;
 using Assets.Scripts.World.Biomes;
+using Assets.Scripts.World.Managers;
 
 namespace Assets.Scripts.DI
 {
@@ -19,6 +20,7 @@ namespace Assets.Scripts.DI
         [Space]
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
+        [Space][SerializeField] private List<InteractableGO> trees = new List<InteractableGO>();
 
         public override void InstallBindings()
         {
@@ -27,6 +29,8 @@ namespace Assets.Scripts.DI
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
                 .WithArguments(tilemap, healthDict);
+            Container.BindInterfacesAndSelfTo<TreeManager>().AsSingle()
+                .WithArguments(trees);
             Container.BindInterfacesAndSelfTo<WorldSaver>().AsSingle()
                 .WithArguments(BackgroundTiles);
             Container.BindInterfacesAndSelfTo<WorldModel>().AsSingle()
