@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Player.Inventory.View
 {
-    public class SelectableSlotView : SlotView, IPointerClickHandler
+    public class SelectableSlotView : SlotView, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public event Action LeftMouseClick;
         public event Action RightMouseClick;
+        public event Action OnCursorEnter;
+        public event Action OnCursorExit;
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -21,5 +23,9 @@ namespace Assets.Scripts.Player.Inventory.View
                 RightMouseClick?.Invoke();
             }
         }
+
+        public void OnPointerEnter(PointerEventData pointerEventData) { OnCursorEnter?.Invoke(); }
+
+        public void OnPointerExit(PointerEventData pointerEventData) { OnCursorExit?.Invoke(); }
     }
 }

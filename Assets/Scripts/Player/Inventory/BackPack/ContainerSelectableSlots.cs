@@ -9,12 +9,14 @@ namespace Assets.Scripts.Player.Inventory.BackPack
     public class ContainerSelectableSlots : IInitializable
     {
         private List<SelectableSlotView> _slots = new List<SelectableSlotView>();
+        private SlotInfoView _slotInfoView;
 
         private Resource _cursorResource;
         private int _cursorCount = 0;
 
-        public ContainerSelectableSlots(List<SelectableSlotView> slots) {
+        public ContainerSelectableSlots(List<SelectableSlotView> slots, SlotInfoView slotInfoView) {
             _slots = slots;
+            _slotInfoView = slotInfoView;
         }
 
         public void Initialize()
@@ -28,6 +30,12 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 };
                 x.RightMouseClick += delegate {
                     bindRightClick(x);
+                };
+                x.OnCursorEnter += delegate {
+                    _slotInfoView.Update(x.Get());
+                };
+                x.OnCursorExit += delegate {
+                    _slotInfoView.Empty();
                 };
             });
         }
@@ -65,11 +73,6 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 } else if(slot.Get() == _cursorResource) {
                     //Бесконечная хуйня
                     _cursorCount++; slot.Decrement();
-                    // if(_cursorCount == 0) {
-                    //     _cursorCount++; slot.Decrement();
-                    // } else {
-                    //     _cursorCount--; slot.Increment();
-                    // }
                 } else {
                     Replace(slot);
                 }
