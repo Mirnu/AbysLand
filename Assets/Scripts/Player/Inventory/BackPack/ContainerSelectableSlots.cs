@@ -10,13 +10,15 @@ namespace Assets.Scripts.Player.Inventory.BackPack
     {
         private List<SelectableSlotView> _slots = new List<SelectableSlotView>();
         private SlotInfoView _slotInfoView;
+        private SelectableSlotView _trashSlot;
 
         private Resource _cursorResource;
         private int _cursorCount = 0;
 
-        public ContainerSelectableSlots(List<SelectableSlotView> slots, SlotInfoView slotInfoView) {
+        public ContainerSelectableSlots(List<SelectableSlotView> slots, SlotInfoView slotInfoView, SelectableSlotView trashSlot) {
             _slots = slots;
             _slotInfoView = slotInfoView;
+            _trashSlot = trashSlot;
         }
 
         public void Initialize()
@@ -38,6 +40,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     _slotInfoView.Empty();
                 };
             });
+            _trashSlot.LeftMouseClick += delegate { EmptyCursor(); };
         }
 
         private void bindLeftClick(SelectableSlotView slot) {

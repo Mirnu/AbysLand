@@ -33,6 +33,7 @@ namespace DI
         [SerializeField] private PlayerStatesView _playerStatesView;
         [SerializeField] private List<HotbarSlotView> _hotbar_slots = new List<HotbarSlotView>();
         [SerializeField] private List<SelectableSlotView> _inventory_slots = new List<SelectableSlotView>();
+        [SerializeField] private SelectableSlotView _trash_slot;
 
         [Header("Menu")]
         [SerializeField] private GameObject _inventory;
@@ -55,7 +56,7 @@ namespace DI
                 .WithArguments(_hotbar_slots, _starterResource, _foodResource);
 
             Container.BindInterfacesAndSelfTo<ContainerSelectableSlots>().AsSingle()
-                .WithArguments(_inventory_slots);
+                .WithArguments(_inventory_slots, _trash_slot);
 
             Container.BindInterfacesAndSelfTo<SlotInfoView>().AsSingle()
                 .WithArguments(nameText, infoText);
