@@ -7,17 +7,28 @@ using Zenject;
 
 namespace Assets.Scripts.Inventory.Armor {
     public class ContainerArmorSlots : IInitializable {
-        private Dictionary<SpriteRenderer, ArmorSlotView> _armorSlots = new Dictionary<SpriteRenderer, ArmorSlotView>();
+        private List<ArmorSlotCont> _armorSlots = new List<ArmorSlotCont>();
+        private List<AccessorySlotCont> _accessorySlots = new List<AccessorySlotCont>();
 
-        public ContainerArmorSlots(List<ArmorSlotHack> armorSlots) {
-            armorSlots.ForEach(x => _armorSlots.Add(x.sprite, x.slot));
+        public ContainerArmorSlots(List<ArmorSlotCont> armorSlots, List<AccessorySlotCont> accessorySlots) {
+            _armorSlots = armorSlots;
+            _accessorySlots = accessorySlots;
         }
 
         public void Initialize()
         {
-            foreach (KeyValuePair<SpriteRenderer, ArmorSlotView> pair in _armorSlots) {
-                pair.Value.OnArmorChanged += delegate { pair.Key.sprite = pair.Value.TryGet(out Resource res) ? ((ArmorResource)res).EquippedSprite : null; };
-            }
+            _armorSlots.ForEach(Hack => {
+                //Breaking dry stupid nigga
+                Hack.Slot.OnArmorChanged += delegate { updateArmorSprite(Hack); };
+                Hack.Cosmetic.OnArmorChanged += delegate { updateArmorSprite(Hack); };
+            });
         }
+
+        private void updateArmorSprite(ArmorSlotCont Hack) {
+            Hack.Sprite.sprite = 
+            Hack.Cosmetic.TryGet(out Resource res) ? ((ArmorResource)res).EquippedSprite : 
+            Hack.Slot.TryGet(out Resource armor) ? ((ArmorResource)armor).EquippedSprite : null; 
+        }
+
     }
 }

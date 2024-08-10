@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48e35d808cabd491191634949ddaf36f, type: 3}
-  m_Name: New Armor Resource
+  m_Name: New Armor Resource 2
   m_EditorClassIdentifier: 
   SpriteInInventary: {fileID: -1226496991, guid: ddecd8783d3e4ec489e9470554e94fb9, type: 3}
-  Name: NIGGER HELMET
+  Name: NIGGER CHESTPLATE
   Tool: {fileID: 36004538766367678, guid: 05f969ca2ab70474f94fb62a9e256cd4, type: 3}
   Info: 'WEAR THIS
 
     TO BECOME A
 
     NIGGER'
-  SlotType: 0
+  SlotType: 1
   ProtectionAmount: 0
-  EquippedSprite: {fileID: 21300000, guid: e48d0c3726334b648841f98bb2121005, type: 3}
+  EquippedSprite: {fileID: 21300000, guid: 959b2de50d4524a00aa295d3d78093af, type: 3}

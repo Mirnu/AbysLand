@@ -39,8 +39,8 @@ namespace DI
         [Header("Inventory")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI infoText;
-        [SerializeField] private List<ArmorSlotHack> armorSlots;
-
+        [SerializeField] private List<ArmorSlotCont> armorSlots;
+        [SerializeField] private List<AccessorySlotCont> accessorySlots;
 
         public override void InstallBindings()
         { 
@@ -67,7 +67,7 @@ namespace DI
                 .WithArguments(nameText, infoText);
 
             Container.BindInterfacesAndSelfTo<ContainerArmorSlots>().AsSingle()
-                .WithArguments(armorSlots);
+                .WithArguments(armorSlots, accessorySlots);
         }
 
         private void bindModels()

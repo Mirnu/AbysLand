@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.Inventory.Armor {
     [Serializable]
-    public class ArmorSlotHack {
-        public SpriteRenderer sprite;
-        public ArmorSlotView slot;
+    public class AccessorySlotCont {
+        public SpriteRenderer Sprite;
+        public ArmorSlotView Slot;
     }
 }
