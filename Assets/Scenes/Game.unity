@@ -1157,7 +1157,7 @@ MonoBehaviour:
   _animator: {fileID: 1895886983}
   _handTransform: {fileID: 373073143}
   _playerTransform: {fileID: 1895886982}
-  _starterResource: {fileID: 11400000, guid: 8db3b6a0abb2743d9bc627fa07da798f, type: 2}
+  _starterResource: {fileID: 11400000, guid: d6ac46e7c2d6cea4fb7b82ff38a55dd5, type: 2}
   _foodResource: {fileID: 11400000, guid: 6c04dcd876ffb4ca29985aea664af799, type: 2}
   _playerStatesView: {fileID: 996144841}
   _hotbar_slots:
@@ -1189,13 +1189,13 @@ MonoBehaviour:
   nameText: {fileID: 1649316234}
   infoText: {fileID: 726529344}
   armorSlots:
-  - Sprite: {fileID: 710975614}
+  - Sprite: {fileID: 710975612}
     Slot: {fileID: 1946411392}
     Cosmetic: {fileID: 610260565}
-  - Sprite: {fileID: 263140704}
+  - Sprite: {fileID: 263140702}
     Slot: {fileID: 874060299}
     Cosmetic: {fileID: 1366338434}
-  - Sprite: {fileID: 1947058133}
+  - Sprite: {fileID: 1947058131}
     Slot: {fileID: 690270388}
     Cosmetic: {fileID: 1774817823}
   accessorySlots: []

@@ -9,25 +9,30 @@ namespace Assets.Scripts.Inventory.Armor {
     public class ContainerArmorSlots : IInitializable {
         private List<ArmorSlotCont> _armorSlots = new List<ArmorSlotCont>();
         private List<AccessorySlotCont> _accessorySlots = new List<AccessorySlotCont>();
+        private DiContainer _container;
 
-        public ContainerArmorSlots(List<ArmorSlotCont> armorSlots, List<AccessorySlotCont> accessorySlots) {
+        public ContainerArmorSlots(List<ArmorSlotCont> armorSlots, List<AccessorySlotCont> accessorySlots, DiContainer container) {
             _armorSlots = armorSlots;
             _accessorySlots = accessorySlots;
+            _container = container;
         }
 
         public void Initialize()
         {
             _armorSlots.ForEach(Hack => {
                 //Breaking dry stupid nigga
-                Hack.Slot.OnArmorChanged += delegate { updateArmorSprite(Hack); };
-                Hack.Cosmetic.OnArmorChanged += delegate { updateArmorSprite(Hack); };
+                Hack.Slot.OnArmorChanged += delegate { updateArmor(Hack); };
+                Hack.Cosmetic.OnArmorChanged += delegate { updateArmor(Hack); };
             });
         }
 
-        private void updateArmorSprite(ArmorSlotCont Hack) {
-            Hack.Sprite.sprite = 
-            Hack.Cosmetic.TryGet(out Resource res) ? ((ArmorResource)res).EquippedSprite : 
-            Hack.Slot.TryGet(out Resource armor) ? ((ArmorResource)armor).EquippedSprite : null; 
+        private void updateArmor(ArmorSlotCont Hack) {
+            Hack.Equip(
+            Hack.Cosmetic.TryGet(out Resource res) ? ((ArmorResource)res) : 
+            Hack.Slot.TryGet(out Resource armor) ? ((ArmorResource)armor) : null,
+            _container
+            ); 
+            
         }
 
     }
