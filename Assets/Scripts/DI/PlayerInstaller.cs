@@ -11,6 +11,7 @@ using Assets.Scripts.Player.Stats.UI;
 using Assets.Scripts.Player.Systems;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.World;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -26,19 +27,21 @@ namespace DI
         [SerializeField] private Transform _handTransform;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Resource _starterResource;
+        [SerializeField] private Resource _foodResource;
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
         [SerializeField] private List<HotbarSlotView> _hotbar_slots = new List<HotbarSlotView>();
         [SerializeField] private List<SelectableSlotView> _inventory_slots = new List<SelectableSlotView>();
+        [SerializeField] private SelectableSlotView _trash_slot;
 
         [Header("Menu")]
         [SerializeField] private GameObject _inventory;
-        [Space]
-        [SerializeField] private TileBase _tile;
-        [SerializeField] private TileBase _tile1;
-        [SerializeField] private Tilemap highlightTilemap;
-        [SerializeField] private Tilemap highlightTilemap1;
+
+        [Header("Inventory")]
+        [SerializeField] private TextMeshProUGUI nameText;
+        [SerializeField] private TextMeshProUGUI infoText;
+
 
         public override void InstallBindings()
         { 
@@ -50,10 +53,13 @@ namespace DI
                 .WithArguments(_handTransform, Container, _starterResource);
 
             Container.BindInterfacesAndSelfTo<ContainerHotbarSlots>().AsSingle()
-                .WithArguments(_hotbar_slots, _starterResource);
+                .WithArguments(_hotbar_slots, _starterResource, _foodResource);
 
             Container.BindInterfacesAndSelfTo<ContainerSelectableSlots>().AsSingle()
-                .WithArguments(_inventory_slots);
+                .WithArguments(_inventory_slots, _trash_slot);
+
+            Container.BindInterfacesAndSelfTo<SlotInfoView>().AsSingle()
+                .WithArguments(nameText, infoText);
 
             Container.BindInstance(new PlayerInput());
         }

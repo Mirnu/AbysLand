@@ -9,6 +9,7 @@ namespace Assets.Scripts.Resources.Data
         public Sprite SpriteInInventary;
         public string Name;
         public Tool Tool;
+        [TextArea(3,10)]public string Info;
     }
 
     public class ResourceInTheWorld : Resource

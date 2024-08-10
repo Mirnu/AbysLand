@@ -17,12 +17,14 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
         private readonly PlayerInput _input;
         private Resource mock;
+        private Resource mock1;
         private Hand _hand;
 
-        public ContainerHotbarSlots (PlayerInput input, List<HotbarSlotView> slots, Resource _mock, Hand hand) {
+        public ContainerHotbarSlots (PlayerInput input, List<HotbarSlotView> slots, Resource _mock, Resource _mock1, Hand hand) {
             _slots = slots;
             _input = input;
             mock = _mock;
+            mock1 = _mock1;
             _hand = hand;
         }
 
@@ -31,6 +33,8 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             //
             _slots[0].Set(mock);
             _slots[0].GetComponent<SelectableSlotView>().Set(mock);
+            _slots[1].Set(mock1);
+            _slots[1].GetComponent<SelectableSlotView>().Set(mock1);
             //
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);
             _input.Gameplay.Hotbar.performed += HotbarChangeState;
