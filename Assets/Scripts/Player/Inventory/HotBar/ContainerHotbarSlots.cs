@@ -31,10 +31,10 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         public void Initialize()
         {
             //
-            _slots[0].Set(mock);
-            _slots[0].GetComponent<SelectableSlotView>().Set(mock);
-            _slots[1].Set(mock1);
-            _slots[1].GetComponent<SelectableSlotView>().Set(mock1);
+            _slots[0].TrySet(mock);
+            _slots[0].GetComponent<SelectableSlotView>().TrySet(mock);
+            _slots[1].TrySet(mock1);
+            _slots[1].GetComponent<SelectableSlotView>().TrySet(mock1);
             //
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);
             _input.Gameplay.Hotbar.performed += HotbarChangeState;
@@ -59,7 +59,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
                 if(_slots.Any(x => x.IsSelected)) { _slots.Find(x => x.IsSelected).Deselect(); }
                 var slot = _slots[(int)index];
                 slot.Select();
-                if(slot.Get() != null) { _hand.Equip(slot.Get()); }
+                if(slot.TryGet(out Resource res)) { _hand.Equip(res); }
                 else { _hand.EmptyHand(); }
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Inventory.Armor;
 using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
@@ -13,8 +14,6 @@ using Assets.Scripts.Resources.Data;
 using Assets.Scripts.World;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 using Zenject;
 
 namespace DI
@@ -33,7 +32,6 @@ namespace DI
         [SerializeField] private PlayerStatesView _playerStatesView;
         [SerializeField] private List<HotbarSlotView> _hotbar_slots = new List<HotbarSlotView>();
         [SerializeField] private List<SelectableSlotView> _inventory_slots = new List<SelectableSlotView>();
-        [SerializeField] private SelectableSlotView _trash_slot;
 
         [Header("Menu")]
         [SerializeField] private GameObject _inventory;
@@ -41,6 +39,7 @@ namespace DI
         [Header("Inventory")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI infoText;
+        [SerializeField] private List<ArmorSlotHack> armorSlots;
 
 
         public override void InstallBindings()
@@ -52,18 +51,24 @@ namespace DI
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
                 .WithArguments(_handTransform, Container, _starterResource);
 
-            Container.BindInterfacesAndSelfTo<ContainerHotbarSlots>().AsSingle()
-                .WithArguments(_hotbar_slots, _starterResource, _foodResource);
-
-            Container.BindInterfacesAndSelfTo<ContainerSelectableSlots>().AsSingle()
-                .WithArguments(_inventory_slots, _trash_slot);
-
-            Container.BindInterfacesAndSelfTo<SlotInfoView>().AsSingle()
-                .WithArguments(nameText, infoText);
+            bindInventoryUI();
 
             Container.BindInstance(new PlayerInput());
         }
 
+        private void bindInventoryUI() {
+            Container.BindInterfacesAndSelfTo<ContainerHotbarSlots>().AsSingle()
+                .WithArguments(_hotbar_slots, _starterResource, _foodResource);
+
+            Container.BindInterfacesAndSelfTo<ContainerSelectableSlots>().AsSingle()
+                .WithArguments(_inventory_slots);
+
+            Container.BindInterfacesAndSelfTo<SlotInfoView>().AsSingle()
+                .WithArguments(nameText, infoText);
+
+            Container.BindInterfacesAndSelfTo<ContainerArmorSlots>().AsSingle()
+                .WithArguments(armorSlots);
+        }
 
         private void bindModels()
         {

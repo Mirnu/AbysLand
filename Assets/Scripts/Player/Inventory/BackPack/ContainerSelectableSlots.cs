@@ -10,15 +10,14 @@ namespace Assets.Scripts.Player.Inventory.BackPack
     {
         private List<SelectableSlotView> _slots = new List<SelectableSlotView>();
         private SlotInfoView _slotInfoView;
-        private SelectableSlotView _trashSlot;
 
         private Resource _cursorResource;
         private int _cursorCount = 0;
+        private bool _;
 
-        public ContainerSelectableSlots(List<SelectableSlotView> slots, SlotInfoView slotInfoView, SelectableSlotView trashSlot) {
+        public ContainerSelectableSlots(List<SelectableSlotView> slots, SlotInfoView slotInfoView) {
             _slots = slots;
             _slotInfoView = slotInfoView;
-            _trashSlot = trashSlot;
         }
 
         public void Initialize()
@@ -34,46 +33,48 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     bindRightClick(x);
                 };
                 x.OnCursorEnter += delegate {
-                    _slotInfoView.Update(x.Get());
+                    _slotInfoView.Update(x.TryGet(out Resource res) ? res : null);
                 };
                 x.OnCursorExit += delegate {
                     _slotInfoView.Empty();
                 };
             });
-            _trashSlot.LeftMouseClick += delegate { EmptyCursor(); };
         }
 
         private void bindLeftClick(SelectableSlotView slot) {
             if(_cursorResource != null) {
-                if(slot.Get() != null) {
-                    if(slot.Get() != _cursorResource) { Replace(slot); } 
+                if(slot.TryGet(out Resource res)) {
+                    if(res != _cursorResource) { Replace(slot); } 
                     else { slot.SetCount(slot.GetCount() + _cursorCount); EmptyCursor(); }
-                } else {
-                    slot.Set(_cursorResource);
+                } else if(slot.TrySet(_cursorResource)) {
+                    //?
+                    //slot.TrySet(_cursorResource);
                     slot.SetCount(_cursorCount);
                     EmptyCursor();
                 }
             } else {
-                _cursorResource = slot.Get();
+                slot.TryGet(out Resource res);
+                _cursorResource = res;
                 _cursorCount = slot.GetCount();
                 slot.Delete();
             }
         }
 
         private void bindRightClick(SelectableSlotView slot) {
+            _ = slot.TryGet(out Resource res);
             if (_cursorResource == null) {
-                if(slot.Get() != null) {
-                    _cursorResource = slot.Get();
+                if(_) {
+                    _cursorResource = res;
                     _cursorCount = 1;
                     slot.Decrement();
                 }
             } else {
-                if (slot.Get() == null) {
-                    slot.Set(_cursorResource);
+                if (!_) {
+                    slot.TrySet(_cursorResource);
                     slot.Increment();
                     if(_cursorCount > 1) { _cursorCount--; } 
                     else { EmptyCursor(); }
-                } else if(slot.Get() == _cursorResource) {
+                } else if(res == _cursorResource) {
                     //Бесконечная хуйня
                     _cursorCount++; slot.Decrement();
                 } else {
@@ -88,9 +89,10 @@ namespace Assets.Scripts.Player.Inventory.BackPack
         }
 
         private void Replace(SelectableSlotView slot) {
-            var _temp = slot.Get();
+            slot.TryGet(out Resource res);
+            var _temp = res;
             var __ = slot.GetCount();
-            slot.Set(_cursorResource);
+            slot.TrySet(_cursorResource);
             slot.SetCount(_cursorCount);
             _cursorResource = _temp;
             _cursorCount = __;

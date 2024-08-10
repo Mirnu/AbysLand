@@ -1,6 +1,7 @@
 
 using Assets.Scripts.Resources.Data;
 using TMPro;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,41 +22,43 @@ namespace Assets.Scripts.Inventory.View {
             _countDisplay = GetComponentInChildren<TextMeshProUGUI>(); 
         }
 
-        public Resource Get() {
-            return _currentResource;
+        public virtual bool TryGet(out Resource res) {
+            res = _currentResource;
+            return _currentResource != null;
         }
 
-        public void Delete() {
+        public virtual void Delete() {
             _currentAmount = 0;
             _currentResource = null;
             itemView.sprite = null;
             UpdateCount();
         }
 
-        public void Set(Resource newResource) {
+        public virtual bool TrySet(Resource newResource) {
             _currentResource = newResource;
             itemView.sprite = _currentResource.SpriteInInventary;
+            return true;
         }
 
-        public int GetCount() {
+        public virtual int GetCount() {
             return _currentAmount;
         }
 
-        public void SetCount(int amount) {
+        public virtual void SetCount(int amount) {
             _currentAmount = amount;
             UpdateCount();
         }
 
-        public void Increment() { SetCount(_currentAmount + 1); }
+        public virtual void Increment() { SetCount(_currentAmount + 1); }
 
-        public void Decrement() { SetCount(_currentAmount - 1); }
+        public virtual void Decrement() { SetCount(_currentAmount - 1); }
 
         public bool CanSubstract(int amount) {
             return _currentResource != null && _currentAmount > amount;
         }
 
-        private void UpdateCount() {
-            if(_countDisplay == null) { _countDisplay = GetComponentInChildren<TextMeshProUGUI>();}
+        protected virtual void UpdateCount() {
+            if(!_countDisplay) { _countDisplay = GetComponentInChildren<TextMeshProUGUI>();}
             _countDisplay.text = _currentAmount.ToString();
         }
     }
