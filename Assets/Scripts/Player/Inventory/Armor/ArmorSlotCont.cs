@@ -13,18 +13,23 @@ namespace Assets.Scripts.Inventory.Armor {
         public ArmorSlotView Cosmetic;
 
         private ArmorResource _current;
+        private ArmorMB _currentMb;
+
+        public ArmorResource CurrentResource => _current;
 
         public void Equip(ArmorResource armor, DiContainer _cont) {
-            if (_current != null) 
-                UnityEngine.Object.Destroy(_current);
             _current = armor;
-            _current.EquippedSprite = createArmor(armor, _cont);
+            if (_currentMb != null) 
+                UnityEngine.Object.Destroy(_currentMb.gameObject);
+            
+            _currentMb = createArmor(_current, _cont);
         }
 
         private ArmorMB createArmor(ArmorResource resource, DiContainer _cont)
         {
+            if(resource == null) { return null; }
             ArmorMB armor = _cont.
-                InstantiatePrefabForComponent<ArmorMB>(resource.EquippedSprite, Sprite.transform, new UnityEngine.Object[] {resource});
+                InstantiatePrefabForComponent<ArmorMB>(resource.EquippedSprite, Sprite.transform, new UnityEngine.Object[] {CurrentResource});
             return armor;
         }
     }
