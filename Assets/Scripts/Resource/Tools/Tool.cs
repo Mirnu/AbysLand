@@ -10,7 +10,7 @@ namespace Assets.Scripts.Resources.Tools
     {
         protected Resource resource;
         protected PlayerFacade playerFacade;
-
+        
         [Inject]
         public void Construct(Resource resource, PlayerFacade facade)
         {

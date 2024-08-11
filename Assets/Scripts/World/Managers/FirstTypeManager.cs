@@ -6,11 +6,11 @@ using Zenject;
 
 namespace Assets.Scripts.World.Managers {
     // 1 система блоков
-    public class TreeManager : IInitializable
+    public class FirstTypeManager : IInitializable
     {
         private List<InteractableGO> _trees = new List<InteractableGO>();
 
-        public TreeManager(List<InteractableGO> trees) {
+        public FirstTypeManager(List<InteractableGO> trees) {
             _trees = trees;
         }
 
@@ -22,6 +22,7 @@ namespace Assets.Scripts.World.Managers {
         public void Initialize()
         {
             _trees.ForEach(x => { 
+                // Типа рофл плэйсхолдер пон да?
                 x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, delegate{});
             });
         }

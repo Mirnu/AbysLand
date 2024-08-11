@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e35d808cabd491191634949ddaf36f, type: 3}
+  m_Name: Cosmetic
+  m_EditorClassIdentifier: 
+  SpriteInInventary: {fileID: 21300000, guid: ba45fb8a692de66488c975209264fb0b, type: 3}
+  Name: FAGGOT
+  Tool: {fileID: 36004538766367678, guid: 05f969ca2ab70474f94fb62a9e256cd4, type: 3}
+  Info: ...
+  SlotType: 0
+  ProtectionAmount: 0
+  EquippedSprite: {fileID: 21300000, guid: 5136b4eb0055d41bdbeb065aabd1b58f, type: 3}

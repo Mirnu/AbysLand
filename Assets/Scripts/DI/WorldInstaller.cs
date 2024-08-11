@@ -29,7 +29,7 @@ namespace Assets.Scripts.DI
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
                 .WithArguments(tilemap, healthDict);
-            Container.BindInterfacesAndSelfTo<TreeManager>().AsSingle()
+            Container.BindInterfacesAndSelfTo<FirstTypeManager>().AsSingle()
                 .WithArguments(trees);
             Container.BindInterfacesAndSelfTo<WorldSaver>().AsSingle()
                 .WithArguments(BackgroundTiles);
