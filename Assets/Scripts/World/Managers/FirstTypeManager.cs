@@ -8,20 +8,22 @@ namespace Assets.Scripts.World.Managers {
     // 1 система блоков
     public class FirstTypeManager : IInitializable
     {
-        private List<InteractableGO> _trees = new List<InteractableGO>();
+        private List<InteractableGO> _interactables = new List<InteractableGO>();
 
-        public FirstTypeManager(List<InteractableGO> trees) {
-            _trees = trees;
+        public FirstTypeManager(List<InteractableGO> interactables) {
+            _interactables = interactables;
         }
 
+        public bool ContainsPos(Vector2 Pos) { return _interactables.Any(x => x.Pos == Pos); }
+
         public bool TryDestroyAtPos(Vector2Int Pos, out InteractableGO interactable) {
-            interactable = _trees.First(x => x.Pos == Pos);
-            return _trees.Any(x => x.Pos == Pos);
+            interactable = _interactables.First(x => x.Pos == Pos);
+            return _interactables.Any(x => x.Pos == Pos);
         }
 
         public void Initialize()
         {
-            _trees.ForEach(x => { 
+            _interactables.ForEach(x => { 
                 // Типа рофл плэйсхолдер пон да?
                 x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, delegate{});
             });
