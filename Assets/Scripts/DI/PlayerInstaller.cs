@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Assets.Scripts.Inventory.Armor;
+using Assets.Scripts.Inventory.Crafting;
 using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
@@ -39,8 +40,13 @@ namespace DI
         [Header("Inventory")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI infoText;
+        [Space]
         [SerializeField] private List<ArmorSlotCont> armorSlots;
         [SerializeField] private List<AccessorySlotCont> accessorySlots;
+        [Space]
+        [SerializeField] private List<SelectableSlotView> craftSlot;
+        [SerializeField] private SelectableSlotView craftResultSlot;
+
 
         public override void InstallBindings()
         { 
@@ -68,6 +74,9 @@ namespace DI
 
             Container.BindInterfacesAndSelfTo<ContainerArmorSlots>().AsSingle()
                 .WithArguments(armorSlots, accessorySlots);
+
+            Container.BindInterfacesAndSelfTo<CraftingUIManager>().AsSingle()
+                .WithArguments(craftSlot, craftResultSlot);
         }
 
         private void bindModels()

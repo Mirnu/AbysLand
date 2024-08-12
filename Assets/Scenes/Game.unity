@@ -1157,7 +1157,7 @@ MonoBehaviour:
   _animator: {fileID: 1895886983}
   _handTransform: {fileID: 373073143}
   _playerTransform: {fileID: 1895886982}
-  _starterResource: {fileID: 11400000, guid: d6ac46e7c2d6cea4fb7b82ff38a55dd5, type: 2}
+  _starterResource: {fileID: 11400000, guid: 8db3b6a0abb2743d9bc627fa07da798f, type: 2}
   _foodResource: {fileID: 11400000, guid: 6c04dcd876ffb4ca29985aea664af799, type: 2}
   _playerStatesView: {fileID: 996144841}
   _hotbar_slots:
@@ -3130,18 +3130,6 @@ MonoBehaviour:
     Center: {x: 50, y: 25}
     RandomProcent: 78
     Ground: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
-  tilemap: {fileID: 528534185}
-  healthDict:
-  - value: 0
-    Pos: {x: 3, y: 2, z: 0}
-    _default: {fileID: 11400000, guid: 0979d8e68b6df4210876df01f4775cbc, type: 2}
-    _dead: {fileID: 0}
-    MaxHealth: 100
-  - value: 0
-    Pos: {x: 3, y: 0, z: 0}
-    _default: {fileID: 0}
-    _dead: {fileID: 11400000, guid: 2d5cbcd3cc57842c1883af043b1070d9, type: 2}
-    MaxHealth: 50
   trees: []
 --- !u!1 &690270383
 GameObject:
@@ -5720,8 +5708,6 @@ MonoBehaviour:
   BackgroundTiles: {fileID: 0}
   DecorTiles: []
   biomes: []
-  tilemap: {fileID: 0}
-  healthDict: []
   trees: []
 --- !u!114 &1067071501
 MonoBehaviour:

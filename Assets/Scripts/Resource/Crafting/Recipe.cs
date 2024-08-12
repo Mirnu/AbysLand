@@ -5,11 +5,15 @@ using Assets.Scripts.Resources.Data;
 namespace Assets.Scripts.Resources.Crafting {
     public class Recipe {
         public List<RecipeComponent> RecipeRequirements = new List<RecipeComponent>();
-        public List<RecipeComponent> Result = new List<RecipeComponent>();
+        public RecipeComponent Result;
     }
     [Serializable]
     public class RecipeComponent {
         public Resource resource;
         public int count = 1;
+        public RecipeComponent(Resource res, int c) {
+            resource = res;
+            count = c;
+        }
     }
 }

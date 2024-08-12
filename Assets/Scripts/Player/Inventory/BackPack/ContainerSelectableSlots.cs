@@ -60,6 +60,14 @@ namespace Assets.Scripts.Player.Inventory.BackPack
             }
         }
 
+        public void bindCraftLeft(SelectableSlotView slot) {
+            if(_cursorResource != null) { return; }
+             slot.TryGet(out Resource res);
+                _cursorResource = res;
+                _cursorCount = slot.GetCount();
+                slot.Delete();
+        }
+
         private void bindRightClick(SelectableSlotView slot) {
             _ = slot.TryGet(out Resource res);
             if (_cursorResource == null) {

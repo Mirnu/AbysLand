@@ -7,6 +7,7 @@ using UnityEngine;
 using Zenject;
 using Assets.Scripts.World.Biomes;
 using Assets.Scripts.World.Managers;
+using Assets.Scripts.Resources.Crafting;
 
 namespace Assets.Scripts.DI
 {
@@ -19,9 +20,12 @@ namespace Assets.Scripts.DI
         [SerializeField] private List<Biome> biomes;
         [Space]
         [Space][SerializeField] private List<InteractableGO> trees = new List<InteractableGO>();
+        [Space][Header("Recipes")]
+        [SerializeField] private List<Recipe> recipes = new List<Recipe>();
 
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<RecipeContainer>().AsSingle().WithArguments(recipes);
             Container.BindInterfacesAndSelfTo<CornersGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
