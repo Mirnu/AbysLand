@@ -11,11 +11,9 @@ namespace Assets.Scripts.World
     public class WorldSaver {
         private Tilemap _map;
         private List<TileData> _tiles = new List<TileData>();
-        private DamageableHandler _handler;
 
-        public WorldSaver(Tilemap _, DamageableHandler handler) {
+        public WorldSaver(Tilemap _) {
             _map = _;
-            _handler = handler;
         }
 
         public void Save() {
@@ -34,7 +32,7 @@ namespace Assets.Scripts.World
             var s = "\n";
             _tiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
             s += "---\n";
-            _handler._damagableTiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
+            //_handler._damagableTiles.ForEach(x => s += JsonUtility.ToJson(x) + "\n");
             bf.Serialize(file, s);
             file.Close();
         }
@@ -52,7 +50,7 @@ namespace Assets.Scripts.World
             }});
             l.Split("---")[1].Split("\n").ToList().ForEach(x => {
                 if(x != "") {
-                    _handler._damagableTiles.Add(JsonUtility.FromJson<DmgTile>(x));
+                    //_handler._damagableTiles.Add(JsonUtility.FromJson<DmgTile>(x));
             }});
             file.Close();
         }

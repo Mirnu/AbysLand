@@ -10,9 +10,9 @@ namespace Assets.Scripts.Resources.Tools.Impl
         private IWorldInteractor _world;
 
         [Inject]
-        public void Construct(DamageableHandler world)
+        public void Construct()
         {
-            _world = world;
+
         }
 
         private void Update()

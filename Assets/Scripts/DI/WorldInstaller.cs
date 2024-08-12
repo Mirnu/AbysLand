@@ -18,8 +18,6 @@ namespace Assets.Scripts.DI
         [Space]
         [SerializeField] private List<Biome> biomes;
         [Space]
-        [SerializeField] private Tilemap tilemap;
-        [SerializeField] private List<DmgTile> healthDict = new List<DmgTile>();
         [Space][SerializeField] private List<InteractableGO> trees = new List<InteractableGO>();
 
         public override void InstallBindings()
@@ -27,8 +25,6 @@ namespace Assets.Scripts.DI
             Container.BindInterfacesAndSelfTo<CornersGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DamageableHandler>().AsSingle()
-                .WithArguments(tilemap, healthDict);
             Container.BindInterfacesAndSelfTo<FirstTypeManager>().AsSingle()
                 .WithArguments(trees);
             Container.BindInterfacesAndSelfTo<WorldSaver>().AsSingle()

@@ -1,9 +1,15 @@
+using System;
 using System.Collections.Generic;
 using Assets.Scripts.Resources.Data;
 
 namespace Assets.Scripts.Resources.Crafting {
     public class Recipe {
-        public Dictionary<Resource, int> Requirements = new Dictionary<Resource, int>();
-        public Dictionary<Resource, int> Results = new Dictionary<Resource, int>();
+        public List<RecipeComponent> RecipeRequirements = new List<RecipeComponent>();
+        public List<RecipeComponent> Result = new List<RecipeComponent>();
+    }
+    [Serializable]
+    public class RecipeComponent {
+        public Resource resource;
+        public int count = 1;
     }
 }
