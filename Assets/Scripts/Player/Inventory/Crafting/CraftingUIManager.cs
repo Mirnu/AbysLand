@@ -5,6 +5,7 @@ using Assets.Scripts.Player.Inventory.BackPack;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Crafting;
 using Assets.Scripts.Resources.Data;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Inventory.Crafting {

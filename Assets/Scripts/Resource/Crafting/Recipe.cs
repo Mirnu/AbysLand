@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Resources.Data;
 
 namespace Assets.Scripts.Resources.Crafting {
+    [Serializable]
     public class Recipe {
         public List<RecipeComponent> RecipeRequirements = new List<RecipeComponent>();
         public RecipeComponent Result;
