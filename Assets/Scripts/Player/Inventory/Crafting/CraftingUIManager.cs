@@ -8,7 +8,7 @@ using Assets.Scripts.Resources.Data;
 using Zenject;
 
 namespace Assets.Scripts.Inventory.Crafting {
-    public class CraftingUIManager {
+    public class CraftingUIManager : IInitializable, IDisposable {
         
         private List<SelectableSlotView> _craftingGridSlots = new List<SelectableSlotView>();
         private SelectableSlotView _craftingResultSlot;
@@ -21,9 +21,7 @@ namespace Assets.Scripts.Inventory.Crafting {
             _recipeComp = cont;
             _container = container;
             _craftingGridSlots = craftingGridSlots;
-            _craftingGridSlots.ForEach(x => x.LeftMouseClick += delegate { RetrieveCraft(x); });
             _craftingResultSlot = craftingResultSlot;
-            _craftingResultSlot.LeftMouseClick += delegate { _container.bindCraftLeft(_craftingResultSlot);};
         }
 
         public void GridClearAll() { _craftingGridSlots.ForEach(x => x.Delete()); }
@@ -55,6 +53,17 @@ namespace Assets.Scripts.Inventory.Crafting {
             _recipeComp.TryFindCraft(Retrieve(), out RecipeComponent res);
             slot.TrySet(res.resource);
             slot.SetCount(res.count);
+        }
+
+        public void Initialize()
+        {
+            _craftingGridSlots.ForEach(x => x.LeftMouseClick += delegate { RetrieveCraft(x); });
+            _craftingResultSlot.LeftMouseClick += delegate { _container.bindCraftLeft(_craftingResultSlot);};
+        }
+
+        public void Dispose()
+        {
+            _craftingResultSlot.LeftMouseClick -= delegate { _container.bindCraftLeft(_craftingResultSlot);};
         }
     }
 }
