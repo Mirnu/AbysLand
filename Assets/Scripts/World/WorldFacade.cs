@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Resources.Data;
@@ -6,33 +7,25 @@ using Assets.Scripts.World.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.World {
-    public class WorldFacade
+    public class WorldFacade : MonoBehaviour, IWorld
     {
-        private IWorld _gen;
-        private List<FirstTypeManager> _firstTypeManagers;
-        private List<SecondTypeManager> _secondTypeManagers;
+        private UpperWorldGen _gen;
 
-        public WorldFacade (IWorld gen, List<FirstTypeManager> firstTypeManagers, List<SecondTypeManager> secondTypeManagers) {
+        public WorldFacade (UpperWorldGen gen) {
             _gen = gen;
-            _firstTypeManagers = firstTypeManagers;
-            _secondTypeManagers = secondTypeManagers;
+            //GenerateStageChanged += delegate { _gen.GenerateStageChanged };
+
         }
 
-        public bool CanDamageAt(Vector2 pos) {
-            return _firstTypeManagers.Any(x => x.ContainsPos(pos)) 
-            || _secondTypeManagers.Any(x => x.transform.position == (Vector3)pos);
-        }
-        
-        public void DamageAt(Vector2 pos) {
-            if(_firstTypeManagers.Any(x => x.ContainsPos(pos))) {
-                _firstTypeManagers.Find(x => x.ContainsPos(pos)).TryDestroyAtPos(Vector2Int.FloorToInt(pos), out InteractableGO gO);
-            } else if(_secondTypeManagers.Any(x => x.transform.position == (Vector3)pos)) {
-                _secondTypeManagers.Find(x => x.transform.position == (Vector3)pos).Interact();
-            }
-        }
+        public event Action<GenerateStage> GenerateStageChanged;
+        public event Action GenerationCompleted;
 
-        public void Place(Resource res) {
-            
-        }
+        public bool CanDamageAt(Vector2 pos) => _gen.CanDamageAt(pos);
+
+        public void DamageAt(Vector2 pos) => _gen.DamageAt(pos);
+
+        public IEnumerator Generate(string seed) => _gen.Generate(seed);
+
+        public void Place(Resource res) => _gen.Place(res);
     }
 }

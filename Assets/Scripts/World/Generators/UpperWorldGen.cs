@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Resources.Data;
 using Assets.Scripts.World.Generators.GenerationStages;
 using Assets.Scripts.World.Internal;
+using Assets.Scripts.World.Managers;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
@@ -12,7 +14,6 @@ using Random = UnityEngine.Random;
 namespace Assets.Scripts.World {
     public class UpperWorldGen : MonoBehaviour, IWorld {
         
-
         public float scale = 1.0F;
         private string seed = "";
         private int _size;
@@ -20,17 +21,39 @@ namespace Assets.Scripts.World {
         //Заглушка
         private int[,] _durability;
 
+        private List<FirstTypeManager> _firstTypeManagers;
+        private List<SecondTypeManager> _secondTypeManagers;
+
         private Dictionary<IGenerator, GenerateStage> _sequentialGeneration = new();
         public event Action<GenerateStage> GenerateStageChanged;
         public event Action GenerationCompleted;
 
         [Inject]
-        public void Construct(WorldModel model, List<IGenerator> generators) {
+        public void Construct(WorldModel model, List<IGenerator> generators, List<FirstTypeManager> firstTypeManagers, List<SecondTypeManager> secondTypeManagers) {
             map = model.Map;
             _size = model.Size;
             _durability = model.Durability;
+            _firstTypeManagers = firstTypeManagers;
+            _secondTypeManagers = secondTypeManagers;
 
             AddGenerators(generators);
+        }
+
+        public bool CanDamageAt(Vector2 pos) {
+            return _firstTypeManagers.Any(x => x.ContainsPos(pos)) 
+            || _secondTypeManagers.Any(x => x.transform.position == (Vector3)pos);
+        }
+        
+        public void DamageAt(Vector2 pos) {
+            if(_firstTypeManagers.Any(x => x.ContainsPos(pos))) {
+                _firstTypeManagers.Find(x => x.ContainsPos(pos)).TryDestroyAtPos(Vector2Int.FloorToInt(pos), out InteractableGO gO);
+            } else if(_secondTypeManagers.Any(x => x.transform.position == (Vector3)pos)) {
+                _secondTypeManagers.Find(x => x.transform.position == (Vector3)pos).Interact();
+            }
+        }
+
+        public void Place(Resource res) {
+            
         }
 
         private void AddGenerators(List<IGenerator> generators)
