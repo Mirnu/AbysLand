@@ -16,9 +16,11 @@ namespace Assets.Scripts.World.Managers {
 
         public bool ContainsPos(Vector2 Pos) { return _interactables.Any(x => x.Pos == Pos); }
 
-        public bool TryDestroyAtPos(Vector2Int Pos, out InteractableGO interactable) {
+        public bool TryDestroyAtPos(Vector2Int Pos, float amount, out InteractableGO interactable) {
+            if(_interactables.Any(x => x.Pos == Pos)) { interactable = null; return false; }
             interactable = _interactables.First(x => x.Pos == Pos);
-            return _interactables.Any(x => x.Pos == Pos);
+            interactable.Damage((int)amount);
+            return true;
         }
 
         public void Initialize()
