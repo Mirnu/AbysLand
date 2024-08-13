@@ -26,13 +26,16 @@ namespace Assets.Scripts.Inventory.Crafting {
         }
 
         public void UpdateCraftMenu() {
-            _currentPrefabs.ForEach(x => UnityEngine.Object.Destroy(x));
+            _currentPrefabs.ForEach(x => UnityEngine.Object.Destroy(x.gameObject));
+            _currentPrefabs.Clear();
             var _retrieved = _selectableSlots.components;
             // need to check 4 resources
             var all = _recipeContainer.RetrieveAllAvailable(_retrieved);
             all.ForEach(x => {
-                // Кидает еррор что Unable to resolve 'RecipeComponent' while building object with type 'AutoCraftingButton'.
-                _currentPrefabs.Add(_container.InstantiatePrefabForComponent<AutoCraftingButton>(_prefab, _group.transform, new object[]{x}));
+                _currentPrefabs.Add(
+                    _container.InstantiatePrefabForComponent<AutoCraftingButton>
+                    (_prefab, _group.transform, new object[]{x.Result})
+                );
             });
 
         }
