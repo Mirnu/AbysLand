@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.Resources.Crafting;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 
@@ -19,9 +20,7 @@ namespace Assets.Scripts.Inventory.Crafting {
             _button = GetComponent<Button>();
         }
 
-        public void SetEvent(Action action) {
-            _button.onClick.AddListener(delegate { action?.Invoke(); });
-        }
+        public void SetEvent(UnityAction action) => _button.onClick.AddListener(action);
 
         [Inject]
         public void Construct(RecipeComponent recipe) {
