@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteInInventary: {fileID: 21300000, guid: ba45fb8a692de66488c975209264fb0b, type: 3}
   Name: FAGGOT
-  Tool: {fileID: 36004538766367678, guid: 05f969ca2ab70474f94fb62a9e256cd4, type: 3}
+  Tool: {fileID: 0}
   Info: ...
   SlotType: 0
   ProtectionAmount: 0
-  EquippedSprite: {fileID: 21300000, guid: 5136b4eb0055d41bdbeb065aabd1b58f, type: 3}
+  EquippedSprite: {fileID: -1136188363075375732, guid: 7d310b4eb640c45258ee4e59eb0ffb17, type: 3}

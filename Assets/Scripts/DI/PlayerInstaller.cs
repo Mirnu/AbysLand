@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Assets.Scripts.Inventory.Armor;
+using Assets.Scripts.Inventory.Crafting;
 using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Handlers;
 using Assets.Scripts.Player.Hands;
@@ -14,6 +15,7 @@ using Assets.Scripts.Resources.Data;
 using Assets.Scripts.World;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace DI
@@ -39,8 +41,15 @@ namespace DI
         [Header("Inventory")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI infoText;
+        [Space]
         [SerializeField] private List<ArmorSlotCont> armorSlots;
         [SerializeField] private List<AccessorySlotCont> accessorySlots;
+        [Space]
+        [SerializeField] private AutoCraftingButton button;
+        [SerializeField] private GridLayoutGroup layoutGroup;
+        [SerializeField] private List<SelectableSlotView> craftSlot;
+        [SerializeField] private SelectableSlotView craftResultSlot;
+
 
         public override void InstallBindings()
         { 
@@ -68,6 +77,12 @@ namespace DI
 
             Container.BindInterfacesAndSelfTo<ContainerArmorSlots>().AsSingle()
                 .WithArguments(armorSlots, accessorySlots);
+
+            Container.BindInterfacesAndSelfTo<AutoCraftingUIManager>().AsSingle()
+                .WithArguments(button, layoutGroup);
+
+            // Container.BindInterfacesAndSelfTo<CraftingUIManager>().AsSingle()
+            //     .WithArguments(craftSlot, craftResultSlot);
         }
 
         private void bindModels()

@@ -7,6 +7,7 @@ using UnityEngine;
 using Zenject;
 using Assets.Scripts.World.Biomes;
 using Assets.Scripts.World.Managers;
+using Assets.Scripts.Resources.Crafting;
 
 namespace Assets.Scripts.DI
 {
@@ -19,6 +20,7 @@ namespace Assets.Scripts.DI
         [SerializeField] private List<Biome> biomes;
         [Space]
         [Space][SerializeField] private List<InteractableGO> trees = new List<InteractableGO>();
+
 
         public override void InstallBindings()
         {
