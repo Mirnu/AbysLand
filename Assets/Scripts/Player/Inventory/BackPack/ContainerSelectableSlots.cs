@@ -90,6 +90,39 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 slot.Delete();
         }
 
+        public void RemoveCraftRes(Recipe recipe) {
+            Queue<RecipeComponent> q = new Queue<RecipeComponent>();
+            recipe.RecipeRequirements.ForEach(x => q.Enqueue(x));
+            while (q.Count > 0) {
+                var l = q.Dequeue();
+                foreach(var slot in _slots) {
+                    if(slot.TryGet(out Resource res) && res == l.resource) {
+                        if(slot.GetCount() > l.count) {
+                            slot.SetCount(slot.GetCount() - l.count);
+                        } else {
+                            if(slot.GetCount() < l.count) {
+                                q.Enqueue(new RecipeComponent(l.resource, l.count - slot.GetCount()));
+                            }
+                            slot.Delete();
+                        }
+                        break;
+                    }
+                }
+            }
+            UpdateDict();
+        }
+
+        public void AddToFirst(RecipeComponent recipeComponent) {
+            foreach(var slot in _slots) {
+                if(!slot.TryGet(out Resource res)) {
+                    slot.TrySet(recipeComponent.resource);
+                    slot.SetCount(recipeComponent.count);
+                    UpdateDict();
+                    return;
+                }
+            }
+        }
+
         private void bindRightClick(SelectableSlotView slot) {
             _ = slot.TryGet(out Resource res);
             if (_cursorResource == null) {
@@ -127,5 +160,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
             _cursorResource = _temp;
             _cursorCount = __;
         }
+    
+        
     }
 }

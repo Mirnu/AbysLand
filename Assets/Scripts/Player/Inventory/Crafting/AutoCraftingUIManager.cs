@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Player.Inventory.BackPack;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Crafting;
@@ -32,12 +33,20 @@ namespace Assets.Scripts.Inventory.Crafting {
             // need to check 4 resources
             var all = _recipeContainer.RetrieveAllAvailable(_retrieved);
             all.ForEach(x => {
-                _currentPrefabs.Add(
-                    _container.InstantiatePrefabForComponent<AutoCraftingButton>
-                    (_prefab, _group.transform, new object[]{x.Result})
-                );
+                var t = _container.InstantiatePrefabForComponent<AutoCraftingButton>(_prefab, _group.transform, new object[]{x.Result});
+                t.SetEvent(delegate{ 
+                    if(!x.RecipeRequirements.All(y => _selectableSlots.components.Any(a => a.resource == y.resource && a.count >= y.count))) {
+                        return;
+                    } 
+                    Craft(x);
+                });
+                _currentPrefabs.Add(t);
             });
+        }
 
+        private void Craft(Recipe res) {
+            _selectableSlots.RemoveCraftRes(res);
+            _selectableSlots.AddToFirst(res.Result);
         }
 
         public void Dispose() { _selectableSlots.onInvChanged -= delegate { UpdateCraftMenu(); }; }
