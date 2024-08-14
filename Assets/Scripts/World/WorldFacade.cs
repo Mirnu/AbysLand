@@ -13,16 +13,14 @@ namespace Assets.Scripts.World {
 
         public WorldFacade (UpperWorldGen gen) {
             _gen = gen;
-            //GenerateStageChanged += delegate { _gen.GenerateStageChanged };
-
         }
 
         public event Action<GenerateStage> GenerateStageChanged;
         public event Action GenerationCompleted;
 
-        public bool CanDamageAt(Vector2 pos) => _gen.CanDamageAt(pos);
+        public bool CanDamageAt(Vector2 pos, float a) => _gen.CanDamageAt(pos, a);
 
-        public void DamageAt(Vector2 pos) => _gen.DamageAt(pos);
+        public void DamageAt(Vector2 pos, float a) => _gen.DamageAt(pos, a);
 
         public IEnumerator Generate(string seed) => _gen.Generate(seed);
 
