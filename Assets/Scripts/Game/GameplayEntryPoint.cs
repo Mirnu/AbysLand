@@ -24,6 +24,7 @@ namespace Assets.Scripts.Game
 
         public void Initialize()
         {
+            Debug.Log(-2);
             _gameManager.StartGenerate();
         }
     }

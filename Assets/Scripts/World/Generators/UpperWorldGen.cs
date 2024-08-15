@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Misc.Utils;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.World.Generators.GenerationStages;
 using Assets.Scripts.World.Internal;
@@ -12,7 +13,7 @@ using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.World {
-    public class UpperWorldGen : MonoBehaviour, IWorld {
+    public class UpperWorldGen {
         
         public float scale = 1.0F;
         private string seed = "";
@@ -28,14 +29,17 @@ namespace Assets.Scripts.World {
         public event Action<GenerateStage> GenerateStageChanged;
         public event Action GenerationCompleted;
 
-        [Inject]
-        public void Construct(WorldModel model, List<IGenerator> generators, List<FirstTypeManager> firstTypeManagers, List<SecondTypeManager> secondTypeManagers) {
+        private Routine _routine;
+
+        public UpperWorldGen(Routine routine, WorldModel model, List<IGenerator> generators, 
+            List<FirstTypeManager> firstTypeManagers, List<SecondTypeManager> secondTypeManagers) {
             map = model.Map;
             _size = model.Size;
             _durability = model.Durability;
             _firstTypeManagers = firstTypeManagers;
             _secondTypeManagers = secondTypeManagers;
 
+            _routine = routine;
             AddGenerators(generators);
         }
 
@@ -66,20 +70,15 @@ namespace Assets.Scripts.World {
                 });
         }
 
-        private void Start() => Initialize();
-
-        public void Initialize() {
-
-            StartCoroutine(Generate("test"));
-        }
-
         public IEnumerator Generate(string seed)
         {
+            Debug.Log(1);
             this.seed = seed;
             Random.InitState(seed.GetHashCode());
 
             foreach (var generator in _sequentialGeneration)
             {
+                Debug.Log(generator.Key.NameGeneration);
                 GenerateStageChanged?.Invoke(generator.Value);
                 yield return generator.Key.Generate();
             }

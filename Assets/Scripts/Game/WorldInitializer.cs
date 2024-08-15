@@ -2,11 +2,12 @@
 using Assets.Scripts.Misc.Utils;
 using Assets.Scripts.World;
 using System;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Game
 {
-    public class WorldInitializer : IDisposable, IInitializable
+    public class WorldInitializer : IDisposable
     {
         private readonly IWorld _world;
         private readonly Routine _routine;
@@ -24,8 +25,8 @@ namespace Assets.Scripts.Game
             _routine = routine; 
         }
 
-
-        public void Initialize()
+        [Inject]
+        public void PostConstruct()
         {
             _world.GenerationCompleted += OnGenerationCompleted;
             _gameStateObserver.Subscribe(GameState.Generating, Start);
@@ -33,6 +34,7 @@ namespace Assets.Scripts.Game
 
         public void Start()
         {
+            Debug.Log(0);
             _routine.StartCoroutine(_world.Generate(SEED));
         }
 
