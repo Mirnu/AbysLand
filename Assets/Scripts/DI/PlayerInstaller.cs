@@ -25,6 +25,7 @@ namespace DI
         [Header("Player")]
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private Animator _animator;
+        [SerializeField] private Animator _armAnimator;
         [SerializeField] private Transform _handTransform;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Resource _starterResource;
@@ -88,7 +89,7 @@ namespace DI
         private void bindModels()
         {
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_rb, _animator, _playerTransform);
+                .WithArguments(_rb, _animator, _playerTransform, _armAnimator);
         }
 
         private void bindHandlers()

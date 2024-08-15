@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 60f00d22e305f1d43ba8eace00e445b6
+guid: a5752c9e4637e2b4d8ee8e0daf22b488
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_0"
+      name: humanwithoutarmor (2)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d94e09d99a82bac42ad3abd4b135e4d0
-      internalID: -1824434543
+      spriteID: f7b6ddb530bab93488a49c754c7615b6
+      internalID: 1842195612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_1"
+      name: humanwithoutarmor (2)_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6c2f448803172c49a5792058f1d7752
-      internalID: -416210633
+      spriteID: 80af7e3be2d88f146a9d614b90d1d920
+      internalID: -389559039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_2"
+      name: humanwithoutarmor (2)_2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7585f787648b934d9d2540ced45e3b7
-      internalID: 1655549211
+      spriteID: 848aa2d01cebc264783f506849f634c2
+      internalID: 1878342846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_3"
+      name: humanwithoutarmor (2)_3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d2a04311d8ca864784e1b7fb21e22d9
-      internalID: 1922873524
+      spriteID: d36ce475096f15945be4e4fd81d5e64e
+      internalID: -1662575272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_4"
+      name: humanwithoutarmor (2)_4
       rect:
         serializedVersion: 2
         x: 128
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48ed02d02ab62e34cb6863064b6ac26e
-      internalID: -1022529906
+      spriteID: d6ba621fd62156b4a89c0759ee478a0c
+      internalID: 721325544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_5"
+      name: humanwithoutarmor (2)_5
       rect:
         serializedVersion: 2
         x: 160
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72b707da62c68d84bab570e98274793a
-      internalID: 2041054530
+      spriteID: 38101d0a70b052e48b723f5c3d0907df
+      internalID: 1396619499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_6"
+      name: humanwithoutarmor (2)_6
       rect:
         serializedVersion: 2
         x: 192
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf02e35140fd77a42ade17cf3ad69aee
-      internalID: -368412255
+      spriteID: d2696f2051adabe4e8ba1af6f2e04623
+      internalID: -779397611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_7"
+      name: humanwithoutarmor (2)_7
       rect:
         serializedVersion: 2
         x: 224
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2ea860fe3a82c648b3b7fb448baa7d8
-      internalID: -1634012994
+      spriteID: 3d06558cb3c99fb4dbb6559f1441d05f
+      internalID: 530280812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_8"
+      name: humanwithoutarmor (2)_8
       rect:
         serializedVersion: 2
         x: 256
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6e11c76123220448964b459283bd29f
-      internalID: 1935800117
+      spriteID: 5f7587d690f2d294eb8418c2f721ddad
+      internalID: 2005369233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_9"
+      name: humanwithoutarmor (2)_9
       rect:
         serializedVersion: 2
         x: 0
@@ -320,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43af57a7433a184482bc0c82d2e11c1
-      internalID: 1131814498
+      spriteID: c23eb2a7cc2c3cc46b57bd50b0fa9a0f
+      internalID: 2105349317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_10"
+      name: humanwithoutarmor (2)_10
       rect:
         serializedVersion: 2
         x: 32
@@ -341,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b77e04b158d0b4ab9d3d5ac76de355
-      internalID: -430485821
+      spriteID: 441c0da4ade2ff94ea5f00b22b791074
+      internalID: -651510358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_11"
+      name: humanwithoutarmor (2)_11
       rect:
         serializedVersion: 2
         x: 64
@@ -362,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96049a00b07726849951b1a30a2eb82d
-      internalID: 1181042547
+      spriteID: b697d031984aebb4e9d2badd52b17081
+      internalID: 1265258197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_12"
+      name: humanwithoutarmor (2)_12
       rect:
         serializedVersion: 2
         x: 96
@@ -383,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 211e1c1dcfe248247bcdc5faf87f7703
-      internalID: 1414632858
+      spriteID: 03c6b18b506920c4897bb2b11a54850a
+      internalID: 46757620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_13"
+      name: humanwithoutarmor (2)_13
       rect:
         serializedVersion: 2
         x: 128
@@ -404,14 +404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72460c95457d9dd4581bd8439d467727
-      internalID: -423760649
+      spriteID: 24b3653ff3a11264b814b364dff54c73
+      internalID: 1571317983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_14"
+      name: humanwithoutarmor (2)_14
       rect:
         serializedVersion: 2
         x: 160
@@ -425,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac968f91261147940b8a6ea4073c8030
-      internalID: -90384480
+      spriteID: bcee9ea2ac0393d47b17ff8946f5f906
+      internalID: 850725786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_15"
+      name: humanwithoutarmor (2)_15
       rect:
         serializedVersion: 2
         x: 192
@@ -446,14 +446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfea30e817ea4de45a784b5ef6d42c6e
-      internalID: 280898598
+      spriteID: b5704bb21b7b30d4fb0a032d1c95f6cb
+      internalID: -205604076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_16"
+      name: humanwithoutarmor (2)_16
       rect:
         serializedVersion: 2
         x: 224
@@ -467,14 +467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa768a0223f0a34bacfff2cba63ba23
-      internalID: -214186146
+      spriteID: ec01bc8162f11ce4593b84f81a05663d
+      internalID: -167308832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_17"
+      name: humanwithoutarmor (2)_17
       rect:
         serializedVersion: 2
         x: 256
@@ -488,14 +488,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b44e1399ab0dc3a4493e865799a4b036
-      internalID: 119121464
+      spriteID: f1723f0287c66934a85c23b69f7e91ca
+      internalID: 1079720536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_18"
+      name: humanwithoutarmor (2)_18
       rect:
         serializedVersion: 2
         x: 0
@@ -509,14 +509,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83d11db1d7d25e74b8d1b3cbf26a42e8
-      internalID: 805740109
+      spriteID: 1bc3aeb7377d5f0479c6597f9c63029b
+      internalID: 1744476132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_19"
+      name: humanwithoutarmor (2)_19
       rect:
         serializedVersion: 2
         x: 32
@@ -530,14 +530,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f918675bc1975ed47830f9686aacb6fa
-      internalID: -1725575214
+      spriteID: 4b14fb118c21bf946ae9e30cde2eb539
+      internalID: 879697535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_20"
+      name: humanwithoutarmor (2)_20
       rect:
         serializedVersion: 2
         x: 64
@@ -551,14 +551,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffe4109f403d5964680acc86701dc0ec
-      internalID: 2060173102
+      spriteID: c3349eca4d1e46848a0adc08086bdc7d
+      internalID: 1356892560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_21"
+      name: humanwithoutarmor (2)_21
       rect:
         serializedVersion: 2
         x: 96
@@ -572,14 +572,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35a25554e99dcda46815bf4d89b97f87
-      internalID: 367336431
+      spriteID: 6d922328c2df60b4c835fdeeca8e861a
+      internalID: 56660642
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_22"
+      name: humanwithoutarmor (2)_22
       rect:
         serializedVersion: 2
         x: 128
@@ -593,14 +593,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f235c846664e525499afab40f433e294
-      internalID: -1458107721
+      spriteID: 3314edf41beacdc448fa49bbdc81da52
+      internalID: -2129746385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_23"
+      name: humanwithoutarmor (2)_23
       rect:
         serializedVersion: 2
         x: 160
@@ -614,14 +614,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2375912a51e7aba479e437e689ba3807
-      internalID: 913499052
+      spriteID: b6e5739d0550b5741a8e8b716368da8a
+      internalID: 1501480540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_24"
+      name: humanwithoutarmor (2)_24
       rect:
         serializedVersion: 2
         x: 192
@@ -635,14 +635,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab778d3fd3555664d96d29f5bd0b162f
-      internalID: 891804765
+      spriteID: 8eeb4fb9d0935004681bd8c1c26ccc3b
+      internalID: 1428609271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_25"
+      name: humanwithoutarmor (2)_25
       rect:
         serializedVersion: 2
         x: 224
@@ -656,14 +656,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fccd4643ea9f58f499d5132e209e9497
-      internalID: 467583634
+      spriteID: 05621f16d72b02a498c5dc31856bba4a
+      internalID: 35695064
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_26"
+      name: humanwithoutarmor (2)_26
       rect:
         serializedVersion: 2
         x: 256
@@ -677,14 +677,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7265f304dbf22514b9219b7ccf5d3d51
-      internalID: 143372525
+      spriteID: beb78156371c4ca44a9521e7aa19293a
+      internalID: 1924590466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_27"
+      name: humanwithoutarmor (2)_27
       rect:
         serializedVersion: 2
         x: 0
@@ -698,14 +698,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef410d28a4dbc98419fbb156353f9193
-      internalID: 84161946
+      spriteID: fd280649cde5d634d88363c4bf6b83b3
+      internalID: 1264451981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_28"
+      name: humanwithoutarmor (2)_28
       rect:
         serializedVersion: 2
         x: 32
@@ -719,14 +719,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12cdc504b315c9248a9acf4c572e836c
-      internalID: 809678155
+      spriteID: 605d1b03f027a1445863a11c36ff0cfb
+      internalID: 1607859915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_29"
+      name: humanwithoutarmor (2)_29
       rect:
         serializedVersion: 2
         x: 64
@@ -740,14 +740,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e036d689c0fde084281645ce9674cf4e
-      internalID: 1864426841
+      spriteID: f260b38ea4007c24daaba85df848b651
+      internalID: -390715433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_30"
+      name: humanwithoutarmor (2)_30
       rect:
         serializedVersion: 2
         x: 96
@@ -761,14 +761,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8d35363ef1735d44a03e95636b39c8b
-      internalID: 567783974
+      spriteID: 46513b48a08bcf543ad724e7cef3fb21
+      internalID: -778108019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_31"
+      name: humanwithoutarmor (2)_31
       rect:
         serializedVersion: 2
         x: 128
@@ -782,14 +782,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11d36cf96cb2abd4fb87f034a7d9b15c
-      internalID: 803173914
+      spriteID: 4c3ff5209e5f87a4d83bb90b50aef4fb
+      internalID: 650201569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_32"
+      name: humanwithoutarmor (2)_32
       rect:
         serializedVersion: 2
         x: 160
@@ -803,14 +803,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 117a8494736c1ff47b20c45c0d309db7
-      internalID: 1824246913
+      spriteID: f171d3fa68d2dc743b6b7a8968ae76bd
+      internalID: 30660796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_33"
+      name: humanwithoutarmor (2)_33
       rect:
         serializedVersion: 2
         x: 192
@@ -824,14 +824,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f83d5faa89bec84587eacc8836e9661
-      internalID: 887380175
+      spriteID: f6f40dd489be7c3478c26c6a1203cdea
+      internalID: -1401671879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_34"
+      name: humanwithoutarmor (2)_34
       rect:
         serializedVersion: 2
         x: 224
@@ -845,14 +845,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8671af1a4f9dba4c95107ec21c1ef4b
-      internalID: 28493547
+      spriteID: 1e77fcdcf338db749a77092de2ded050
+      internalID: -1591625847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_35"
+      name: humanwithoutarmor (2)_35
       rect:
         serializedVersion: 2
         x: 256
@@ -866,8 +866,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 701545db9df876840ad4f90271e79386
-      internalID: -272773019
+      spriteID: 3c4c521d1dde0a243bcf13450a733b91
+      internalID: 17166345
       vertices: []
       indices: 
       edges: []
@@ -883,42 +883,42 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_0": -1824434543
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_1": -416210633
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_10": -430485821
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_11": 1181042547
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_12": 1414632858
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_13": -423760649
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_14": -90384480
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_15": 280898598
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_16": -214186146
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_17": 119121464
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_18": 805740109
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_19": -1725575214
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_2": 1655549211
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_20": 2060173102
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_21": 367336431
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_22": -1458107721
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_23": 913499052
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_24": 891804765
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_25": 467583634
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_26": 143372525
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_27": 84161946
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_28": 809678155
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_29": 1864426841
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_3": 1922873524
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_30": 567783974
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_31": 803173914
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_32": 1824246913
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_33": 887380175
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_34": 28493547
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_35": -272773019
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_4": -1022529906
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_5": 2041054530
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_6": -368412255
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_7": -1634012994
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_8": 1935800117
-      "\u0441\u043F\u0440\u0430\u0439\u0442\u043B\u0438\u0441\u0442 \u0444\u0443\u043B\u043B_9": 1131814498
+      humanwithoutarmor (2)_0: 1842195612
+      humanwithoutarmor (2)_1: -389559039
+      humanwithoutarmor (2)_10: -651510358
+      humanwithoutarmor (2)_11: 1265258197
+      humanwithoutarmor (2)_12: 46757620
+      humanwithoutarmor (2)_13: 1571317983
+      humanwithoutarmor (2)_14: 850725786
+      humanwithoutarmor (2)_15: -205604076
+      humanwithoutarmor (2)_16: -167308832
+      humanwithoutarmor (2)_17: 1079720536
+      humanwithoutarmor (2)_18: 1744476132
+      humanwithoutarmor (2)_19: 879697535
+      humanwithoutarmor (2)_2: 1878342846
+      humanwithoutarmor (2)_20: 1356892560
+      humanwithoutarmor (2)_21: 56660642
+      humanwithoutarmor (2)_22: -2129746385
+      humanwithoutarmor (2)_23: 1501480540
+      humanwithoutarmor (2)_24: 1428609271
+      humanwithoutarmor (2)_25: 35695064
+      humanwithoutarmor (2)_26: 1924590466
+      humanwithoutarmor (2)_27: 1264451981
+      humanwithoutarmor (2)_28: 1607859915
+      humanwithoutarmor (2)_29: -390715433
+      humanwithoutarmor (2)_3: -1662575272
+      humanwithoutarmor (2)_30: -778108019
+      humanwithoutarmor (2)_31: 650201569
+      humanwithoutarmor (2)_32: 30660796
+      humanwithoutarmor (2)_33: -1401671879
+      humanwithoutarmor (2)_34: -1591625847
+      humanwithoutarmor (2)_35: 17166345
+      humanwithoutarmor (2)_4: 721325544
+      humanwithoutarmor (2)_5: 1396619499
+      humanwithoutarmor (2)_6: -779397611
+      humanwithoutarmor (2)_7: 530280812
+      humanwithoutarmor (2)_8: 2005369233
+      humanwithoutarmor (2)_9: 2105349317
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

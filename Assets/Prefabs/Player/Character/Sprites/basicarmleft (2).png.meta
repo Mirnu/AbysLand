@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 82ffaee933b566442a56ba9010f022db
+guid: 60db06e6d8655ca4aae88ba3e0354112
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,64 +117,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0440\u043E\u0444\u043B \u043F\u0440\u0438\u043A\u043E\u043B_0"
+      name: basicarmleft (2)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
+        y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dc4b386e7206ff4bb8c66a8c5ba800f
-      internalID: 1627907876
+      spriteID: 26bab3c7a8bb09647add96057f6e19c2
+      internalID: -15358884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0440\u043E\u0444\u043B \u043F\u0440\u0438\u043A\u043E\u043B_1"
+      name: basicarmleft (2)_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 224
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66fe13447036f7d4f9bbc7b798c98379
-      internalID: 776860939
+      spriteID: eda70f7a5cae127469412c914a777cf1
+      internalID: -2089012519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0440\u043E\u0444\u043B \u043F\u0440\u0438\u043A\u043E\u043B_2"
+      name: basicarmleft (2)_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 224
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc70ef2e688ce214090ae433c13e791c
-      internalID: -1537744131
+      spriteID: 876603a1e40a39c43b90e4379d1b2999
+      internalID: 329708112
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u0440\u043E\u0444\u043B \u043F\u0440\u0438\u043A\u043E\u043B_0": 1627907876
-      "\u0440\u043E\u0444\u043B \u043F\u0440\u0438\u043A\u043E\u043B_1": 776860939
-      "\u0440\u043E\u0444\u043B \u043F\u0440\u0438\u043A\u043E\u043B_2": -1537744131
+      basicarmleft (2)_0: -15358884
+      basicarmleft (2)_1: -2089012519
+      basicarmleft (2)_2: 329708112
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
