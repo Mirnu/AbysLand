@@ -7,12 +7,15 @@ namespace Assets.Scripts.Player.Model
         private readonly Rigidbody _rb;
         private readonly Animator _animator;
         private readonly Transform _transform;
+        private readonly Animator _armAnimator;
 
-        public PlayerModel(Rigidbody rigidbody, Animator animator, Transform transform) 
+        public PlayerModel(Rigidbody rigidbody, Animator animator, 
+            Transform transform, Animator armAnimator) 
         { 
             _rb = rigidbody;
             _animator = animator;
             _transform = transform;
+            _armAnimator = armAnimator;
         }
 
         public Vector3 LookDir
@@ -35,7 +38,13 @@ namespace Assets.Scripts.Player.Model
 
         public void SetMoveAnimation(int id)
         {
-            _animator.SetInteger("Walk", id);
+            _animator.SetInteger("State", id);
+            
+        }
+
+        public void SetArmMoveAnimation(int id)
+        {
+            _armAnimator.SetInteger("State", id);
         }
     }
 }

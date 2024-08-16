@@ -35,6 +35,7 @@ namespace Assets.Scripts.Inventory.View {
         }
 
         public virtual bool TrySet(Resource newResource) {
+            if (newResource == null) return false;
             _currentResource = newResource;
             itemView.sprite = _currentResource.SpriteInInventary;
             return true;

@@ -12,7 +12,11 @@ namespace Assets.Scripts.Player.Systems
         private PlayerInput _input;
         private PlayerStatsModel _stats;
 
+        public event Action StartMoved;
+        public event Action StopMoved;
         public event Action PlayerMoved;
+
+        private bool isStaying = true;
 
         public PlayerMovement(PlayerModel model,
             PlayerStatsModel playerStatsModel, PlayerInput input)
@@ -35,9 +39,19 @@ namespace Assets.Scripts.Player.Systems
                 direction.x *= 0.7f;
                 direction.y *= 0.7f;
             }
+            if ((direction.x != 0 || direction.y != 0) && isStaying)
+            {
+                StartMoved?.Invoke();
+                isStaying = false;
+            }
+            if (direction.x == 0 && direction.y == 0 && !isStaying)
+            {
+                StopMoved?.Invoke();
+                isStaying = true;
+            }
             if (direction.x != 0 || direction.y != 0)
             {
-                PlayerMoved?.Invoke();
+                PlayerMoved?.Invoke();  
             }
             float speed = Time.deltaTime * _stats.Speed;
 
