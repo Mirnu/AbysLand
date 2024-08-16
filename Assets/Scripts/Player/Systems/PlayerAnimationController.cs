@@ -76,8 +76,8 @@ namespace Assets.Scripts.Player.Handlers
             
             _model.SetMoveAnimation(_currentAnimationPosition);
 
-            //if (!_hand.IsEmpty)
-                //_model.SetArmMoveAnimation(_currentAnimationPosition);
+            if (_hand.IsEmpty)
+                _model.SetArmMoveAnimation(_currentAnimationPosition);
         }
 
         private void OnStartWalk()

@@ -25,11 +25,14 @@ namespace DI
         [Header("Player")]
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private Animator _animator;
+        [SerializeField] private Transform _playerTransform;
+
+        [Header("Tool")]
         [SerializeField] private Animator _armAnimator;
         [SerializeField] private Transform _handTransform;
-        [SerializeField] private Transform _playerTransform;
         [SerializeField] private Resource _starterResource;
         [SerializeField] private Resource _foodResource;
+        [SerializeField] private List<GameObject> _handPoints;
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
@@ -104,7 +107,8 @@ namespace DI
         private void bindControllers()
         {
             Container.BindInterfacesAndSelfTo<PlayerAnimationController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<ArmAnimationController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ArmAnimationController>().AsSingle()
+                .WithArguments(_handPoints).NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerDirectionController>().AsSingle().NonLazy();
         }
 
