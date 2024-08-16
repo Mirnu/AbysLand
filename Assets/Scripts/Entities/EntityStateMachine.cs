@@ -5,17 +5,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public abstract class EntityStateMachine
+namespace Assets.Scripts.Entities
 {
-    protected EntityStatsModel _Stats;
-    protected Entity _EntityModel;
-
-    public EntityStateMachine(Entity entity, EntityStatsModel stats)
+    public abstract class EntityStateMachine
     {
-        _EntityModel = entity;
-        _Stats = stats;
-    }
+        protected EntityStatsModel _Stats;
+        protected Entity _EntityModel;
 
-    public abstract void Initialize();
-    public abstract bool ChangeState(EntityState new_state);
+        public EntityStateMachine(Entity entity, EntityStatsModel stats)
+        {
+            _EntityModel = entity;
+            _Stats = stats;
+        }
+
+        public abstract void Initialize();
+        public abstract bool ChangeState(EntityState new_state);
+    }
 }

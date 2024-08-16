@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 using Zenject;
+using Assets.Scripts.Entities.Pathfinding;
 
 namespace Assets.Scripts.Entities
 {
@@ -8,9 +9,10 @@ namespace Assets.Scripts.Entities
     {
         protected EntityStatsModel _StatsModel;
         protected EntityStateMachine _StateMachine;
+        protected EntityPathfindingStrategy _PathfindingStrategy;
         protected int _CurHP;
 
-        public class Factory: PlaceholderFactory<Entity>
+        public class Factory: PlaceholderFactory<EntityPathfindingStrategy, Entity>
         {
 
         }

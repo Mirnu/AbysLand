@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player;
+﻿using Assets.Scripts.Entities.Pathfinding;
+using Assets.Scripts.Player;
 using UnityEditor;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,11 @@ namespace Assets.Scripts.Entities.Impl
         protected new ZombieStateMachine _StateMachine;
 
         [Inject]
-        public void Construct()
+        public void Construct(EntityPathfindingStrategy pathfindingStrategy)
         {
             _StatsModel = new EntityStatsModel();
             _StateMachine = new ZombieStateMachine(this, _StatsModel);
+            _PathfindingStrategy = pathfindingStrategy;
         }
 
         private void Start()
