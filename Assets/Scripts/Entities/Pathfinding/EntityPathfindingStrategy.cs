@@ -4,8 +4,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities.Pathfinding
 {
-    public abstract class EntityPathfindingStrategy
+    public class EntityPathfindingStrategy: MonoBehaviour
     {
-        public abstract List<Transform> GetPath(Transform target);
+        public virtual List<Transform> GetPath(Transform target)
+        {
+            return null;
+        }
     }
 }
