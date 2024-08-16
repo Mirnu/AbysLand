@@ -57,6 +57,7 @@ namespace DI
             bindModels();
             bindHandlers();
             bindSystems();
+            bindControllers();
 
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
                 .WithArguments(_handTransform, Container, _starterResource);
@@ -95,10 +96,16 @@ namespace DI
         private void bindHandlers()
         {
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
+        }
+
+        private void bindControllers()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerAnimationController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ArmAnimationController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerDirectionController>().AsSingle().NonLazy();
         }
 
         private void bindSystems()

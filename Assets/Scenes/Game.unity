@@ -1159,7 +1159,7 @@ MonoBehaviour:
   _armAnimator: {fileID: 1289490782}
   _handTransform: {fileID: 373073143}
   _playerTransform: {fileID: 1895886982}
-  _starterResource: {fileID: 11400000, guid: 8db3b6a0abb2743d9bc627fa07da798f, type: 2}
+  _starterResource: {fileID: 11400000, guid: d6ac46e7c2d6cea4fb7b82ff38a55dd5, type: 2}
   _foodResource: {fileID: 11400000, guid: 6c04dcd876ffb4ca29985aea664af799, type: 2}
   _playerStatesView: {fileID: 996144841}
   _hotbar_slots:
@@ -6692,7 +6692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289490779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6740,7 +6740,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1134479371, guid: d69d7e4d2deffa7459fcdd08e647c417, type: 3}
+  m_Sprite: {fileID: -366993581, guid: b1517b6e013904c4ba8025328a26bb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
