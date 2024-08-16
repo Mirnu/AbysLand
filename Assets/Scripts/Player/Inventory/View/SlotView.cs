@@ -51,7 +51,13 @@ namespace Assets.Scripts.Inventory.View {
 
         public virtual void Increment() { SetCount(_currentAmount + 1); }
 
-        public virtual void Decrement() { SetCount(_currentAmount - 1); }
+        public virtual void Decrement() { 
+            if(_currentAmount > 1) { 
+                SetCount(_currentAmount - 1); 
+            } else {
+                Delete();
+            }
+        }
 
         public bool CanSubstract(int amount) {
             return _currentResource != null && _currentAmount > amount;

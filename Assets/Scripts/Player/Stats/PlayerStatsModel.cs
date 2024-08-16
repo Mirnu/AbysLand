@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Player.Stats.UI;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Player.Stats
 {
@@ -11,6 +12,8 @@ namespace Assets.Scripts.Player.Stats
         private float _speed;
 
         public event Action<int> HealthChanged;
+        // Типа сигма заглушка пон да?
+        public event Func<(int o, int n), int> ArmorHandle = (db) => { return db.Item2; };
         public event Action<int> ManaChanged;
         public event Action<int> FoodChanged;
         public event Action<float> SpeedChanged;
@@ -39,6 +42,7 @@ namespace Assets.Scripts.Player.Stats
             get { return _health; }
             set {
                 int newValue = Math.Clamp(value, 0, _maxModel.HealthMax);
+                newValue = ArmorHandle.Invoke((_health, newValue));
                 if (newValue == _health) return;
                 _health = newValue;
                 HealthChanged?.Invoke(_health);
