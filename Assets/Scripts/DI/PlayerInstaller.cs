@@ -25,10 +25,14 @@ namespace DI
         [Header("Player")]
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private Animator _animator;
-        [SerializeField] private Transform _handTransform;
         [SerializeField] private Transform _playerTransform;
+
+        [Header("Tool")]
+        [SerializeField] private Animator _armAnimator;
+        [SerializeField] private Transform _handTransform;
         [SerializeField] private Resource _starterResource;
         [SerializeField] private Resource _foodResource;
+        [SerializeField] private List<GameObject> _handPoints;
 
         [Header("UI")]
         [SerializeField] private PlayerStatesView _playerStatesView;
@@ -56,6 +60,7 @@ namespace DI
             bindModels();
             bindHandlers();
             bindSystems();
+            bindControllers();
 
             Container.BindInterfacesAndSelfTo<Hand>().AsSingle()
                 .WithArguments(_handTransform, Container, _starterResource);
@@ -88,16 +93,23 @@ namespace DI
         private void bindModels()
         {
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_rb, _animator, _playerTransform);
+                .WithArguments(_rb, _animator, _playerTransform, _armAnimator);
         }
 
         private void bindHandlers()
         {
             Container.BindInterfacesAndSelfTo<PlayerRotationHandler>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFoodHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
+        }
+
+        private void bindControllers()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerAnimationController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ArmAnimationController>().AsSingle()
+                .WithArguments(_handPoints).NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerDirectionController>().AsSingle().NonLazy();
         }
 
         private void bindSystems()

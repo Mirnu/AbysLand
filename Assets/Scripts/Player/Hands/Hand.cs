@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Resources.Data;
 using Assets.Scripts.Resources.Tools;
+using System;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.Player.Hands
 {
@@ -16,6 +18,8 @@ namespace Assets.Scripts.Player.Hands
 
         public Resource CurrentResource => _currentResource;
         public Transform Transform => _transform;
+        public bool IsEmpty => _currentResource == _baseResource;
+        public event Action<Resource> ToolChanged; 
 
         public Hand(Transform transform, DiContainer container, Resource starter)
         {
@@ -26,9 +30,12 @@ namespace Assets.Scripts.Player.Hands
 
         public void Equip(Resource resource)
         {
-            _currentResource = resource;
+            if (_currentResource == resource) return;
             if (_currentTool != null) 
                 Object.Destroy(_currentTool.gameObject);
+
+            _currentResource = resource;
+            ToolChanged?.Invoke(resource);
             _currentTool = createTool(resource);
         }
 

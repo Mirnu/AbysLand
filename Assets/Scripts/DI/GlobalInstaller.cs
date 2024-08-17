@@ -35,5 +35,6 @@ public class GlobalInstaller : MonoInstaller
     {
         Container.BindInterfacesAndSelfTo<Routine>().
             FromNewComponentOnNewGameObject().AsSingle();
+        Container.BindInterfacesAndSelfTo<AngleUtils>().AsSingle();
     }
 }
