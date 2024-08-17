@@ -41,7 +41,7 @@ namespace Assets.Scripts.World.Generators.GenerationStages
         {
             biomes.ForEach(x => GenerateBiome(x));
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.1f);
         }
 
         private void GenerateBiome(Biome biome)

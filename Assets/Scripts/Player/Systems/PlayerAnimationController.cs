@@ -2,25 +2,25 @@ using Assets.Scripts.Misc.Utils;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Model;
 using Assets.Scripts.Player.Systems;
+using Assets.Scripts.Resources.Data;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Assets.Scripts.Player.Handlers
 {
     public enum Animations
     {
-        IdleUp,
-        IdleRight,
-        IdleDown,
-        IdleLeft,
-        WalkUp,
-        WalkRight,
-        WalkDown,
-        WalkLeft
+        UpIdle,
+        RightIdle,
+        DownIdle,
+        LeftIdle,
+        UpWalk,
+        RightWalk,
+        DownWalk,
+        LeftWalk
     }
-
 
     public class PlayerAnimationController : IInitializable, IDisposable
     {
@@ -35,6 +35,17 @@ namespace Assets.Scripts.Player.Handlers
 
         private readonly Hand _hand;
         private readonly AngleUtils _angleUtils;
+        private Dictionary<Animations, string> _animationMap = new()
+        {
+            { Animations.UpIdle, "UpIdle" },
+            { Animations.RightIdle, "RightIdle" },
+            { Animations.DownIdle, "DownIdle" },
+            { Animations.LeftIdle, "LeftIdle" },
+            { Animations.UpWalk, "UpWalk" },
+            { Animations.RightWalk, "RightWalk" },
+            { Animations.DownWalk, "DownWalk" },
+            { Animations.LeftWalk, "LeftWalk" }
+        };
 
         public PlayerAnimationController(PlayerModel model, PlayerMovement playerMovement,
             Hand hand, AngleUtils angleUtils, PlayerDirectionController directionController)
@@ -51,14 +62,21 @@ namespace Assets.Scripts.Player.Handlers
             _playerMovement.StartMoved -= OnStartWalk;
             _playerMovement.StopMoved -= OnStopWalk;
             _directionController.DirectionChanged -= OnDirectionChanged;
+            _hand.ToolChanged -= OnToolChanged;
         }
 
         public void Initialize()
         {
-            ChangeAnimation((int)Animations.IdleDown);
+            ChangeAnimation((int)Animations.DownIdle);
             _directionController.DirectionChanged += OnDirectionChanged;
             _playerMovement.StartMoved += OnStartWalk;
             _playerMovement.StopMoved += OnStopWalk;
+            _hand.ToolChanged += OnToolChanged;
+        }
+
+        private void OnToolChanged(Resource resource)
+        {
+            ChangeAnimation(_currentAnimationPosition);
         }
 
         private void OnDirectionChanged(Direction direction)
@@ -68,13 +86,15 @@ namespace Assets.Scripts.Player.Handlers
 
         public void ChangeAnimation(int animation)
         {
-            _currentAnimationPosition = !isWalk ? animation : animation + 4;
+            _currentAnimationPosition = !isWalk 
+                || (isWalk && animation > (int)Animations.LeftIdle)
+                ? animation : animation + 4;
             if (_currentAnimationPosition != animation)
             {
                 AnimationChanged?.Invoke((Animations)_currentAnimationPosition);
             }
-            
-            _model.SetMoveAnimation(_currentAnimationPosition);
+
+            _model.PlayAnimation(_animationMap[(Animations)_currentAnimationPosition]);
 
             if (_hand.IsEmpty)
                 _model.SetArmMoveAnimation(_currentAnimationPosition);

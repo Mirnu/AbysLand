@@ -39,7 +39,11 @@ namespace Assets.Scripts.Player.Model
         public void SetMoveAnimation(int id)
         {
             _animator.SetInteger("State", id);
-            
+        }
+
+        public void PlayAnimation(string name)
+        {
+            _animator.Play(name, -1, 0f);
         }
 
         public void SetArmMoveAnimation(int id)

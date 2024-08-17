@@ -1252,7 +1252,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 1895886982}
   _armAnimator: {fileID: 1289490782}
   _handTransform: {fileID: 373073143}
-  _starterResource: {fileID: 11400000, guid: 8c8ca9313aa517c43aa15ba44748d662, type: 2}
+  _starterResource: {fileID: 11400000, guid: d6ac46e7c2d6cea4fb7b82ff38a55dd5, type: 2}
   _foodResource: {fileID: 11400000, guid: 8c8ca9313aa517c43aa15ba44748d662, type: 2}
   _handPoints:
   - {fileID: 1644639487}
@@ -1605,7 +1605,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458058730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0783, y: -0.0677, z: -0.01}
+  m_LocalPosition: {x: -0.0783, y: -0.0677, z: -0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6418,7 +6418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181180166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0384, y: -0.0908, z: -0.01}
+  m_LocalPosition: {x: -0.0384, y: -0.0908, z: -0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

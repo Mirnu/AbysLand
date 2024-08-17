@@ -1,10 +1,8 @@
 ﻿using Assets.Scripts.Misc.Utils;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Model;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Zenject;
 
 namespace Assets.Scripts.Player.Systems
@@ -23,9 +21,6 @@ namespace Assets.Scripts.Player.Systems
         private readonly AngleUtils _angleUtils;
 
         private readonly List<GameObject> _handPoints;
-
-        private bool IsChangeable;
-        private int _differenceBetweenDirection => (int)_directionController.Direction;
 
         public ArmAnimationController(Hand hand, PlayerModel model, List<GameObject> handPoints,
             PlayerDirectionController directionController, AngleUtils angleUtils)
