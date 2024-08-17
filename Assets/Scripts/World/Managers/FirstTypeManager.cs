@@ -27,7 +27,8 @@ namespace Assets.Scripts.World.Managers {
         {
             _interactables.ForEach(x => { 
                 // Типа рофл плэйсхолдер пон да?
-                x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, delegate{});
+                x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, 
+                    delegate{ Debug.Log("Destroyed");  });
             });
         }
     }
@@ -50,7 +51,7 @@ namespace Assets.Scripts.World.Managers {
         }
 
         public void Damage(int amount) {
-            if(Health > amount) { OnDamaged.Invoke(); }
+            if(Health > amount) { OnDamaged?.Invoke(); }
             else { OnDestroyed?.Invoke(); }
         }
     }

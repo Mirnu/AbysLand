@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Game.Systems
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Game.Systems
         ///</summary>
         public void Subscribe(GameState state, Action subcriber)
         {
+            Debug.Log(state.ToString());
             List<Action> subscribers = _subscribersMap.ContainsKey(state) ?
                 _subscribersMap[state] :
                 new List<Action>();
@@ -44,6 +46,7 @@ namespace Assets.Scripts.Game.Systems
             if (!_subscribersMap.ContainsKey(state)) return;
             foreach (var subscriber in _subscribersMap[state])
             {
+                Debug.Log(-1);
                 subscriber();
             }
         }

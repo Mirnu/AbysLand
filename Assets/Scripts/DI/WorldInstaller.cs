@@ -24,6 +24,7 @@ namespace Assets.Scripts.DI
 
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<UpperWorldGen>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CornersGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
