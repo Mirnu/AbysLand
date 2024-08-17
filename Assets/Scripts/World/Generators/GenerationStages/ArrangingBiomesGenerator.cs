@@ -86,12 +86,12 @@ namespace Assets.Scripts.World.Generators.GenerationStages
             _all.ForEach(x => {
                 foreach (var f in biome.Features)
                 {
-                    if (Random.Range(0, 100f) < f.SpawnChance
-                    && (GetNeighbors(DecorTiles[(int)f.Layer], new Vector2Int(x.x, x.y), f.FeatureTile).Count() < 1
-                    || Random.Range(0, 100) < f.NeighborChance))
-                    {
-                        DecorTiles[(int)f.Layer].SetTile(new Vector3Int(x.x, x.y), f.FeatureTile);
-                    }
+                        if (Random.Range(0, 100f) < f.SpawnChance
+                        && (GetNeighbors(DecorTiles[(int)f.Layer], new Vector2Int(x.x, x.y), f.FeatureTile[0]).Count() < 1
+                        || Random.Range(0, 100) < f.NeighborChance))
+                        {
+                            DecorTiles[(int)f.Layer].SetTile(new Vector3Int(x.x, x.y), f.FeatureTile[Random.Range(0, f.FeatureTile.Count)]);
+                        }
                 }
             });
         }
