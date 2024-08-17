@@ -21,7 +21,7 @@ namespace Assets.Scripts.Resources.Tools
 
         private void Awake()
         {
-            IToolComponent[] components = GetComponents<IToolComponent>(); 
+            MonoTool[] components = GetComponents<MonoTool>(); 
 
             foreach (var component in components)
             {
