@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.World.Biomes {
@@ -7,7 +8,7 @@ namespace Assets.Scripts.World.Biomes {
         public float SpawnChance;
         public float NeighborChance;
         public FeatureLayer Layer;
-        public TileBase FeatureTile;
+        public List<TileBase> FeatureTile;
     }
 }
 public enum FeatureLayer {
