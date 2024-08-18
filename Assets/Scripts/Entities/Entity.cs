@@ -7,11 +7,11 @@ namespace Assets.Scripts.Entities
 {
     public abstract class Entity :  MonoBehaviour
     {
-        protected EntityStatsModel _StatsModel;
-        protected EntityStateMachine _StateMachine;
-        protected IPathfindingStrategy _PathfindingStrategy;
+        protected EntityStatsModel statsModel;
+        protected EntityStateMachine stateMachine;
+        protected IPathfindingStrategy pathfindingStrategy;
         public GameObject CurrentTarget { get; protected set; }
-        protected int _CurHP;
+        protected int curHP;
 
         public class Factory: PlaceholderFactory<IPathfindingStrategy, Entity>
         {

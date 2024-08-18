@@ -10,19 +10,19 @@ namespace Assets.Scripts.Entities
     {
         private Entity.Factory _EntityFactory;
         private IPathfindingStrategy _PathfindingStrategy;
-        int spawns = 0;
+        private int _spawns = 0;
 
         public EntitySpawner(IPathfindingStrategy pathfindingStrategy, Entity.Factory EntityFactory)
         {
-            this._EntityFactory = EntityFactory;
-            this._PathfindingStrategy = pathfindingStrategy;
+            _EntityFactory = EntityFactory;
+            _PathfindingStrategy = pathfindingStrategy;
         }
 
         public void Tick()
         {
-            if(spawns < 1){
+            if(_spawns < 1){
                 _EntityFactory.Create(_PathfindingStrategy);
-                spawns += 1;
+                _spawns += 1;
             }     
         }
     }

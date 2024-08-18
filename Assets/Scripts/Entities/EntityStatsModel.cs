@@ -28,12 +28,12 @@ namespace Assets.Scripts.Entities
 
         public EntityStatsModel(int hp = 1, float speed = 1f, int damage = 0, bool canDie = true, bool hasAI = false, bool canAttack = false)
         {
-            this._MaxHP = hp;
-            this._Speed = speed;
-            this._Damage = damage;
-            this._CanDie = canDie;
-            this._HasAI = hasAI;
-            this._CanAttack = canAttack;
+            _MaxHP = hp;
+            _Speed = speed;
+            _Damage = damage;
+            _CanDie = canDie;
+            _HasAI = hasAI;
+            _CanAttack = canAttack;
         }
 
         public int HP
