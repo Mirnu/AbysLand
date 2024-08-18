@@ -5,6 +5,7 @@ using Assets.Scripts.Player.Stats.LaU;
 using UnityEngine;
 using System.Collections.Generic;
 using Assets.Scripts.Resources.Crafting;
+using Assets.Scripts.Game.Systems;
 
 public class GameplayInstaller : MonoInstaller
 {
@@ -20,6 +21,12 @@ public class GameplayInstaller : MonoInstaller
         bindEntryPoint();
         bindLaU();
         bindModels();
+        bindControllers();
+    }
+
+    private void bindControllers()
+    {
+        Container.BindInterfacesAndSelfTo<TimeController>().AsSingle().NonLazy();
     }
 
     private void bindLaU()

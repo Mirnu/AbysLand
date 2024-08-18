@@ -37,6 +37,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             _slots[1].GetComponent<SelectableSlotView>().TrySet(mock1);
             //
             _slots[0].Select();
+            _hand.Equip(mock);
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);
             _input.Gameplay.Hotbar.performed += HotbarChangeState;
             _input.Gameplay.Inventory.performed += HotbarChangeSelectability;
