@@ -14,20 +14,20 @@ namespace Assets.Scripts.Entities {
         public readonly ZombieSearchState SearchState;
 
 
-        protected new Zombie _EntityModel;
-        protected new EntityStatsModel _Stats;
+        protected new Zombie entityModel;
+        protected new EntityStatsModel stats;
 
         private EntityState _curState;
         private EntityState _prevState;
 
         public ZombieStateMachine(Zombie entity, EntityStatsModel stats, IPathfindingStrategy strategy) : base(entity, stats, strategy)
         {
-            _EntityModel = entity;
-            _Stats = stats;
+            entityModel = entity;
+            this.stats = stats;
             _PathfindingStrategy = strategy;
 
-            AttackState = new ZombieAttackState(this, _EntityModel, _Stats, strategy);
-            SearchState = new ZombieSearchState(this, _EntityModel, _Stats, strategy);
+            AttackState = new ZombieAttackState(this, entityModel, this.stats, strategy);
+            SearchState = new ZombieSearchState(this, entityModel, this.stats, strategy);
         }
 
         public override void Initialize()
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Entities {
         public override bool ChangeState(EntityState newState)
         {
             if (_curState == newState) return false;
-            if (!_curState.OnExit()) return false;
+            if (!_curState.Exit()) return false;
             _prevState = _curState;
             _curState = newState;
             Debug.Log(_curState);

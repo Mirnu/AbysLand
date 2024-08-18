@@ -7,20 +7,22 @@ namespace Assets.Scripts.Entities
 {
     public abstract class EntityState
     {
-        protected EntityStateMachine _StateMachine;
-        protected Entity _EntityModel;
-        protected EntityStatsModel _EntityStats;
-        protected IPathfindingStrategy _PathfindingStrategy;
+        protected EntityStateMachine stateMachine;
+        protected Entity entityModel;
+        protected EntityStatsModel entityStats;
+        protected IPathfindingStrategy pathfindingStrategy;
         public EntityState(EntityStateMachine state_machine, Entity entity, EntityStatsModel stats, IPathfindingStrategy strategy)
         {
-            _StateMachine = state_machine;
-            _EntityModel = entity;
-            _EntityStats = stats;
-            _PathfindingStrategy = strategy;
+            stateMachine = state_machine;
+            entityModel = entity;
+            entityStats = stats;
+            pathfindingStrategy = strategy;
         }
+
+        public abstract void Enter();
 
         public abstract void Update();
 
-        public abstract bool OnExit();
+        public abstract bool Exit();
     }
 }
