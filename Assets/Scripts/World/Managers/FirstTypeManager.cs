@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Object = UnityEngine.Object;
 using Zenject;
+using Assets.Scripts.Resources.Data;
 
 namespace Assets.Scripts.World.Managers {
     // 1 система блоков
@@ -12,6 +13,11 @@ namespace Assets.Scripts.World.Managers {
 
         public FirstTypeManager(List<InteractableGO> interactables) {
             _interactables = interactables;
+        }
+
+        public void Place(Resource resource)
+        {
+
         }
 
         public void Initialize()

@@ -1,15 +1,14 @@
-﻿using Assets.Scripts.Resources.Tools;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Resources
+namespace Assets.Scripts.Resources.Tools.Complementary
 {
-    public class MonoTool : MonoBehaviour
+    public class RaycastableTool : MonoBehaviour
     {
-        protected Tool tool;
+        private IRaycastable[] _raycastables;
 
-        public void Init(Tool tool)
+        private void Awake()
         {
-            this.tool = tool;
+            _raycastables = GetComponents<IRaycastable>();
         }
 
         private void Update()
@@ -22,11 +21,12 @@ namespace Assets.Scripts.Resources
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    OnRaycast(hit);
+                    foreach (var raycastable in _raycastables)
+                    {
+                        raycastable.OnRaycast(hit);
+                    }
                 }
             }
         }
-
-        protected virtual void OnRaycast(RaycastHit hit) { }
     }
 }
