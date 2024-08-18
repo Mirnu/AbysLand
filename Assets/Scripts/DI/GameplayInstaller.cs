@@ -23,6 +23,6 @@ public class GameplayInstaller : MonoInstaller
 
         Container.BindInterfacesAndSelfTo<EntitySpawner>().AsSingle();
         Container.BindFactory<IPathfindingStrategy, Entity, Entity.Factory>().FromComponentInNewPrefab(ZombiePrefab);
-        Container.Bind<IPathfindingStrategy>().To<NavMeshPathfindingStrategy>().AsSingle();
+        Container.Bind<IPathfindingStrategy>().To<AStarPathfindingStrategy>().AsSingle();
     }
 }

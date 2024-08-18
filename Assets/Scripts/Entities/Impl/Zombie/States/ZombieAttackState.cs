@@ -10,22 +10,22 @@ namespace Assets.Scripts.Entities
     {
         public ZombieAttackState(ZombieStateMachine state_machine, Zombie entity, EntityStatsModel stats, IPathfindingStrategy strategy) : base(state_machine, entity, stats, strategy)
         {
-            stateMachine = state_machine;
-            entityModel = entity;
-            entityStats = stats;
-            pathfindingStrategy = strategy;
+            _StateMachine = state_machine;
+            _EntityModel = entity;
+            _EntityStats = stats;
+            _PathfindingStrategy = strategy;
         }
 
-        public override bool Exit()
+        public override bool OnExit()
         {
-            pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
+            _PathfindingStrategy.MoveToPreviousPoint(_EntityModel.gameObject);
             return true;
         }
 
         public override void Update()
         {
-            Debug.Log(entityModel.CurrentTarget.transform);
-            pathfindingStrategy.MoveTo(entityModel.CurrentTarget.transform, entityModel.gameObject);
+            Debug.Log(_EntityModel.CurrentTarget.transform);
+            _PathfindingStrategy.MoveTo(_EntityModel.CurrentTarget.transform, _EntityModel.gameObject);
         }
     }
 }

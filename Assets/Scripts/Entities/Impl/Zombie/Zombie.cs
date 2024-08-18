@@ -9,38 +9,38 @@ namespace Assets.Scripts.Entities.Impl
 {
     public class Zombie : Entity
     {
-        protected new EntityStatsModel statsModel;
-        protected new ZombieStateMachine stateMachine;
+        protected new EntityStatsModel _StatsModel;
+        protected new ZombieStateMachine _StateMachine;
 
         [Inject]
         public void Construct(IPathfindingStrategy pathfindingStrategy)
         {
-            statsModel = new EntityStatsModel(damage: 5, hasAI: true, canAttack: true);
-            base.pathfindingStrategy = pathfindingStrategy;
-            stateMachine = new ZombieStateMachine(this, statsModel, base.pathfindingStrategy);
+            _StatsModel = new EntityStatsModel(damage: 5, hasAI: true, canAttack: true);
+            _PathfindingStrategy = pathfindingStrategy;
+            _StateMachine = new ZombieStateMachine(this, _StatsModel, _PathfindingStrategy);
         }
 
         private void Start()
         {
-            stateMachine.Initialize();
-            Debug.Log(pathfindingStrategy);
+            _StateMachine.Initialize();
+            Debug.Log(_PathfindingStrategy);
         }
 
         private void Update()
         {
-            stateMachine.Update();
+            _StateMachine.Update();
         }
 
         public void TakeDamage(int damage)
         {
-            statsModel.HP -= damage;
+            _StatsModel.HP -= damage;
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.TryGetComponent(out PlayerFacade player))
             {
-                player.TakeDamage(statsModel.Damage);
+                player.TakeDamage(_StatsModel.Damage);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Assets.Scripts.Entities.Impl
             if (other.gameObject.TryGetComponent(out PlayerFacade player))
             {
                 CurrentTarget = player.gameObject;
-                stateMachine.ChangeState(stateMachine.AttackState);
+                _StateMachine.ChangeState(_StateMachine.AttackState);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Assets.Scripts.Entities.Impl
             if (other.gameObject.TryGetComponent(out PlayerFacade player))
             {
                 CurrentTarget = null;
-                stateMachine.ChangeState(stateMachine.SearchState);
+                _StateMachine.ChangeState(_StateMachine.SearchState);
             }
         }
     }
