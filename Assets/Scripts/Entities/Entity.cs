@@ -9,10 +9,11 @@ namespace Assets.Scripts.Entities
     {
         protected EntityStatsModel _StatsModel;
         protected EntityStateMachine _StateMachine;
-        protected EntityPathfindingStrategy _PathfindingStrategy;
+        protected IPathfindingStrategy _PathfindingStrategy;
+        public GameObject CurrentTarget { get; protected set; }
         protected int _CurHP;
 
-        public class Factory: PlaceholderFactory<EntityPathfindingStrategy, Entity>
+        public class Factory: PlaceholderFactory<IPathfindingStrategy, Entity>
         {
 
         }

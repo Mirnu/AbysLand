@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Assets.Scripts.Entities.Pathfinding;
 
 namespace Assets.Scripts.Entities
 {
@@ -11,11 +12,13 @@ namespace Assets.Scripts.Entities
     {
         protected EntityStatsModel _Stats;
         protected Entity _EntityModel;
+        protected IPathfindingStrategy _PathfindingStrategy;
 
-        public EntityStateMachine(Entity entity, EntityStatsModel stats)
+        public EntityStateMachine(Entity entity, EntityStatsModel stats, IPathfindingStrategy strategy)
         {
             _EntityModel = entity;
             _Stats = stats;
+            _PathfindingStrategy = strategy;
         }
 
         public abstract void Initialize();

@@ -1,4 +1,5 @@
 using Assets.Scripts.Entities.Impl;
+using Assets.Scripts.Entities.Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,13 +20,14 @@ namespace Assets.Scripts.Entities {
         private EntityState _curState;
         private EntityState _prevState;
 
-        public ZombieStateMachine(Zombie entity, EntityStatsModel stats) : base(entity, stats)
+        public ZombieStateMachine(Zombie entity, EntityStatsModel stats, IPathfindingStrategy strategy) : base(entity, stats, strategy)
         {
             _EntityModel = entity;
             _Stats = stats;
+            _PathfindingStrategy = strategy;
 
-            AttackState = new ZombieAttackState(this, _EntityModel, _Stats);
-            SearchState = new ZombieSearchState(this, _EntityModel, _Stats);
+            AttackState = new ZombieAttackState(this, _EntityModel, _Stats, strategy);
+            SearchState = new ZombieSearchState(this, _EntityModel, _Stats, strategy);
         }
 
         public override void Initialize()
@@ -44,9 +46,10 @@ namespace Assets.Scripts.Entities {
         public override bool ChangeState(EntityState newState)
         {
             if (_curState == newState) return false;
-            // if (!_prevState.OnExit()) return false;
-            // _prevState = _curState;
+            if (!_curState.OnExit()) return false;
+            _prevState = _curState;
             _curState = newState;
+            Debug.Log(_curState);
             return true;
         }
 

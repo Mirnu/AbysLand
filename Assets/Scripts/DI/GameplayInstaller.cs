@@ -22,6 +22,7 @@ public class GameplayInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<PlayerBoostModel>().AsSingle();
 
         Container.BindInterfacesAndSelfTo<EntitySpawner>().AsSingle();
-        Container.BindFactory<EntityPathfindingStrategy, Entity, Entity.Factory>().FromComponentInNewPrefab(ZombiePrefab);
+        Container.BindFactory<IPathfindingStrategy, Entity, Entity.Factory>().FromComponentInNewPrefab(ZombiePrefab);
+        Container.Bind<IPathfindingStrategy>().To<AStarPathfindingStrategy>().AsSingle();
     }
 }

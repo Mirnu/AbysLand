@@ -8,21 +8,21 @@ namespace Assets.Scripts.Entities
 {
     public class EntitySpawner : ITickable
     {
-        private Entity.Factory _entityFactory;
-        private EntityPathfindingStrategy _pathfindingStrategy;
-        bool _isSpawned = false;
+        private Entity.Factory _EntityFactory;
+        private IPathfindingStrategy _PathfindingStrategy;
+        int spawns = 0;
 
-        public EntitySpawner(EntityPathfindingStrategy pathfindingStrategy, Entity.Factory EntityFactory)
+        public EntitySpawner(IPathfindingStrategy pathfindingStrategy, Entity.Factory EntityFactory)
         {
-            this._entityFactory = EntityFactory;
-            this._pathfindingStrategy = pathfindingStrategy;
+            this._EntityFactory = EntityFactory;
+            this._PathfindingStrategy = pathfindingStrategy;
         }
 
         public void Tick()
         {
-            if(!_isSpawned){
-                _entityFactory.Create(_pathfindingStrategy);
-                _isSpawned = true;
+            if(spawns < 1){
+                _EntityFactory.Create(_PathfindingStrategy);
+                spawns += 1;
             }     
         }
     }

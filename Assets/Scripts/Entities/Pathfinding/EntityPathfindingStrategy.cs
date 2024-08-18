@@ -4,11 +4,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities.Pathfinding
 {
-    public class EntityPathfindingStrategy: MonoBehaviour
+    public interface IPathfindingStrategy
     {
-        public virtual List<Transform> GetPath(Transform target)
-        {
-            return null;
-        }
+        public void MoveTo(Transform target, GameObject self);
+        public void MoveToPreviousPoint(GameObject self);
     }
 }
