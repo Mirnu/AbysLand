@@ -43,19 +43,6 @@ namespace Assets.Scripts.World {
             AddGenerators(generators);
         }
 
-        public bool CanDamageAt(Vector2 pos, float amount) {
-            return _firstTypeManagers.Any(x => x.ContainsPos(pos)) 
-            || _secondTypeManagers.Any(x => x.transform.position == (Vector3)pos);
-        }
-        
-        public void DamageAt(Vector2 pos, float amount) {
-            if(_firstTypeManagers.Any(x => x.ContainsPos(pos))) {
-                _firstTypeManagers.Find(x => x.ContainsPos(pos)).TryDestroyAtPos(Vector2Int.FloorToInt(pos), amount, out InteractableGO gO);
-            } else if(_secondTypeManagers.Any(x => x.transform.position == (Vector3)pos)) {
-                _secondTypeManagers.Find(x => x.transform.position == (Vector3)pos).Interact();
-            }
-        }
-
         public void Place(Resource res) {
             
         }

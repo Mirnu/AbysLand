@@ -43,10 +43,6 @@ namespace Assets.Scripts.World {
             GenerateStageChanged?.Invoke(stage);
         }
 
-        public bool CanDamageAt(Vector2 pos, float a) => _gen.CanDamageAt(pos, a);
-
-        public void DamageAt(Vector2 pos, float a) => _gen.DamageAt(pos, a);
-
         public IEnumerator Generate(string seed) => _gen.Generate(seed);
 
         public void Place(Resource res) => _gen.Place(res);

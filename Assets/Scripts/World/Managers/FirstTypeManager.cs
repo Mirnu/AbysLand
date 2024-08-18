@@ -1,7 +1,7 @@
+using Assets.Scripts.World.Blocks;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+using Object = UnityEngine.Object;
 using Zenject;
 
 namespace Assets.Scripts.World.Managers {
@@ -14,28 +14,18 @@ namespace Assets.Scripts.World.Managers {
             _interactables = interactables;
         }
 
-        public bool ContainsPos(Vector2 Pos) { return _interactables.Any(x => x.Pos == Pos); }
-
-        public bool TryDestroyAtPos(Vector2Int Pos, float amount, out InteractableGO interactable) {
-            if(_interactables.Any(x => x.Pos == Pos)) { interactable = null; return false; }
-            interactable = _interactables.First(x => x.Pos == Pos);
-            interactable.Damage((int)amount);
-            return true;
-        }
-
         public void Initialize()
         {
             _interactables.ForEach(x => { 
                 // Типа рофл плэйсхолдер пон да?
                 x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, 
-                    delegate{ Debug.Log("Destroyed");  });
+                    delegate{ Object.Destroy(x.Go.gameObject); });
             });
         }
     }
 
     [Serializable]
     public class InteractableGO {
-        public Vector2Int Pos;
         public Block Go;
         public int Health;
         public int MaxHealth;
@@ -44,23 +34,14 @@ namespace Assets.Scripts.World.Managers {
         public Action OnDestroyed;
 
         public void Init(Action onDamaged, Action onDestroyed) {
-            Pos = new Vector2Int((int)Go.transform.position.x, (int)Go.transform.position.y);
             Health = MaxHealth;
             Go.OnLeftClick += onDamaged;
-            Go.OnDestroyed = onDestroyed;
+            Go.OnDestroyed += onDestroyed;
         }
 
         public void Damage(int amount) {
             if(Health > amount) { OnDamaged?.Invoke(); }
             else { OnDestroyed?.Invoke(); }
         }
-    }
-
-    [Serializable]
-    public class Block : MonoBehaviour {
-        public Action OnLeftClick;
-        public Action OnRightClick;
-        public Action OnMiddleClick;
-        public Action OnDestroyed;
     }
 }

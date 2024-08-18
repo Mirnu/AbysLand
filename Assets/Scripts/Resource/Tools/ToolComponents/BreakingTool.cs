@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.World;
+using Assets.Scripts.World.Blocks;
 using UnityEngine;
 using Zenject;
 
@@ -16,7 +17,10 @@ namespace Assets.Scripts.Resources.Tools.ToolComponents
 
         protected override void OnRaycast(RaycastHit hit)
         {
-            
+            if (hit.collider.TryGetComponent(out Block block))
+            {
+                block.Destroy();
+            }
         }
     }
 }
