@@ -21,7 +21,7 @@ namespace Assets.Scripts.Resources.Tools
 
         private void Awake()
         {
-            MonoTool[] components = GetComponents<MonoTool>(); 
+            MonoBehaviourTool[] components = GetComponents<MonoBehaviourTool>(); 
 
             foreach (var component in components)
             {

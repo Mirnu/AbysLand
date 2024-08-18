@@ -1,11 +1,13 @@
 ﻿using Assets.Scripts.Entities.Impl;
+using Assets.Scripts.Resources.Tools.Complementary;
 using UnityEngine;
 
 namespace Assets.Scripts.Resources.Tools.ToolComponents
 {
-    public class DamageableTool : MonoTool
+    [RequireComponent(typeof(RaycastableTool))]
+    public class DamageableTool : MonoBehaviourTool, IRaycastable
     {
-        protected override void OnRaycast(RaycastHit hit)
+        public void OnRaycast(RaycastHit hit)
         {
             if (hit.collider.TryGetComponent(out Zombie zombie))
             {
