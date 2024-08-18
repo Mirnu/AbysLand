@@ -16,6 +16,11 @@ namespace Assets.Scripts.Entities
             pathfindingStrategy = strategy;
         }
 
+        public override void Enter()
+        {
+            
+        }
+
         public override bool Exit()
         {
             pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
