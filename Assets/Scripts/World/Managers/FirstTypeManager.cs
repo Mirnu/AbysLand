@@ -46,8 +46,8 @@ namespace Assets.Scripts.World.Managers {
         public void Init(Action onDamaged, Action onDestroyed) {
             Pos = new Vector2Int((int)Go.transform.position.x, (int)Go.transform.position.y);
             Health = MaxHealth;
-            OnDamaged = onDamaged;
-            OnDestroyed = onDestroyed;
+            Go.OnLeftClick += onDamaged;
+            Go.OnDestroyed = onDestroyed;
         }
 
         public void Damage(int amount) {
@@ -61,6 +61,6 @@ namespace Assets.Scripts.World.Managers {
         public Action OnLeftClick;
         public Action OnRightClick;
         public Action OnMiddleClick;
-
+        public Action OnDestroyed;
     }
 }
