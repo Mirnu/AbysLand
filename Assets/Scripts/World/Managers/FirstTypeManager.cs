@@ -36,7 +36,7 @@ namespace Assets.Scripts.World.Managers {
     [Serializable]
     public class InteractableGO {
         public Vector2Int Pos;
-        public GameObject Go;
+        public Block Go;
         public int Health;
         public int MaxHealth;
 
@@ -54,5 +54,13 @@ namespace Assets.Scripts.World.Managers {
             if(Health > amount) { OnDamaged?.Invoke(); }
             else { OnDestroyed?.Invoke(); }
         }
+    }
+
+    [Serializable]
+    public class Block : MonoBehaviour {
+        public Action OnLeftClick;
+        public Action OnRightClick;
+        public Action OnMiddleClick;
+
     }
 }
