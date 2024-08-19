@@ -40,7 +40,8 @@ namespace Assets.Scripts.Entities.Impl
         {
             if (collision.gameObject.TryGetComponent(out PlayerFacade player))
             {
-                player.TakeDamage(statsModel.Damage);
+                CurrentTarget = player.gameObject;
+                stateMachine.ChangeState(stateMachine.HitState);
             }
         }
 

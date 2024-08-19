@@ -2,6 +2,7 @@ using Assets.Scripts.Entities.Impl;
 using Assets.Scripts.Entities.Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Entities {
     {
         public readonly ZombieAttackState AttackState;
         public readonly ZombieSearchState SearchState;
+        public readonly ZombieHitState HitState;
 
 
         protected new Zombie entityModel;
@@ -28,6 +30,7 @@ namespace Assets.Scripts.Entities {
 
             AttackState = new ZombieAttackState(this, entityModel, this.stats, strategy);
             SearchState = new ZombieSearchState(this, entityModel, this.stats, strategy);
+            HitState = new ZombieHitState(this, entityModel, this.stats, strategy);
         }
 
         public override void Initialize()
@@ -50,6 +53,7 @@ namespace Assets.Scripts.Entities {
             _prevState = _curState;
             _curState = newState;
             Debug.Log(_curState);
+            _curState.Enter();
             return true;
         }
 
