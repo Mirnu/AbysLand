@@ -20,7 +20,7 @@ namespace Assets.Scripts.Entities
 
         public void Tick()
         {
-            if(_spawns < 1){
+            if(_spawns < 0){
                 _EntityFactory.Create(_PathfindingStrategy);
                 _spawns += 1;
             }     
