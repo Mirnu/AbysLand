@@ -43,6 +43,6 @@ namespace Assets.Scripts.World {
 
         public IEnumerator Generate(string seed) => _gen.Generate(seed);
 
-        public void Place(Resource res) => _gen.Place(res);
+        public void Place(Resource res, Vector2 pos) => _gen.Place(res, pos);
     }
 }

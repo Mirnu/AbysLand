@@ -8,6 +8,8 @@ using Zenject;
 using Assets.Scripts.World.Biomes;
 using Assets.Scripts.World.Managers;
 using Assets.Scripts.Resources.Crafting;
+using Assets.Scripts.World.Blocks;
+using Assets.Scripts.Resources.Data;
 
 namespace Assets.Scripts.DI
 {
@@ -20,6 +22,8 @@ namespace Assets.Scripts.DI
         [SerializeField] private List<Biome> biomes;
         [Space]
         [Space][SerializeField] private List<InteractableGO> trees = new List<InteractableGO>();
+        [SerializeField] private Block block;
+        [SerializeField] private Resource res;
 
 
         public override void InstallBindings()
@@ -29,7 +33,7 @@ namespace Assets.Scripts.DI
             Container.BindInterfacesAndSelfTo<ArrangingBaseTilesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<ArrangingBiomesGenerator>().AsSingle();
             Container.BindInterfacesAndSelfTo<FirstTypeManager>().AsSingle()
-                .WithArguments(trees);
+                .WithArguments(trees, block, res);
             Container.BindInterfacesAndSelfTo<WorldSaver>().AsSingle()
                 .WithArguments(BackgroundTiles);
             Container.BindInterfacesAndSelfTo<WorldModel>().AsSingle()

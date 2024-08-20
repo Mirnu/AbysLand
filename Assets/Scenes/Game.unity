@@ -3360,6 +3360,8 @@ MonoBehaviour:
   - Go: {fileID: 984512735}
     Health: 50
     MaxHealth: 50
+  block: {fileID: 984512735}
+  res: {fileID: 11400000, guid: 8c8ca9313aa517c43aa15ba44748d662, type: 2}
 --- !u!1 &690270383
 GameObject:
   m_ObjectHideFlags: 0
@@ -5247,6 +5249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a269e10efc2d4443852d309c8fd5fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
 --- !u!65 &984512736
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -43,9 +43,7 @@ namespace Assets.Scripts.World {
             AddGenerators(generators);
         }
 
-        public void Place(Resource res) {
-            
-        }
+        public void Place(Resource resource, Vector2 pos) => _firstTypeManagers.FirstOrDefault().Place(resource, pos);
 
         private void AddGenerators(List<IGenerator> generators)
         {

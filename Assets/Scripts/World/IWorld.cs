@@ -8,6 +8,6 @@ namespace Assets.Scripts.World {
         public IEnumerator Generate(string seed);
         public event Action<GenerateStage> GenerateStageChanged;
         public event Action GenerationCompleted;
-        public void Place(Resource res);
+        public void Place(Resource res, Vector2 pos);
     }
 }
